@@ -20,6 +20,8 @@ goog.require('Blockly.Events.BlockMove');
 goog.require('Blockly.InsertionMarkerManager');
 goog.require('Blockly.utils.Coordinate');
 goog.require('Blockly.utils.dom');
+goog.require('goog.math.Vec2');
+goog.require('Blockly.AutoScroll');
 
 goog.requireType('Blockly.BlockSvg');
 goog.requireType('Blockly.WorkspaceSvg');
@@ -204,6 +206,8 @@ Blockly.BlockDragger.prototype.dragBlock = function(e, currentDragDeltaXY) {
   var delta = this.pixelsToWorkspaceUnits_(currentDragDeltaXY);
   var newLoc = Blockly.utils.Coordinate.sum(this.startXY_, delta);
 
+  this.scrollWorkspaceWhileDragging(newLoc, e);
+
   this.draggingBlock_.moveDuringDrag(newLoc);
   this.dragIcons_(delta);
 
@@ -211,6 +215,85 @@ Blockly.BlockDragger.prototype.dragBlock = function(e, currentDragDeltaXY) {
   this.draggedConnectionManager_.update(delta, this.deleteArea_);
 
   this.updateCursorDuringBlockDrag_();
+};
+
+Blockly.BlockDragger.prototype.updateStartXY = function(x, y) {
+  this.startXY_.x += x;
+  this.startXY_.y += y;
+};
+
+Blockly.BlockDragger.prototype.scrollWorkspaceWhileDragging = function(newLoc, e) {
+  // Reverse vectors as CDO for some reason.
+  // This can maybe be converted to Coordinates. Or maybe add Vector to utils.
+  var SCROLL_DIRECTION_VECTORS = {
+    top: new goog.math.Vec2(0, 1),
+    bottom: new goog.math.Vec2(0, -1),
+    left: new goog.math.Vec2(1, 0),
+    right: new goog.math.Vec2(-1, 0)
+  };
+  // I just made this up, pick a better one
+  var SCROLL_SPEED = 0.2;
+
+  var candidateScrolls = [];
+  var overallScrollVector = new goog.math.Vec2(0, 0);
+  
+  this.workspace_.metricsManager_.stopCalculating = true;
+  var metrics = this.workspace_.getMetrics();
+
+  // CDO has much fancier math and changes speed based on how far out of bounds
+  // and if it's the mouse or the block that is OOB. Doing much simpler thing
+  // here.
+  if (newLoc.y < metrics.viewTop) {
+    // At the top of the workspace
+    console.log("top");
+    var scrollVector = SCROLL_DIRECTION_VECTORS['top'].scale(SCROLL_SPEED);
+    candidateScrolls.push(scrollVector);
+  }
+  if (newLoc.y > metrics.viewTop + metrics.viewHeight) {
+    console.log("bottom");
+    var scrollVector = SCROLL_DIRECTION_VECTORS['bottom'].scale(SCROLL_SPEED);
+    candidateScrolls.push(scrollVector);
+  }
+  if (newLoc.x < metrics.viewLeft) {
+    console.log("left");
+    var scrollVector = SCROLL_DIRECTION_VECTORS['left'].scale(SCROLL_SPEED);
+    candidateScrolls.push(scrollVector);
+  }
+  if (newLoc.x > metrics.viewLeft + metrics.viewWidth) {
+    console.log("right");
+    var scrollVector = SCROLL_DIRECTION_VECTORS['right'].scale(SCROLL_SPEED);
+    candidateScrolls.push(scrollVector);
+  }
+  
+  // Get the overall scroll direction vector (could scroll diagonally).
+  // CDO reduces down to just one vector per direction from all the possible
+  // ones they generate. Currently we just have one per direction so we don't
+  // need to do anything else.
+  candidateScrolls.forEach(function(scroll) {
+    overallScrollVector.add(scroll);
+  });
+  
+  if (overallScrollVector.equals(new goog.math.Vec2(0, 0))) {
+    this.stopAutoScrolling();
+    return;
+  }
+  
+  this.activeAutoScroll_ =
+        this.activeAutoScroll_ ||
+            new Blockly.AutoScroll(this.workspace_, scrollVector);
+  this.activeAutoScroll_.updateProperties(
+      overallScrollVector,
+      e.clientX,
+      e.clientY);
+
+      this.workspace_.metricsManager_.stopCalculating = false;
+};
+
+Blockly.BlockDragger.prototype.stopAutoScrolling = function() {
+  if (this.activeAutoScroll_) {
+    this.activeAutoScroll_.stopAndDestroy();
+  }
+  this.activeAutoScroll_ = null;
 };
 
 /**
@@ -257,6 +340,8 @@ Blockly.BlockDragger.prototype.endBlockDrag = function(e, currentDragDeltaXY) {
     toolbox.removeStyle(style);
   }
   Blockly.Events.setGroup(false);
+
+  this.stopAutoScrolling();
 };
 
 /**

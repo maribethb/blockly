@@ -95,6 +95,12 @@ Blockly.BlockDragSurfaceSvg.prototype.createDom = function() {
       Blockly.utils.Svg.G, {}, this.SVG_);
 };
 
+Blockly.BlockDragSurfaceSvg.prototype.translateBy = function(deltaX, deltaY) {
+  var x = this.surfaceXY_.x + deltaX;
+  var y = this.surfaceXY_.y + deltaY;
+  this.translateSurface(x, y);
+};
+
 /**
  * Set the SVG blocks on the drag surface's group and show the surface.
  * Only one block group should be on the drag surface at a time.

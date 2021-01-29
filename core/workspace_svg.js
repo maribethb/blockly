@@ -2159,18 +2159,101 @@ Blockly.WorkspaceSvg.prototype.getScale = function() {
 };
 
 /**
+ * Relative version of {@link Blockly.BlockSpace#scrollWithAnySelectedBlock}
+ * @param {number} scrollDx delta amount to pan-right (+)
+ * @param {number} scrollDy delta amount to pan-down (+)
+ * @param {number} mouseX clientX position of mouse
+ * @param {number} mouseY clientY position of mouse
+ */
+Blockly.WorkspaceSvg.prototype.scrollDeltaWithAnySelectedBlock = function(
+    scrollDx,
+    scrollDy,
+    mouseX,
+    mouseY
+) {
+  this.scrollWithAnySelectedBlock(
+      // i changed this
+      this.scrollX + scrollDx,
+      this.scrollY + scrollDy,
+      mouseX,
+      mouseY
+  );
+};
+
+/**
+ * Given desired new scrollX and scrollY positions, scroll to position,
+ * clamping to within allowable scroll boundaries.
+ *
+ * If a block is selected, this will also move it to stay under the current
+ * mouse position after scroll (otherwise it would appear to scroll with the
+ * entire blockspace).
+ * @param {number} newScrollX new target pan-right (+) offset
+ * @param {number} newScrollY new target pan-down (+) offset
+ * @param {number} mouseX current mouse clientX position (used for
+ *        currently-dragged block movement syncing)
+ * @param {number} mouseY current mouse clientY position
+ */
+Blockly.WorkspaceSvg.prototype.scrollWithAnySelectedBlock = function(
+    newScrollX,
+    newScrollY,
+    mouseX,
+    mouseY
+) {
+  /** @type {goog.math.Vec2} */
+  var offsetBefore = this.getScrollOffset();
+
+  // block dragger stuff
+  var oldX = this.blockDragSurface_.getGroup().transform.baseVal.consolidate().matrix.e;
+  var oldY = this.blockDragSurface_.getGroup().transform.baseVal.consolidate().matrix.f;
+
+  var newCoord = this.scroll(newScrollX, newScrollY);
+
+  var deltaX = newCoord.x.toFixed() - oldX;
+  var deltaY = newCoord.y.toFixed() - oldY;
+
+  this.blockDragSurface_.translateBy(-deltaX, -deltaY);
+  this.currentGesture_.blockDragger_.updateStartXY(-deltaX, -deltaY);
+
+  
+
+  /**
+   * If dragging a block too, move the "mouse start position" as if it
+   * had scrolled along with any blockspace scrolling, and add the scroll event
+   * delta to the block's movement.
+   */
+  // if ( // Blockly.Block.isFreelyDragging() &&
+  //   Blockly.selected) {
+  //   if (this.currentGesture_ && this.currentGesture_.blockDragger_) {
+  //     var scrolledAmount = this.getScrollOffset().subtract(offsetBefore);
+  //     this.currentGesture_.blockDragger_.startXY_.x += scrolledAmount.x;
+  //     this.currentGesture_.blockDragger_.startXY_.y += scrolledAmount.y;
+  //   }
+  //   // Moves block to stay under cursor's clientX/clientY
+  //   Blockly.selected.moveDuringDrag(mouseX, mouseY);
+  // }
+};
+
+Blockly.WorkspaceSvg.prototype.getScrollOffset = function() {
+  return new goog.math.Vec2(this.scrollX, this.scrollY);
+};
+
+/**
  * Scroll the workspace to a specified offset (in pixels), keeping in the
  * workspace bounds. See comment on workspaceSvg.scrollX for more detail on
  * the meaning of these values.
  * @param {number} x Target X to scroll to.
  * @param {number} y Target Y to scroll to.
+ * @return {!Blockly.utils.Coordinate} coord.
  * @package
  */
 Blockly.WorkspaceSvg.prototype.scroll = function(x, y) {
   Blockly.hideChaff(/* opt_allowToolbox */ true);
 
   // Keep scrolling within the bounds of the content.
+
+  this.metricsManager_.stopCalculating = true;
   var metrics = this.getMetrics();
+  this.metricsManager_.stopCalculating = false;
   // This is the offset of the top-left corner of the view from the
   // workspace origin when the view is "seeing" the bottom-right corner of
   // the content.
@@ -2201,7 +2284,8 @@ Blockly.WorkspaceSvg.prototype.scroll = function(x, y) {
   // workspace origin is not underneath the toolbox.
   x += metrics.absoluteLeft;
   y += metrics.absoluteTop;
-  this.translate(x, y);
+  this.translate(x, y, true);
+  return new Blockly.utils.Coordinate(x, y);
 };
 
 /**
