@@ -13,8 +13,11 @@
 
 goog.provide('Blockly.Generator');
 
-goog.require('Blockly.constants');
 goog.require('Blockly.Block');
+goog.require('Blockly.constants');
+
+goog.requireType('Blockly.Names');
+goog.requireType('Blockly.Workspace');
 
 
 /**

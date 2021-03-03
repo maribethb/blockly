@@ -26,8 +26,8 @@ goog.require('Blockly.fieldRegistry');
 goog.require('Blockly.Input');
 goog.require('Blockly.Tooltip');
 goog.require('Blockly.utils');
-goog.require('Blockly.utils.deprecation');
 goog.require('Blockly.utils.Coordinate');
+goog.require('Blockly.utils.deprecation');
 goog.require('Blockly.utils.object');
 goog.require('Blockly.utils.Size');
 goog.require('Blockly.utils.string');
@@ -226,7 +226,8 @@ Blockly.Block = function(workspace, prototypeName, opt_id) {
 
     // Fire a create event.
     if (Blockly.Events.isEnabled()) {
-      Blockly.Events.fire(new Blockly.Events.BlockCreate(this));
+      Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_CREATE))(
+          this));
     }
 
   } finally {
@@ -365,7 +366,8 @@ Blockly.Block.prototype.dispose = function(healStack) {
 
   this.unplug(healStack);
   if (Blockly.Events.isEnabled()) {
-    Blockly.Events.fire(new Blockly.Events.BlockDelete(this));
+    Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_DELETE))(
+        this));
   }
   Blockly.Events.disable();
 
@@ -1217,7 +1219,7 @@ Blockly.Block.prototype.setOutput = function(newBoolean, opt_check) {
  */
 Blockly.Block.prototype.setInputsInline = function(newBoolean) {
   if (this.inputsInline != newBoolean) {
-    Blockly.Events.fire(new Blockly.Events.BlockChange(
+    Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_CHANGE))(
         this, 'inline', null, this.inputsInline, newBoolean));
     this.inputsInline = newBoolean;
   }
@@ -1280,7 +1282,7 @@ Blockly.Block.prototype.isEnabled = function() {
  */
 Blockly.Block.prototype.setEnabled = function(enabled) {
   if (this.isEnabled() != enabled) {
-    Blockly.Events.fire(new Blockly.Events.BlockChange(
+    Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_CHANGE))(
         this, 'disabled', null, this.disabled, !enabled));
     this.disabled = !enabled;
   }
@@ -1317,7 +1319,7 @@ Blockly.Block.prototype.isCollapsed = function() {
  */
 Blockly.Block.prototype.setCollapsed = function(collapsed) {
   if (this.collapsed_ != collapsed) {
-    Blockly.Events.fire(new Blockly.Events.BlockChange(
+    Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_CHANGE))(
         this, 'collapsed', null, this.collapsed_, collapsed));
     this.collapsed_ = collapsed;
   }
@@ -1635,25 +1637,21 @@ Blockly.Block.prototype.interpolate_ = function(message, args, lastDummyAlign,
   // An array of [field, fieldName] tuples.
   var fieldStack = [];
   for (var i = 0, element; (element = elements[i]); i++) {
-    switch (element['type']) {
-      case 'input_value':
-      case 'input_statement':
-      case 'input_dummy':
-        var input = this.inputFromJson_(element, warningPrefix);
-        // Should never be null, but just in case.
-        if (input) {
-          for (var j = 0, tuple; (tuple = fieldStack[j]); j++) {
-            input.appendField(tuple[0], tuple[1]);
-          }
-          fieldStack.length = 0;
+    if (this.isInputKeyword_(element['type'])) {
+      var input = this.inputFromJson_(element, warningPrefix);
+      // Should never be null, but just in case.
+      if (input) {
+        for (var j = 0, tuple; (tuple = fieldStack[j]); j++) {
+          input.appendField(tuple[0], tuple[1]);
         }
-        break;
+        fieldStack.length = 0;
+      }
+    } else {
       // All other types, including ones starting with 'input_' get routed here.
-      default:
-        var field = this.fieldFromJson_(element);
-        if (field) {
-          fieldStack.push([field, element['name']]);
-        }
+      var field = this.fieldFromJson_(element);
+      if (field) {
+        fieldStack.push([field, element['name']]);
+      }
     }
   }
 };
@@ -1722,10 +1720,7 @@ Blockly.Block.prototype.interpolateArguments_ =
       }
 
       var length = elements.length;
-      var startsWith = Blockly.utils.string.startsWith;
-      // TODO: This matches the old behavior, but it doesn't work for fields
-      //   that don't start with 'field_'.
-      if (length && startsWith(elements[length - 1]['type'], 'field_')) {
+      if (length && !this.isInputKeyword_(elements[length - 1]['type'])) {
         var dummyInput = {'type': 'input_dummy'};
         if (lastDummyAlign) {
           dummyInput['align'] = lastDummyAlign;
@@ -1770,10 +1765,10 @@ Blockly.Block.prototype.fieldFromJson_ = function(element) {
  */
 Blockly.Block.prototype.inputFromJson_ = function(element, warningPrefix) {
   var alignmentLookup = {
-    'LEFT': Blockly.ALIGN_LEFT,
-    'RIGHT': Blockly.ALIGN_RIGHT,
-    'CENTRE': Blockly.ALIGN_CENTRE,
-    'CENTER': Blockly.ALIGN_CENTRE
+    'LEFT': Blockly.constants.ALIGN.LEFT,
+    'RIGHT': Blockly.constants.ALIGN.RIGHT,
+    'CENTRE': Blockly.constants.ALIGN.CENTRE,
+    'CENTER': Blockly.constants.ALIGN.CENTRE
   };
 
   var input = null;
@@ -1806,6 +1801,19 @@ Blockly.Block.prototype.inputFromJson_ = function(element, warningPrefix) {
     }
   }
   return input;
+};
+
+/**
+ * Returns true if the given string matches one of the input keywords.
+ * @param {string} str The string to check.
+ * @return {boolean} True if the given string matches one of the input keywords,
+ *     false otherwise.
+ * @private
+ */
+Blockly.Block.prototype.isInputKeyword_ = function(str) {
+  return str == 'input_value' ||
+      str == 'input_statement' ||
+      str == 'input_dummy';
 };
 
 /**
@@ -1978,7 +1986,7 @@ Blockly.Block.prototype.setCommentText = function(text) {
   if (this.commentModel.text == text) {
     return;
   }
-  Blockly.Events.fire(new Blockly.Events.BlockChange(
+  Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.BLOCK_CHANGE))(
       this, 'comment', null, this.commentModel.text, text));
   this.commentModel.text = text;
   this.comment = text;  // For backwards compatibility.
@@ -2021,7 +2029,7 @@ Blockly.Block.prototype.moveBy = function(dx, dy) {
   if (this.parentBlock_) {
     throw Error('Block has parent.');
   }
-  var event = new Blockly.Events.BlockMove(this);
+  var event = new (Blockly.Events.get(Blockly.Events.BLOCK_MOVE))(this);
   this.xy_.translate(dx, dy);
   event.recordNew();
   Blockly.Events.fire(event);

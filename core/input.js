@@ -14,7 +14,13 @@ goog.provide('Blockly.Input');
 
 goog.require('Blockly.Connection');
 goog.require('Blockly.constants');
-goog.require('Blockly.FieldLabel');
+goog.require('Blockly.fieldRegistry');
+
+goog.requireType('Blockly.Block');
+goog.requireType('Blockly.BlockSvg');
+goog.requireType('Blockly.Field');
+goog.requireType('Blockly.FieldDropdown');
+goog.requireType('Blockly.RenderedConnection');
 
 
 /**
@@ -49,7 +55,7 @@ Blockly.Input = function(type, name, block, connection) {
  * Alignment of input's fields (left, right or centre).
  * @type {number}
  */
-Blockly.Input.prototype.align = Blockly.ALIGN_LEFT;
+Blockly.Input.prototype.align = Blockly.constants.ALIGN.LEFT;
 
 /**
  * Is the input visible?
@@ -100,7 +106,10 @@ Blockly.Input.prototype.insertFieldAt = function(index, field, opt_name) {
 
   // Generate a FieldLabel when given a plain text field.
   if (typeof field == 'string') {
-    field = new Blockly.FieldLabel(/** @type {string} */ (field));
+    field = /** @type {!Blockly.Field} **/ (Blockly.fieldRegistry.fromJson({
+      'type': 'field_label',
+      'text': field,
+    }));
   }
 
   field.setSourceBlock(this.sourceBlock_);
@@ -233,8 +242,8 @@ Blockly.Input.prototype.setCheck = function(check) {
 
 /**
  * Change the alignment of the connection's field(s).
- * @param {number} align One of Blockly.ALIGN_LEFT, ALIGN_CENTRE, ALIGN_RIGHT.
- *   In RTL mode directions are reversed, and ALIGN_RIGHT aligns to the left.
+ * @param {number} align One of the values of Blockly.constants.ALIGN.
+ *   In RTL mode directions are reversed, and ALIGN.RIGHT aligns to the left.
  * @return {!Blockly.Input} The input being modified (to allow chaining).
  */
 Blockly.Input.prototype.setAlign = function(align) {

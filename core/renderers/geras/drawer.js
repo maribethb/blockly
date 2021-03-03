@@ -19,6 +19,7 @@ goog.require('Blockly.geras.RenderInfo');
 goog.require('Blockly.utils.object');
 goog.require('Blockly.utils.svgPaths');
 
+goog.requireType('Blockly.BlockSvg');
 goog.requireType('Blockly.geras.PathObject');
 
 

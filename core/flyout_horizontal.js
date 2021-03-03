@@ -22,7 +22,10 @@ goog.require('Blockly.utils.object');
 goog.require('Blockly.utils.Rect');
 goog.require('Blockly.WidgetDiv');
 
+goog.requireType('Blockly.Options');
+goog.requireType('Blockly.utils.Coordinate');
 goog.requireType('Blockly.utils.Metrics');
+goog.requireType('Blockly.WorkspaceSvg');
 
 
 /**
@@ -111,7 +114,9 @@ Blockly.HorizontalFlyout.prototype.setMetrics_ = function(xyRatio) {
   }
 
   if (typeof xyRatio.x == 'number') {
-    this.workspace_.scrollX = -metrics.contentWidth * xyRatio.x;
+    this.workspace_.scrollX =
+        -(metrics.contentLeft +
+            (metrics.contentWidth - metrics.viewWidth) * xyRatio.x);
   }
 
   this.workspace_.translate(this.workspace_.scrollX + metrics.absoluteLeft,
@@ -195,7 +200,7 @@ Blockly.HorizontalFlyout.prototype.position = function() {
 
   var x = this.getX();
   var y = this.getY();
-  
+
   this.positionAt_(this.width_, this.height_, x, y);
 };
 
@@ -247,7 +252,7 @@ Blockly.HorizontalFlyout.prototype.setBackgroundPath_ = function(width,
  * Scroll the flyout to the top.
  */
 Blockly.HorizontalFlyout.prototype.scrollToStart = function() {
-  this.scrollbar.set(this.RTL ? Infinity : 0);
+  this.workspace_.scrollbar.setX(this.RTL ? Infinity : 0);
 };
 
 /**
@@ -265,7 +270,7 @@ Blockly.HorizontalFlyout.prototype.wheel_ = function(e) {
     var limit = metrics.contentWidth - metrics.viewWidth;
     pos = Math.min(pos, limit);
     pos = Math.max(pos, 0);
-    this.scrollbar.set(pos);
+    this.workspace_.scrollbar.setX(pos);
     // When the flyout moves from a wheel event, hide WidgetDiv and DropDownDiv.
     Blockly.WidgetDiv.hide();
     Blockly.DropDownDiv.hideWithoutAnimation();
@@ -381,7 +386,7 @@ Blockly.HorizontalFlyout.prototype.getClientRect = function() {
  * @protected
  */
 Blockly.HorizontalFlyout.prototype.reflowInternal_ = function() {
-  this.workspace_.scale = this.targetWorkspace.scale;
+  this.workspace_.scale = this.getFlyoutScale();
   var flyoutHeight = 0;
   var blocks = this.workspace_.getTopBlocks(false);
   for (var i = 0, block; (block = blocks[i]); i++) {

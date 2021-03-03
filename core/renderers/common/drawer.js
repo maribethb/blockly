@@ -22,6 +22,12 @@ goog.require('Blockly.blockRendering.TopRow');
 goog.require('Blockly.blockRendering.Types');
 goog.require('Blockly.utils.svgPaths');
 
+goog.requireType('Blockly.blockRendering.ConstantProvider');
+goog.requireType('Blockly.blockRendering.Field');
+goog.requireType('Blockly.blockRendering.Icon');
+goog.requireType('Blockly.blockRendering.InlineInput');
+goog.requireType('Blockly.BlockSvg');
+
 
 /**
  * An object that draws a block based on the given rendering information.

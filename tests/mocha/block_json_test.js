@@ -69,6 +69,7 @@ suite('Block JSON initialization', function() {
           type: 'test',
           interpolateArguments_: Blockly.Block.prototype.interpolateArguments_,
           stringToFieldJson_: Blockly.Block.prototype.stringToFieldJson_,
+          isInputKeyword_: Blockly.Block.prototype.isInputKeyword_,
         };
         chai.assert.deepEqual(
             block.interpolateArguments_(tokens, args, lastAlign),
@@ -217,7 +218,7 @@ suite('Block JSON initialization', function() {
           ]);
     });
 
-    test.skip('Add last dummy for no_field_prefix_field', function() {
+    test('Add last dummy for no_field_prefix_field', function() {
       this.assertInterpolation(
           [
             {
@@ -229,6 +230,25 @@ suite('Block JSON initialization', function() {
           [
             {
               'type': 'no_field_prefix_field',
+            },
+            {
+              'type': 'input_dummy',
+            }
+          ]);
+    });
+
+    test('Add last dummy for input_prefix_field', function() {
+      this.assertInterpolation(
+          [
+            {
+              'type': 'input_prefix_field',
+            }
+          ],
+          [],
+          undefined,
+          [
+            {
+              'type': 'input_prefix_field',
             },
             {
               'type': 'input_dummy',
@@ -541,9 +561,7 @@ suite('Block JSON initialization', function() {
             'type': 'input_dummy',
             'align': 'LEFT',
           },
-          'input_dummy',
-          undefined,
-          Blockly.ALIGN_LEFT);
+          'input_dummy', undefined, Blockly.constants.ALIGN.LEFT);
     });
 
     test('"Right" align', function() {
@@ -552,9 +570,7 @@ suite('Block JSON initialization', function() {
             'type': 'input_dummy',
             'align': 'RIGHT',
           },
-          'input_dummy',
-          undefined,
-          Blockly.ALIGN_RIGHT);
+          'input_dummy', undefined, Blockly.constants.ALIGN.RIGHT);
     });
 
     test('"Center" align', function() {
@@ -563,9 +579,7 @@ suite('Block JSON initialization', function() {
             'type': 'input_dummy',
             'align': 'CENTER',
           },
-          'input_dummy',
-          undefined,
-          Blockly.ALIGN_CENTRE);
+          'input_dummy', undefined, Blockly.constants.ALIGN.CENTRE);
     });
 
     test('"Centre" align', function() {
@@ -574,9 +588,7 @@ suite('Block JSON initialization', function() {
             'type': 'input_dummy',
             'align': 'CENTRE',
           },
-          'input_dummy',
-          undefined,
-          Blockly.ALIGN_CENTRE);
+          'input_dummy', undefined, Blockly.constants.ALIGN.CENTRE);
     });
   });
 });

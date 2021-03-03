@@ -14,12 +14,16 @@
 goog.provide('Blockly.registry');
 
 goog.requireType('Blockly.blockRendering.Renderer');
+goog.requireType('Blockly.Cursor');
 goog.requireType('Blockly.Events.Abstract');
 goog.requireType('Blockly.Field');
 goog.requireType('Blockly.IConnectionChecker');
 goog.requireType('Blockly.IFlyout');
 goog.requireType('Blockly.IToolbox');
+goog.requireType('Blockly.MetricsManager');
+goog.requireType('Blockly.Options');
 goog.requireType('Blockly.Theme');
+goog.requireType('Blockly.ToolboxItem');
 
 
 /**
@@ -92,6 +96,10 @@ Blockly.registry.Type.FLYOUTS_VERTICAL_TOOLBOX =
 /** @type {!Blockly.registry.Type<Blockly.IFlyout>} */
 Blockly.registry.Type.FLYOUTS_HORIZONTAL_TOOLBOX =
     new Blockly.registry.Type('flyoutsHorizontalToolbox');
+
+/** @type {!Blockly.registry.Type<Blockly.MetricsManager>} */
+Blockly.registry.Type.METRICS_MANAGER =
+    new Blockly.registry.Type('metricsManager');
 
 /**
  * Registers a class based on a type and name.

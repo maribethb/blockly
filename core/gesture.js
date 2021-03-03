@@ -16,19 +16,22 @@ goog.provide('Blockly.Gesture');
 goog.require('Blockly.ASTNode');
 goog.require('Blockly.blockAnimations');
 goog.require('Blockly.BlockDragger');
+goog.require('Blockly.browserEvents');
 goog.require('Blockly.BubbleDragger');
 goog.require('Blockly.constants');
 goog.require('Blockly.Events');
 goog.require('Blockly.Events.Click');
-goog.require('Blockly.FlyoutDragger');
 goog.require('Blockly.Tooltip');
 goog.require('Blockly.Touch');
 goog.require('Blockly.utils');
 goog.require('Blockly.utils.Coordinate');
 goog.require('Blockly.WorkspaceDragger');
 
+goog.requireType('Blockly.BlockSvg');
+goog.requireType('Blockly.Field');
 goog.requireType('Blockly.IBubble');
 goog.requireType('Blockly.IFlyout');
+goog.requireType('Blockly.WorkspaceSvg');
 
 
 /**
@@ -154,7 +157,7 @@ Blockly.Gesture = function(e, creatorWorkspace) {
   /**
    * A handle to use to unbind a mouse move listener at the end of a drag.
    * Opaque data returned from Blockly.bindEventWithChecks_.
-   * @type {?Blockly.EventData}
+   * @type {?Blockly.browserEvents.Data}
    * @protected
    */
   this.onMoveWrapper_ = null;
@@ -162,7 +165,7 @@ Blockly.Gesture = function(e, creatorWorkspace) {
   /**
    * A handle to use to unbind a mouse up listener at the end of a drag.
    * Opaque data returned from Blockly.bindEventWithChecks_.
-   * @type {?Blockly.EventData}
+   * @type {?Blockly.browserEvents.Data}
    * @protected
    */
   this.onUpWrapper_ = null;
@@ -237,10 +240,10 @@ Blockly.Gesture.prototype.dispose = function() {
   this.creatorWorkspace_.clearGesture();
 
   if (this.onMoveWrapper_) {
-    Blockly.unbindEvent_(this.onMoveWrapper_);
+    Blockly.browserEvents.unbind(this.onMoveWrapper_);
   }
   if (this.onUpWrapper_) {
-    Blockly.unbindEvent_(this.onUpWrapper_);
+    Blockly.browserEvents.unbind(this.onUpWrapper_);
   }
 
   if (this.blockDragger_) {
@@ -383,7 +386,7 @@ Blockly.Gesture.prototype.updateIsDraggingBlock_ = function() {
  * This function should be called on a mouse/touch move event the first time the
  * drag radius is exceeded.  It should be called no more than once per gesture.
  * If a workspace is being dragged this function creates the necessary
- * WorkspaceDragger or FlyoutDragger and starts the drag.
+ * WorkspaceDragger and starts the drag.
  * @private
  */
 Blockly.Gesture.prototype.updateIsDraggingWorkspace_ = function() {
@@ -395,12 +398,8 @@ Blockly.Gesture.prototype.updateIsDraggingWorkspace_ = function() {
     return;
   }
 
-  if (this.flyout_) {
-    this.workspaceDragger_ = new Blockly.FlyoutDragger(this.flyout_);
-  } else {
-    this.workspaceDragger_ = new Blockly.WorkspaceDragger(
-        /** @type {!Blockly.WorkspaceSvg} */ (this.startWorkspace_));
-  }
+  this.workspaceDragger_ = new Blockly.WorkspaceDragger(
+      /** @type {!Blockly.WorkspaceSvg} */ (this.startWorkspace_));
 
   this.isDraggingWorkspace_ = true;
   this.workspaceDragger_.startDrag();
@@ -513,9 +512,9 @@ Blockly.Gesture.prototype.doStart = function(e) {
  * @package
  */
 Blockly.Gesture.prototype.bindMouseEvents = function(e) {
-  this.onMoveWrapper_ = Blockly.bindEventWithChecks_(
+  this.onMoveWrapper_ = Blockly.browserEvents.conditionalBind(
       document, 'mousemove', null, this.handleMove.bind(this));
-  this.onUpWrapper_ = Blockly.bindEventWithChecks_(
+  this.onUpWrapper_ = Blockly.browserEvents.conditionalBind(
       document, 'mouseup', null, this.handleUp.bind(this));
 
   e.preventDefault();
@@ -655,8 +654,8 @@ Blockly.Gesture.prototype.handleWsStart = function(e, ws) {
  * @private
  */
 Blockly.Gesture.prototype.fireWorkspaceClick_ = function(ws) {
-  var clickEvent = new Blockly.Events.Click(null, ws.id, 'workspace');
-  Blockly.Events.fire(clickEvent);
+  Blockly.Events.fire(new (Blockly.Events.get(Blockly.Events.CLICK))(
+      null, ws.id, 'workspace'));
 };
 
 /**
@@ -746,7 +745,7 @@ Blockly.Gesture.prototype.doBlockClick_ = function() {
     }
   } else {
     // Clicks events are on the start block, even if it was a shadow.
-    var event = new Blockly.Events.Click(
+    var event = new (Blockly.Events.get(Blockly.Events.CLICK))(
         this.startBlock_, this.startWorkspace_.id, 'block');
     Blockly.Events.fire(event);
   }

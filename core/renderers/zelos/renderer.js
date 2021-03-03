@@ -19,9 +19,16 @@ goog.require('Blockly.InsertionMarkerManager');
 goog.require('Blockly.utils.object');
 goog.require('Blockly.zelos.ConstantProvider');
 goog.require('Blockly.zelos.Drawer');
+goog.require('Blockly.zelos.MarkerSvg');
 goog.require('Blockly.zelos.PathObject');
 goog.require('Blockly.zelos.RenderInfo');
-goog.require('Blockly.zelos.MarkerSvg');
+
+goog.requireType('Blockly.blockRendering.MarkerSvg');
+goog.requireType('Blockly.blockRendering.RenderInfo');
+goog.requireType('Blockly.BlockSvg');
+goog.requireType('Blockly.Marker');
+goog.requireType('Blockly.Theme');
+goog.requireType('Blockly.WorkspaceSvg');
 
 
 /**

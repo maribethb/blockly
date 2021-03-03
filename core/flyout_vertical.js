@@ -23,6 +23,8 @@ goog.require('Blockly.utils.Rect');
 goog.require('Blockly.utils.userAgent');
 goog.require('Blockly.WidgetDiv');
 
+goog.requireType('Blockly.Options');
+goog.requireType('Blockly.utils.Coordinate');
 goog.requireType('Blockly.utils.Metrics');
 
 
@@ -87,8 +89,8 @@ Blockly.VerticalFlyout.prototype.getMetrics_ = function() {
   var metrics = {
     contentHeight: optionBox.height * this.workspace_.scale + 2 * this.MARGIN,
     contentWidth: optionBox.width * this.workspace_.scale + 2 * this.MARGIN,
-    contentTop: optionBox.y,
-    contentLeft: optionBox.x,
+    contentTop: optionBox.y - this.MARGIN,
+    contentLeft: optionBox.x - this.MARGIN,
 
     viewHeight: viewHeight,
     viewWidth: viewWidth,
@@ -115,7 +117,9 @@ Blockly.VerticalFlyout.prototype.setMetrics_ = function(xyRatio) {
     return;
   }
   if (typeof xyRatio.y == 'number') {
-    this.workspace_.scrollY = -metrics.contentHeight * xyRatio.y;
+    this.workspace_.scrollY =
+        -(metrics.contentTop +
+            (metrics.contentHeight - metrics.viewHeight) * xyRatio.y);
   }
   this.workspace_.translate(this.workspace_.scrollX + metrics.absoluteLeft,
       this.workspace_.scrollY + metrics.absoluteTop);
@@ -199,7 +203,7 @@ Blockly.VerticalFlyout.prototype.position = function() {
 
   var x = this.getX();
   var y = this.getY();
-  
+
   this.positionAt_(this.width_, this.height_, x, y);
 };
 
@@ -241,7 +245,7 @@ Blockly.VerticalFlyout.prototype.setBackgroundPath_ = function(width, height) {
  * Scroll the flyout to the top.
  */
 Blockly.VerticalFlyout.prototype.scrollToStart = function() {
-  this.scrollbar.set(0);
+  this.workspace_.scrollbar.setY(0);
 };
 
 /**
@@ -258,7 +262,7 @@ Blockly.VerticalFlyout.prototype.wheel_ = function(e) {
     var limit = metrics.contentHeight - metrics.viewHeight;
     pos = Math.min(pos, limit);
     pos = Math.max(pos, 0);
-    this.scrollbar.set(pos);
+    this.workspace_.scrollbar.setY(pos);
     // When the flyout moves from a wheel event, hide WidgetDiv and DropDownDiv.
     Blockly.WidgetDiv.hide();
     Blockly.DropDownDiv.hideWithoutAnimation();
@@ -366,7 +370,7 @@ Blockly.VerticalFlyout.prototype.getClientRect = function() {
  * @protected
  */
 Blockly.VerticalFlyout.prototype.reflowInternal_ = function() {
-  this.workspace_.scale = this.targetWorkspace.scale;
+  this.workspace_.scale = this.getFlyoutScale();
   var flyoutWidth = 0;
   var blocks = this.workspace_.getTopBlocks(false);
   for (var i = 0, block; (block = blocks[i]); i++) {

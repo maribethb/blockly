@@ -12,8 +12,9 @@
 
 goog.provide('Blockly.WorkspaceSvg');
 
-goog.require('Blockly.BlockSvg');
 goog.require('Blockly.blockRendering');
+goog.require('Blockly.BlockSvg');
+goog.require('Blockly.browserEvents');
 goog.require('Blockly.ConnectionDB');
 goog.require('Blockly.constants');
 goog.require('Blockly.ContextMenuRegistry');
@@ -24,6 +25,7 @@ goog.require('Blockly.Events.ViewportChange');
 goog.require('Blockly.Gesture');
 goog.require('Blockly.Grid');
 goog.require('Blockly.MarkerManager');
+goog.require('Blockly.MetricsManager');
 goog.require('Blockly.Msg');
 goog.require('Blockly.Options');
 goog.require('Blockly.registry');
@@ -43,10 +45,23 @@ goog.require('Blockly.WorkspaceAudio');
 goog.require('Blockly.WorkspaceDragSurfaceSvg');
 goog.require('Blockly.Xml');
 
+goog.requireType('Blockly.Block');
+goog.requireType('Blockly.BlockDragSurfaceSvg');
 goog.requireType('Blockly.blockRendering.Renderer');
+goog.requireType('Blockly.Cursor');
+goog.requireType('Blockly.FlyoutButton');
 goog.requireType('Blockly.IASTNodeLocationSvg');
 goog.requireType('Blockly.IBoundedElement');
 goog.requireType('Blockly.IFlyout');
+goog.requireType('Blockly.IMetricsManager');
+goog.requireType('Blockly.IToolbox');
+goog.requireType('Blockly.Marker');
+goog.requireType('Blockly.ScrollbarPair');
+goog.requireType('Blockly.Theme');
+goog.requireType('Blockly.Trashcan');
+goog.requireType('Blockly.utils.Size');
+goog.requireType('Blockly.VariableModel');
+goog.requireType('Blockly.ZoomControls');
 
 
 /**
@@ -61,16 +76,34 @@ goog.requireType('Blockly.IFlyout');
  * @implements {Blockly.IASTNodeLocationSvg}
  * @constructor
  */
-Blockly.WorkspaceSvg = function(options,
-    opt_blockDragSurface, opt_wsDragSurface) {
+Blockly.WorkspaceSvg = function(
+    options, opt_blockDragSurface, opt_wsDragSurface) {
   Blockly.WorkspaceSvg.superClass_.constructor.call(this, options);
-  /** @type {function():!Blockly.utils.Metrics} */
-  this.getMetrics =
-      options.getMetrics || Blockly.WorkspaceSvg.getTopLevelWorkspaceMetrics_;
-  /** @type {function(!{x:number, y:number}):void} */
+
+  var MetricsManagerClass = Blockly.registry.getClassFromOptions(
+      Blockly.registry.Type.METRICS_MANAGER, options);
+  /**
+   * Object in charge of calculating metrics for the workspace.
+   * @type {!Blockly.IMetricsManager}
+   * @private
+   */
+  this.metricsManager_ = new MetricsManagerClass(this);
+
+  /**
+   * Method to get all the metrics that have to do with a workspace.
+   * @type {function():!Blockly.utils.Metrics}
+   * @package
+   */
+  this.getMetrics = options.getMetrics ||
+      this.metricsManager_.getMetrics.bind(this.metricsManager_);
+
+  /**
+   * Translates the workspace.
+   * @type {function(!{x:number, y:number}):void}
+   * @package
+   */
   this.setMetrics =
       options.setMetrics || Blockly.WorkspaceSvg.setTopLevelWorkspaceMetrics_;
-
 
   this.connectionDBList = Blockly.ConnectionDB.init(this.connectionChecker);
 
@@ -189,8 +222,8 @@ Blockly.utils.object.inherits(Blockly.WorkspaceSvg, Blockly.Workspace);
 
 /**
  * A wrapper function called when a resize event occurs.
- * You can pass the result to `unbindEvent_`.
- * @type {Array.<!Array>}
+ * You can pass the result to `eventHandling.unbind`.
+ * @type {?Blockly.browserEvents.Data}
  * @private
  */
 Blockly.WorkspaceSvg.prototype.resizeHandlerWrapper_ = null;
@@ -468,6 +501,15 @@ Blockly.WorkspaceSvg.prototype.getMarkerManager = function() {
 };
 
 /**
+ * Gets the metrics manager for this workspace.
+ * @return {!Blockly.IMetricsManager} The metrics manager.
+ * @public
+ */
+Blockly.WorkspaceSvg.prototype.getMetricsManager = function() {
+  return this.metricsManager_;
+};
+
+/**
  * Add the cursor svg to this workspaces svg group.
  * @param {SVGElement} cursorSvg The svg root of the cursor to be added to the
  *     workspace svg group.
@@ -576,7 +618,8 @@ Blockly.WorkspaceSvg.prototype.refreshTheme = function() {
     this.setVisible(true);
   }
 
-  var event = new Blockly.Events.ThemeChange(this.getTheme().name, this.id);
+  var event = new (Blockly.Events.get(Blockly.Events.THEME_CHANGE))(
+      this.getTheme().name, this.id);
   Blockly.Events.fire(event);
 };
 
@@ -603,7 +646,6 @@ Blockly.WorkspaceSvg.prototype.updateBlockStyles_ = function(blocks) {
  * @return {SVGMatrix} The matrix to use in mouseToSvg
  */
 Blockly.WorkspaceSvg.prototype.getInverseScreenCTM = function() {
-
   // Defer getting the screen CTM until we actually need it, this should
   // avoid forced reflows from any calls to updateInverseScreenCTM.
   if (this.inverseScreenCTMDirty_) {
@@ -713,7 +755,8 @@ Blockly.WorkspaceSvg.prototype.getBlockCanvas = function() {
 
 /**
  * Save resize handler data so we can delete it later in dispose.
- * @param {!Array.<!Array>} handler Data that can be passed to unbindEvent_.
+ * @param {!Blockly.browserEvents.Data} handler Data that can be passed to
+ *     eventHandling.unbind.
  */
 Blockly.WorkspaceSvg.prototype.setResizeHandlerWrapper = function(handler) {
   this.resizeHandlerWrapper_ = handler;
@@ -767,10 +810,10 @@ Blockly.WorkspaceSvg.prototype.createDom = function(opt_backgroundClass) {
       {'class': 'blocklyBubbleCanvas'}, this.svgGroup_);
 
   if (!this.isFlyout) {
-    Blockly.bindEventWithChecks_(this.svgGroup_, 'mousedown', this,
-        this.onMouseDown_, false, true);
-    Blockly.bindEventWithChecks_(this.svgGroup_, 'wheel', this,
-        this.onMouseWheel_);
+    Blockly.browserEvents.conditionalBind(
+        this.svgGroup_, 'mousedown', this, this.onMouseDown_, false, true);
+    Blockly.browserEvents.conditionalBind(
+        this.svgGroup_, 'wheel', this, this.onMouseWheel_);
   }
 
   // Determine if there needs to be a category tree, or a simple list of
@@ -877,7 +920,7 @@ Blockly.WorkspaceSvg.prototype.dispose = function() {
     }
   }
   if (this.resizeHandlerWrapper_) {
-    Blockly.unbindEvent_(this.resizeHandlerWrapper_);
+    Blockly.browserEvents.unbind(this.resizeHandlerWrapper_);
     this.resizeHandlerWrapper_ = null;
   }
 };
@@ -972,7 +1015,7 @@ Blockly.WorkspaceSvg.prototype.addFlyout = function(tagName) {
  * Getter for the flyout associated with this workspace.  This flyout may be
  * owned by either the toolbox or the workspace, depending on toolbox
  * configuration.  It will be null if there is no flyout.
- * @param {boolean=} opt_own Only return the workspace's own flyout if True.
+ * @param {boolean=} opt_own Whether to only return the workspace's own flyout.
  * @return {Blockly.IFlyout} The flyout on this workspace.
  * @package
  */
@@ -1121,7 +1164,8 @@ Blockly.WorkspaceSvg.prototype.maybeFireViewportChangeEvent = function() {
   this.oldScale_ = scale;
   this.oldTop_ = top;
   this.oldLeft_ = left;
-  var event = new Blockly.Events.ViewportChange(top, left, scale, this.id);
+  var event = new (Blockly.Events.get(Blockly.Events.VIEWPORT_CHANGE))(top,
+      left, scale, this.id);
   Blockly.Events.fire(event);
 };
 
@@ -1404,7 +1448,8 @@ Blockly.WorkspaceSvg.prototype.pasteBlock_ = function(xmlBlock) {
     Blockly.Events.enable();
   }
   if (Blockly.Events.isEnabled() && !block.isShadow()) {
-    Blockly.Events.fire(new Blockly.Events.BlockCreate(block));
+    Blockly.Events.fire(
+        new (Blockly.Events.get(Blockly.Events.BLOCK_CREATE))(block));
   }
   block.select();
 };
@@ -1686,7 +1731,11 @@ Blockly.WorkspaceSvg.prototype.getBlocksBoundingBox = function() {
 
   // Start at 1 since the 0th block was used for initialization.
   for (var i = 1; i < topElements.length; i++) {
-    var blockBoundary = topElements[i].getBoundingRectangle();
+    var topElement = topElements[i];
+    if (topElement.isInsertionMarker && topElement.isInsertionMarker()) {
+      continue;
+    }
+    var blockBoundary = topElement.getBoundingRectangle();
     if (blockBoundary.top < boundary.top) {
       boundary.top = blockBoundary.top;
     }
@@ -2089,11 +2138,9 @@ Blockly.WorkspaceSvg.prototype.setScale = function(newScale) {
   this.scroll(this.scrollX, this.scrollY);
   if (this.scrollbar) {
     if (this.flyout_) {
-      this.scrollbar.hScroll.resizeViewHorizontal(metrics);
-      this.scrollbar.vScroll.resizeViewVertical(metrics);
+      this.scrollbar.resizeView(metrics);
     } else {
-      this.scrollbar.hScroll.resizeContentHorizontal(metrics);
-      this.scrollbar.vScroll.resizeContentVertical(metrics);
+      this.scrollbar.resizeContent(metrics);
     }
   }
 };
@@ -2112,18 +2159,101 @@ Blockly.WorkspaceSvg.prototype.getScale = function() {
 };
 
 /**
+ * Relative version of {@link Blockly.BlockSpace#scrollWithAnySelectedBlock}
+ * @param {number} scrollDx delta amount to pan-right (+)
+ * @param {number} scrollDy delta amount to pan-down (+)
+ * @param {number} mouseX clientX position of mouse
+ * @param {number} mouseY clientY position of mouse
+ */
+Blockly.WorkspaceSvg.prototype.scrollDeltaWithAnySelectedBlock = function(
+    scrollDx,
+    scrollDy,
+    mouseX,
+    mouseY
+) {
+  this.scrollWithAnySelectedBlock(
+      // i changed this
+      this.scrollX + scrollDx,
+      this.scrollY + scrollDy,
+      mouseX,
+      mouseY
+  );
+};
+
+/**
+ * Given desired new scrollX and scrollY positions, scroll to position,
+ * clamping to within allowable scroll boundaries.
+ *
+ * If a block is selected, this will also move it to stay under the current
+ * mouse position after scroll (otherwise it would appear to scroll with the
+ * entire blockspace).
+ * @param {number} newScrollX new target pan-right (+) offset
+ * @param {number} newScrollY new target pan-down (+) offset
+ * @param {number} mouseX current mouse clientX position (used for
+ *        currently-dragged block movement syncing)
+ * @param {number} mouseY current mouse clientY position
+ */
+Blockly.WorkspaceSvg.prototype.scrollWithAnySelectedBlock = function(
+    newScrollX,
+    newScrollY,
+    mouseX,
+    mouseY
+) {
+  /** @type {goog.math.Vec2} */
+  var offsetBefore = this.getScrollOffset();
+
+  // block dragger stuff
+  var oldX = this.blockDragSurface_.getGroup().transform.baseVal.consolidate().matrix.e;
+  var oldY = this.blockDragSurface_.getGroup().transform.baseVal.consolidate().matrix.f;
+
+  var newCoord = this.scroll(newScrollX, newScrollY);
+
+  var deltaX = newCoord.x.toFixed() - oldX;
+  var deltaY = newCoord.y.toFixed() - oldY;
+
+  this.blockDragSurface_.translateBy(-deltaX, -deltaY);
+  this.currentGesture_.blockDragger_.updateStartXY(-deltaX, -deltaY);
+
+  
+
+  /**
+   * If dragging a block too, move the "mouse start position" as if it
+   * had scrolled along with any blockspace scrolling, and add the scroll event
+   * delta to the block's movement.
+   */
+  // if ( // Blockly.Block.isFreelyDragging() &&
+  //   Blockly.selected) {
+  //   if (this.currentGesture_ && this.currentGesture_.blockDragger_) {
+  //     var scrolledAmount = this.getScrollOffset().subtract(offsetBefore);
+  //     this.currentGesture_.blockDragger_.startXY_.x += scrolledAmount.x;
+  //     this.currentGesture_.blockDragger_.startXY_.y += scrolledAmount.y;
+  //   }
+  //   // Moves block to stay under cursor's clientX/clientY
+  //   Blockly.selected.moveDuringDrag(mouseX, mouseY);
+  // }
+};
+
+Blockly.WorkspaceSvg.prototype.getScrollOffset = function() {
+  return new goog.math.Vec2(this.scrollX, this.scrollY);
+};
+
+/**
  * Scroll the workspace to a specified offset (in pixels), keeping in the
  * workspace bounds. See comment on workspaceSvg.scrollX for more detail on
  * the meaning of these values.
  * @param {number} x Target X to scroll to.
  * @param {number} y Target Y to scroll to.
+ * @return {!Blockly.utils.Coordinate} coord.
  * @package
  */
 Blockly.WorkspaceSvg.prototype.scroll = function(x, y) {
   Blockly.hideChaff(/* opt_allowToolbox */ true);
 
   // Keep scrolling within the bounds of the content.
+
+  this.metricsManager_.stopCalculating = true;
   var metrics = this.getMetrics();
+  this.metricsManager_.stopCalculating = false;
   // This is the offset of the top-left corner of the view from the
   // workspace origin when the view is "seeing" the bottom-right corner of
   // the content.
@@ -2147,233 +2277,15 @@ Blockly.WorkspaceSvg.prototype.scroll = function(x, y) {
     // content's top-left. Then we negate this so we get the displacement from
     // the content's top-left to the view's top-left, matching the
     // directionality of the scrollbars.
-
-    this.scrollbar.hScroll.setHandlePosition(-(x + metrics.contentLeft) *
-        this.scrollbar.hScroll.ratio);
-    this.scrollbar.vScroll.setHandlePosition(-(y + metrics.contentTop) *
-        this.scrollbar.vScroll.ratio);
+    this.scrollbar.set(
+        -(x + metrics.contentLeft), -(y + metrics.contentTop), false);
   }
   // We have to shift the translation so that when the canvas is at 0, 0 the
   // workspace origin is not underneath the toolbox.
   x += metrics.absoluteLeft;
   y += metrics.absoluteTop;
-  this.translate(x, y);
-};
-
-/**
- * Get the dimensions of the given workspace component, in pixels.
- * @param {Blockly.IToolbox|Blockly.IFlyout} elem The element to get the
- *     dimensions of, or null.  It should be a toolbox or flyout, and should
- *     implement getWidth() and getHeight().
- * @return {!Blockly.utils.Size} An object containing width and height
- *     attributes, which will both be zero if elem did not exist.
- * @private
- */
-Blockly.WorkspaceSvg.getDimensionsPx_ = function(elem) {
-  var width = 0;
-  var height = 0;
-  if (elem) {
-    width = elem.getWidth();
-    height = elem.getHeight();
-  }
-  return new Blockly.utils.Size(width, height);
-};
-
-/**
- * Get the content dimensions of the given workspace, taking into account
- * whether or not it is scrollable and what size the workspace div is on screen.
- * @param {!Blockly.WorkspaceSvg} ws The workspace to measure.
- * @param {!Object} svgSize An object containing height and width attributes in
- *     CSS pixels.  Together they specify the size of the visible workspace, not
- *     including areas covered up by the toolbox.
- * @return {!Object} The dimensions of the contents of the given workspace, as
- *     an object containing at least
- *     - height and width in pixels
- *     - left and top in pixels relative to the workspace origin.
- * @private
- */
-Blockly.WorkspaceSvg.getContentDimensions_ = function(ws, svgSize) {
-  if (ws.isContentBounded()) {
-    return Blockly.WorkspaceSvg.getContentDimensionsBounded_(ws, svgSize);
-  } else {
-    return Blockly.WorkspaceSvg.getContentDimensionsExact_(ws);
-  }
-};
-
-/**
- * Get the bounding box for all workspace contents, in pixels.
- * @param {!Blockly.WorkspaceSvg} ws The workspace to inspect.
- * @return {!Object} The dimensions of the contents of the given workspace, as
- *     an object containing
- *     - height and width in pixels
- *     - left, right, top and bottom in pixels relative to the workspace origin.
- * @private
- */
-Blockly.WorkspaceSvg.getContentDimensionsExact_ = function(ws) {
-  // Block bounding box is in workspace coordinates.
-  var blockBox = ws.getBlocksBoundingBox();
-  var scale = ws.scale;
-
-  // Convert to pixels.
-  var top = blockBox.top * scale;
-  var bottom = blockBox.bottom * scale;
-  var left = blockBox.left * scale;
-  var right = blockBox.right * scale;
-
-  return {
-    top: top,
-    bottom: bottom,
-    left: left,
-    right: right,
-    width: right - left,
-    height: bottom - top
-  };
-};
-
-/**
- * Calculate the size of a scrollable workspace, which should include room for a
- * half screen border around the workspace contents.
- * @param {!Blockly.WorkspaceSvg} ws The workspace to measure.
- * @param {!Object} svgSize An object containing height and width attributes in
- *     CSS pixels.  Together they specify the size of the visible workspace, not
- *     including areas covered up by the toolbox.
- * @return {!Object} The dimensions of the contents of the given workspace, as
- *     an object containing
- *     - height and width in pixels
- *     - left and top in pixels relative to the workspace origin.
- * @private
- */
-Blockly.WorkspaceSvg.getContentDimensionsBounded_ = function(ws, svgSize) {
-  var content = Blockly.WorkspaceSvg.getContentDimensionsExact_(ws);
-
-  // View height and width are both in pixels, and are the same as the SVG size.
-  var viewWidth = svgSize.width;
-  var viewHeight = svgSize.height;
-  var halfWidth = viewWidth / 2;
-  var halfHeight = viewHeight / 2;
-
-  // Add a border around the content that is at least half a screen wide.
-  // Ensure border is wide enough that blocks can scroll over entire screen.
-  var left = Math.min(content.left - halfWidth, content.right - viewWidth);
-  var right = Math.max(content.right + halfWidth, content.left + viewWidth);
-
-  var top = Math.min(content.top - halfHeight, content.bottom - viewHeight);
-  var bottom = Math.max(content.bottom + halfHeight, content.top + viewHeight);
-
-  var dimensions = {
-    left: left,
-    top: top,
-    height: bottom - top,
-    width: right - left
-  };
-  return dimensions;
-};
-
-/**
- * Return an object with all the metrics required to size scrollbars for a
- * top level workspace.  The following properties are computed:
- * Coordinate system: pixel coordinates, -left, -up, +right, +down
- * .viewHeight: Height of the visible portion of the workspace.
- * .viewWidth: Width of the visible portion of the workspace.
- * .contentHeight: Height of the content.
- * .contentWidth: Width of the content.
- * .svgHeight: Height of the Blockly div (the view + the toolbox,
- *    simple or otherwise),
- * .svgWidth: Width of the Blockly div (the view + the toolbox,
- *    simple or otherwise),
- * .viewTop: Top-edge of the visible portion of the workspace, relative to
- *     the workspace origin.
- * .viewLeft: Left-edge of the visible portion of the workspace, relative to
- *     the workspace origin.
- * .contentTop: Top-edge of the content, relative to the workspace origin.
- * .contentLeft: Left-edge of the content relative to the workspace origin.
- * .absoluteTop: Top-edge of the visible portion of the workspace, relative
- *     to the blocklyDiv.
- * .absoluteLeft: Left-edge of the visible portion of the workspace, relative
- *     to the blocklyDiv.
- * .toolboxWidth: Width of the toolbox, if it exists.  Otherwise zero.
- * .toolboxHeight: Height of the toolbox, if it exists.  Otherwise zero.
- * .flyoutWidth: Width of the flyout if it is always open.  Otherwise zero.
- * .flyoutHeight: Height of the flyout if it is always open.  Otherwise zero.
- * .toolboxPosition: Top, bottom, left or right. Use TOOLBOX_AT constants to
- *     compare.
- * @return {!Blockly.utils.Metrics} Contains size and position metrics of a top
- *     level workspace.
- * @private
- * @this {Blockly.WorkspaceSvg}
- */
-Blockly.WorkspaceSvg.getTopLevelWorkspaceMetrics_ = function() {
-
-  var toolboxDimensions =
-      Blockly.WorkspaceSvg.getDimensionsPx_(this.toolbox_);
-  var flyoutDimensions =
-      Blockly.WorkspaceSvg.getDimensionsPx_(this.flyout_);
-
-  // Contains height and width in CSS pixels.
-  // svgSize is equivalent to the size of the injectionDiv at this point.
-  var svgSize = Blockly.svgSize(this.getParentSvg());
-  var viewSize = {height: svgSize.height, width: svgSize.width};
-  if (this.toolbox_) {
-    if (this.toolboxPosition == Blockly.TOOLBOX_AT_TOP ||
-        this.toolboxPosition == Blockly.TOOLBOX_AT_BOTTOM) {
-      viewSize.height -= toolboxDimensions.height;
-    } else if (this.toolboxPosition == Blockly.TOOLBOX_AT_LEFT ||
-        this.toolboxPosition == Blockly.TOOLBOX_AT_RIGHT) {
-      viewSize.width -= toolboxDimensions.width;
-    }
-  } else if (this.flyout_) {
-    if (this.toolboxPosition == Blockly.TOOLBOX_AT_TOP ||
-      this.toolboxPosition == Blockly.TOOLBOX_AT_BOTTOM) {
-      viewSize.height -= flyoutDimensions.height;
-    } else if (this.toolboxPosition == Blockly.TOOLBOX_AT_LEFT ||
-      this.toolboxPosition == Blockly.TOOLBOX_AT_RIGHT) {
-      viewSize.width -= flyoutDimensions.width;
-    }
-  }
-
-  // svgSize is now the space taken up by the Blockly workspace, not including
-  // the toolbox.
-  var contentDimensions =
-      Blockly.WorkspaceSvg.getContentDimensions_(this, viewSize);
-
-  var absoluteLeft = 0;
-  if (this.toolbox_ && this.toolboxPosition == Blockly.TOOLBOX_AT_LEFT) {
-    absoluteLeft = toolboxDimensions.width;
-  } else if (this.flyout_ && this.toolboxPosition == Blockly.TOOLBOX_AT_LEFT) {
-    absoluteLeft = flyoutDimensions.width;
-  }
-  var absoluteTop = 0;
-  if (this.toolbox_ && this.toolboxPosition == Blockly.TOOLBOX_AT_TOP) {
-    absoluteTop = toolboxDimensions.height;
-  } else if (this.flyout_ && this.toolboxPosition == Blockly.TOOLBOX_AT_TOP) {
-    absoluteTop = flyoutDimensions.height;
-  }
-
-  var metrics = {
-    contentHeight: contentDimensions.height,
-    contentWidth: contentDimensions.width,
-    contentTop: contentDimensions.top,
-    contentLeft: contentDimensions.left,
-
-    viewHeight: viewSize.height,
-    viewWidth: viewSize.width,
-    viewTop: -this.scrollY,
-    viewLeft: -this.scrollX,
-
-    absoluteTop: absoluteTop,
-    absoluteLeft: absoluteLeft,
-
-    svgHeight: svgSize.height,
-    svgWidth: svgSize.width,
-
-    toolboxWidth: toolboxDimensions.width,
-    toolboxHeight: toolboxDimensions.height,
-    toolboxPosition: this.toolboxPosition,
-
-    flyoutWidth: flyoutDimensions.width,
-    flyoutHeight: flyoutDimensions.height
-  };
-  return metrics;
+  this.translate(x, y, true);
+  return new Blockly.utils.Coordinate(x, y);
 };
 
 /**
@@ -2385,11 +2297,16 @@ Blockly.WorkspaceSvg.getTopLevelWorkspaceMetrics_ = function() {
  */
 Blockly.WorkspaceSvg.setTopLevelWorkspaceMetrics_ = function(xyRatio) {
   var metrics = this.getMetrics();
+
   if (typeof xyRatio.x == 'number') {
-    this.scrollX = -metrics.contentWidth * xyRatio.x - metrics.contentLeft;
+    this.scrollX =
+        -(metrics.contentLeft +
+            (metrics.contentWidth - metrics.viewWidth) * xyRatio.x);
   }
   if (typeof xyRatio.y == 'number') {
-    this.scrollY = -metrics.contentHeight * xyRatio.y - metrics.contentTop;
+    this.scrollY =
+        -(metrics.contentTop +
+            (metrics.contentHeight - metrics.viewHeight) * xyRatio.y);
   }
   // We have to shift the translation so that when the canvas is at 0, 0 the
   // workspace origin is not underneath the toolbox.

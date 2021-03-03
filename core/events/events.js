@@ -19,6 +19,10 @@ goog.provide('Blockly.Events');
 goog.require('Blockly.registry');
 goog.require('Blockly.utils');
 
+goog.requireType('Blockly.Block');
+goog.requireType('Blockly.Events.Abstract');
+goog.requireType('Blockly.Workspace');
+
 
 /**
  * Group ID for new events.  Grouped events are indivisible.
@@ -395,8 +399,7 @@ Blockly.Events.getDescendantIds = function(block) {
  * @throws {Error} if an event type is not found in the registry.
  */
 Blockly.Events.fromJson = function(json, workspace) {
-  var eventClass = Blockly.registry.getClass(Blockly.registry.Type.EVENT,
-      json.type);
+  var eventClass = Blockly.Events.get(json.type);
   if (!eventClass) {
     throw Error('Unknown event type.');
   }
@@ -404,6 +407,16 @@ Blockly.Events.fromJson = function(json, workspace) {
   event.fromJson(json);
   event.workspaceId = workspace.id;
   return event;
+};
+
+/**
+ * Gets the class for a specific event type from the registry.
+ * @param {string} eventType The type of the event to get.
+ * @return {?function(new:Blockly.Events.Abstract, ...?)} The event class with
+ *     the given type or null if none exists.
+ */
+Blockly.Events.get = function(eventType) {
+  return Blockly.registry.getClass(Blockly.registry.Type.EVENT, eventType);
 };
 
 /**
