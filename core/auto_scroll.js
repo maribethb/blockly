@@ -66,6 +66,7 @@ Blockly.AutoScroll.prototype.stopAndDestroy = function() {
   this.lastMouseX_ = null;
   this.lastMouseY_ = null;
   this.shouldAnimate_ = false;
+  cancelAnimationFrame(this.animationFrameId);
 
   console.log("stopping");
 };
@@ -80,12 +81,12 @@ Blockly.AutoScroll.prototype.handleAnimationDelay_ = function(now) {
   if (this.shouldAnimate_) {
     var dt = now - this.lastTime_;
     this.lastTime_ = now;
-    this.scrollTick_(dt);
-
-    // Continue the animation. Should probably stop it somehow.
-    console.log("continuing animation");
-  
-    requestAnimationFrame(this.handleAnimationDelay_.bind(this));
+    if (dt > 0) {
+      console.log("continuing animation");
+      this.scrollTick_(dt);
+    }
+    
+    this.animationFrameId = requestAnimationFrame(this.handleAnimationDelay_.bind(this));
   }
 };
 
@@ -95,6 +96,7 @@ Blockly.AutoScroll.prototype.handleAnimationDelay_ = function(now) {
  * @private
  */
 Blockly.AutoScroll.prototype.scrollTick_ = function(msPassed) {
+  //msPassed = 10;
   var scrollDx = this.activePanVector_.x * msPassed;
   var scrollDy = this.activePanVector_.y * msPassed;
   this.workspace_.scrollDeltaWithAnySelectedBlock(
@@ -122,6 +124,7 @@ Blockly.AutoScroll.prototype.updateProperties = function(
   this.lastMouseX_ = mouseClientX;
   this.lastMouseY_ = mouseClientY;
   this.shouldAnimate_ = true;
+  this.lastTime_ = Date.now();
 
   // i added this idk
   this.handleAnimationDelay_(Date.now());
