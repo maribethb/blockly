@@ -13,11 +13,14 @@
 
     // Enable the next few options for type declarations.
     // Generate d.ts files
-    //"declaration": true,
+    "declaration": true,
     // Types should go into this directory.
     // Removing this would place the .d.ts files
     // next to the .js files
-    //"declarationDir": "build/ts/declarations",
+    "declarationDir": "build/ts/declarations",
+
+    // Needed for API Extractor to give usable line numbers
+    "declarationMap": true,
 
     "module": "ES2015",
     "moduleResolution": "node",

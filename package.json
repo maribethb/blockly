@@ -59,7 +59,7 @@
   "main": "./index.js",
   "umd": "./blockly.min.js",
   "unpkg": "./blockly.min.js",
-  "types": "./index.d.ts",
+  "types": "./typings/blockly.d.ts",
   "browser": {
     "./node.js": "./browser.js",
     "./core.js": "./core-browser.js",
@@ -103,6 +103,7 @@
     "yargs": "^17.2.1"
   },
   "dependencies": {
+    "@microsoft/api-extractor": "^7.28.1",
     "jsdom": "15.2.1"
   }
 }

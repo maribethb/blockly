@@ -387,11 +387,13 @@ function packageReadme() {
  */
 function packageDTS() {
   const handwrittenSrcs = [
-    'typings/*.d.ts',
-    'typings/msg/msg.d.ts',
+    'build/ts/declarations/core/*.d.ts',
+    // Old values
+    //'typings/*.d.ts',
+    // 'typings/msg/msg.d.ts',
   ];
-  return gulp.src(handwrittenSrcs, {base: 'typings'})
-      .pipe(gulp.dest(RELEASE_DIR));
+  return gulp.src(handwrittenSrcs)
+      .pipe(gulp.dest(`${RELEASE_DIR}/typings`));
 };
 
 /**
