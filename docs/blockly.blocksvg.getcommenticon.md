@@ -13,7 +13,7 @@ getCommentIcon(): Comment | null;
 ```
 <b>Returns:</b>
 
-Comment \| null
+[Comment](./blockly.comment.md) \| null
 
 The comment icon attached to this block, or null.
 

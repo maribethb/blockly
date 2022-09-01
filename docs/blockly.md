@@ -17,7 +17,7 @@
 |  [Bubble](./blockly.bubble.md) | Class for UI bubble. |
 |  [BubbleDragger](./blockly.bubbledragger.md) | Class for a bubble dragger. It moves things on the bubble canvas around the workspace when they are being dragged by a mouse or touch. These can be block comments, mutators, warnings, or workspace comments. |
 |  [CollapsibleToolboxCategory](./blockly.collapsibletoolboxcategory.md) | Class for a category in a toolbox that can be collapsed. |
-|  [Comment\_2](./blockly.comment_2.md) | Class for a comment. |
+|  [Comment](./blockly.comment.md) | Class for a comment. |
 |  [ComponentManager](./blockly.componentmanager.md) | Manager for all items registered with the workspace. |
 |  [Connection](./blockly.connection.md) | Class for a connection between blocks. |
 |  [ConnectionChecker](./blockly.connectionchecker.md) | Class for connection type checking logic. |
@@ -41,7 +41,7 @@
 |  [Flyout](./blockly.flyout.md) | Class for a flyout. |
 |  [FlyoutButton](./blockly.flyoutbutton.md) | Class for a button or label in the flyout. |
 |  [FlyoutMetricsManager](./blockly.flyoutmetricsmanager.md) | Calculates metrics for a flyout's workspace. The metrics are mainly used to size scrollbars for the flyout. |
-|  [Generator\_2](./blockly.generator_2.md) | Class for a code generator that translates the blocks into a language. |
+|  [Generator](./blockly.generator.md) | Class for a code generator that translates the blocks into a language. |
 |  [Gesture](./blockly.gesture.md) | Class for one gesture. |
 |  [Grid](./blockly.grid.md) | Class for a workspace's grid. |
 |  [HorizontalFlyout](./blockly.horizontalflyout.md) | Class for a flyout. |
@@ -86,7 +86,7 @@
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [ConnectionType\_2](./blockly.connectiontype_2.md) | Enum for the type of a connection or input. |
+|  [ConnectionType](./blockly.connectiontype.md) | Enum for the type of a connection or input. |
 |  [inputTypes](./blockly.inputtypes.md) | Enum for the type of a connection or input. |
 
 ## Functions
@@ -183,7 +183,7 @@
 |  [ToolboxCategory](./blockly.toolboxcategory.md) |  |
 |  [ToolboxSeparator](./blockly.toolboxseparator.md) |  |
 |  [Tooltip](./blockly.tooltip.md) |  |
-|  [Touch\_2](./blockly.touch_2.md) |  |
+|  [Touch](./blockly.touch.md) |  |
 |  [uiPosition](./blockly.uiposition.md) |  |
 |  [utils](./blockly.utils.md) |  |
 |  [Variables](./blockly.variables.md) |  |
