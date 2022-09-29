@@ -36,6 +36,7 @@
     "deployDemos": "gulp deployDemos",
     "deployDemos:beta": "gulp deployDemosBeta",
     "docs": "gulp docs",
+    "docs:prepare": "gulp docsPrepare",
     "format": "gulp clangFormat",
     "format:sortrequires": "gulp sortRequires",
     "generate:langfiles": "gulp generateLangfiles",

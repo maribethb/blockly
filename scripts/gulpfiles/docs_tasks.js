@@ -1,12 +1,21 @@
-var gulp = require('gulp');
-var fs = require('fs');
-var header = require('gulp-header');
-var { Extractor } = require('markdown-tables-to-json');
+const { Extractor } = require('markdown-tables-to-json');
+const fs = require('fs');
+const gulp = require('gulp');
+const header = require('gulp-header');
+const replace = require('gulp-replace');
+
+const removeRenames = function() {
+    // API Extractor output spuriously renames some functions. Undo that.
+    // See https://github.com/microsoft/rushstack/issues/2534
+    return gulp.src('temp/blockly.api.json')
+        .pipe(replace('_2', ''))
+        .pipe(gulp.dest('temp/'));
+}
 
 const prependBook = function() {
     return gulp.src('docs/*.md')
-    .pipe(header('Project: /blockly/_project.yaml\nBook: /blockly/_book.yaml\n\n'))
-    .pipe(gulp.dest('docs/'));
+        .pipe(header('Project: /blockly/_project.yaml\nBook: /blockly/_book.yaml\n\n'))
+        .pipe(gulp.dest('docs/'));
 }
 
 const createToc = function(done) {
@@ -40,4 +49,7 @@ const createToc = function(done) {
     done();
 }
 
-module.exports = {prependBook, createToc};
+const docsPrepare = removeRenames;
+const docs = gulp.parallel(prependBook, createToc);
+
+module.exports = {docsPrepare, docs};
