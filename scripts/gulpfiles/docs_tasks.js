@@ -23,13 +23,13 @@ const createToc = function(done) {
     let content = 'toc:\n';
     const referencePath = '/blockly/reference/js';
 
-    // Generate a section of TOC for each heading in the overview file.
-    const headings = fileContent.split('##');
-    for (header of headings) {
-        const table = Extractor.extractObject(header, 'rows', false);
+    // Generate a section of TOC for each section/heading in the overview file.
+    const sections = fileContent.split('##');
+    for (section of sections) {
+        const table = Extractor.extractObject(section, 'rows', false);
         if (table) {
             // Get the name of the section, i.e. the text immediately after the `##` in the source doc
-            const sectionName = header.split('\n')[0].trim();
+            const sectionName = section.split('\n')[0].trim();
             content += `- heading: ${sectionName}\n`
             for (row in table) {
                 // After going through the Extractor, the markdown is now HTML.
