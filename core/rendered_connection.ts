@@ -53,6 +53,7 @@ export class RenderedConnection extends Connection {
   private readonly dbOpposite_: ConnectionDB;
   private readonly offsetInBlock_: Coordinate;
   private trackedState_: TrackedState;
+  private highlightPath: SVGPathElement|null = null;
 
   /** Connection this connection connects to.  Null if not connected. */
   override targetConnection: RenderedConnection|null = null;
@@ -302,9 +303,7 @@ export class RenderedConnection extends Connection {
     const xy = this.sourceBlock_.getRelativeToSurfaceXY();
     const x = this.x - xy.x;
     const y = this.y - xy.y;
-    // AnyDuringMigration because:  Property 'highlightedPath_' does not exist
-    // on type 'typeof Connection'.
-    (Connection as AnyDuringMigration).highlightedPath_ = dom.createSvgElement(
+    this.highlightPath = dom.createSvgElement(
         Svg.PATH, {
           'class': 'blocklyHighlightedConnectionPath',
           'd': steps,
@@ -316,12 +315,10 @@ export class RenderedConnection extends Connection {
 
   /** Remove the highlighting around this connection. */
   unhighlight() {
-    // AnyDuringMigration because:  Property 'highlightedPath_' does not exist
-    // on type 'typeof Connection'.
-    dom.removeNode((Connection as AnyDuringMigration).highlightedPath_);
-    // AnyDuringMigration because:  Property 'highlightedPath_' does not exist
-    // on type 'typeof Connection'.
-    delete (Connection as AnyDuringMigration).highlightedPath_;
+    if (this.highlightPath) {
+      dom.removeNode(this.highlightPath);
+      this.highlightPath = null;
+    }
   }
 
   /**
@@ -394,7 +391,7 @@ export class RenderedConnection extends Connection {
     // rendering takes place, since rendering requires knowing the dimensions
     // of lower blocks. Also, since rendering a block renders all its parents,
     // we only need to render the leaf nodes.
-    let renderList: AnyDuringMigration[] = [];
+    let renderList: Block[] = [];
     if (this.type !== ConnectionType.INPUT_VALUE &&
         this.type !== ConnectionType.NEXT_STATEMENT) {
       // Only spider down.

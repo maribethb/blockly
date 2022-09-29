@@ -15,8 +15,8 @@ goog.declareModuleId('Blockly.dropDownDiv');
 
 import type {BlockSvg} from './block_svg.js';
 import * as common from './common.js';
-import type {Field} from './field.js';
 import * as dom from './utils/dom.js';
+import type {Field} from './field.js';
 import * as math from './utils/math.js';
 import {Rect} from './utils/rect.js';
 import type {Size} from './utils/size.js';
@@ -311,8 +311,12 @@ export function show(
   const mainWorkspace = common.getMainWorkspace() as WorkspaceSvg;
   renderedClassName = mainWorkspace.getRenderer().getClassName();
   themeClassName = mainWorkspace.getTheme().getClassName();
-  dom.addClass(div, renderedClassName);
-  dom.addClass(div, themeClassName);
+  if (renderedClassName) {
+    dom.addClass(div, renderedClassName);
+  }
+  if (themeClassName) {
+    dom.addClass(div, themeClassName);
+  }
 
   // When we change `translate` multiple times in close succession,
   // Chrome may choose to wait and apply them all at once.

@@ -181,6 +181,11 @@ export class Block implements IASTNodeLocation, IDeletable {
   protected outputShape_: number|null = null;
 
   /**
+   * Is the current block currently in the process of being disposed?
+   */
+  private disposing = false;
+
+  /**
    * A string representing the comment attached to this block.
    *
    * @deprecated August 2019. Use getCommentText instead.
@@ -316,7 +321,7 @@ export class Block implements IASTNodeLocation, IDeletable {
    * @suppress {checkTypes}
    */
   dispose(healStack: boolean) {
-    if (this.disposed) {
+    if (this.isDeadOrDying()) {
       return;
     }
 
@@ -338,6 +343,7 @@ export class Block implements IASTNodeLocation, IDeletable {
       this.workspace.removeTypedBlock(this);
       // Remove from block database.
       this.workspace.removeBlockById(this.id);
+      this.disposing = true;
 
       // First, dispose of all my children.
       for (let i = this.childBlocks_.length - 1; i >= 0; i--) {
@@ -358,6 +364,16 @@ export class Block implements IASTNodeLocation, IDeletable {
       eventUtils.enable();
       this.disposed = true;
     }
+  }
+
+  /**
+   * Returns true if the block is either in the process of being disposed, or
+   * is disposed.
+   *
+   * @internal
+   */
+  isDeadOrDying(): boolean {
+    return this.disposing || this.disposed;
   }
 
   /**
@@ -580,13 +596,11 @@ export class Block implements IASTNodeLocation, IDeletable {
    */
   getSurroundParent(): this|null {
     /* eslint-disable-next-line @typescript-eslint/no-this-alias */
-    let block = this;
+    let block: this|null = this;
     let prevBlock;
     do {
       prevBlock = block;
-      // AnyDuringMigration because:  Type 'Block | null' is not assignable to
-      // type 'this'.
-      block = block.getParent() as AnyDuringMigration;
+      block = block.getParent();
       if (!block) {
         // Ran off the top.
         return null;
@@ -774,7 +788,7 @@ export class Block implements IASTNodeLocation, IDeletable {
    * @returns True if deletable.
    */
   isDeletable(): boolean {
-    return this.deletable_ && !this.isShadow_ && !this.disposed &&
+    return this.deletable_ && !this.isShadow_ && !this.isDeadOrDying() &&
         !this.workspace.options.readOnly;
   }
 
@@ -793,7 +807,7 @@ export class Block implements IASTNodeLocation, IDeletable {
    * @returns True if movable.
    */
   isMovable(): boolean {
-    return this.movable_ && !this.isShadow_ && !this.disposed &&
+    return this.movable_ && !this.isShadow_ && !this.isDeadOrDying() &&
         !this.workspace.options.readOnly;
   }
 
@@ -867,7 +881,8 @@ export class Block implements IASTNodeLocation, IDeletable {
    * @returns True if editable.
    */
   isEditable(): boolean {
-    return this.editable_ && !this.disposed && !this.workspace.options.readOnly;
+    return this.editable_ && !this.isDeadOrDying() &&
+        !this.workspace.options.readOnly;
   }
 
   /**
@@ -1371,7 +1386,7 @@ export class Block implements IASTNodeLocation, IDeletable {
    * @returns Text of block.
    */
   toString(opt_maxLength?: number, opt_emptyToken?: string): string {
-    let text = [];
+    const tokens = [];
     const emptyFieldPlaceholder = opt_emptyToken || '?';
 
     // Temporarily set flag to navigate to all fields.
@@ -1410,16 +1425,16 @@ export class Block implements IASTNodeLocation, IDeletable {
         case ASTNode.types.INPUT: {
           const connection = node.getLocation() as Connection;
           if (!node.in()) {
-            text.push(emptyFieldPlaceholder);
+            tokens.push(emptyFieldPlaceholder);
           } else if (shouldAddParentheses(connection)) {
-            text.push('(');
+            tokens.push('(');
           }
           break;
         }
         case ASTNode.types.FIELD: {
           const field = node.getLocation() as Field;
           if (field.name !== constants.COLLAPSED_FIELD_NAME) {
-            text.push(field.getText());
+            tokens.push(field.getText());
           }
           break;
         }
@@ -1437,7 +1452,7 @@ export class Block implements IASTNodeLocation, IDeletable {
           // If we hit an input on the way up, possibly close out parentheses.
           if (node && node.getType() === ASTNode.types.INPUT &&
               shouldAddParentheses(node.getLocation() as Connection)) {
-            text.push(')');
+            tokens.push(')');
           }
         }
         if (node) {
@@ -1452,31 +1467,25 @@ export class Block implements IASTNodeLocation, IDeletable {
     // Run through our text array and simplify expression to remove parentheses
     // around single field blocks.
     // E.g. ['repeat', '(', '10', ')', 'times', 'do', '?']
-    for (let i = 2; i < text.length; i++) {
-      if (text[i - 2] === '(' && text[i] === ')') {
-        text[i - 2] = text[i - 1];
-        text.splice(i - 1, 2);
+    for (let i = 2; i < tokens.length; i++) {
+      if (tokens[i - 2] === '(' && tokens[i] === ')') {
+        tokens[i - 2] = tokens[i - 1];
+        tokens.splice(i - 1, 2);
       }
     }
 
     // Join the text array, removing spaces around added parentheses.
-    // AnyDuringMigration because:  Type 'string' is not assignable to type
-    // 'any[]'.
-    text = text.reduce(function(acc, value) {
+    let text: string = tokens.reduce(function(acc, value) {
       return acc + (acc.substr(-1) === '(' || value === ')' ? '' : ' ') + value;
-    }, '') as AnyDuringMigration;
-    // AnyDuringMigration because:  Property 'trim' does not exist on type
-    // 'any[]'.
-    text = (text as AnyDuringMigration).trim() || '???';
+    }, '');
+
+    text = text.trim() || '???';
     if (opt_maxLength) {
       // TODO: Improve truncation so that text from this block is given
       // priority. E.g. "1+2+3+4+5+6+7+8+9=0" should be "...6+7+8+9=0", not
       // "1+2+3+4+5...". E.g. "1+2+3+4+5=6+7+8+9+0" should be "...4+5=6+7...".
       if (text.length > opt_maxLength) {
-        // AnyDuringMigration because:  Type 'string' is not assignable to type
-        // 'any[]'.
-        text = (text.substring(0, opt_maxLength - 3) + '...') as
-            AnyDuringMigration;
+        text = text.substring(0, opt_maxLength - 3) + '...';
       }
     }
     return text;

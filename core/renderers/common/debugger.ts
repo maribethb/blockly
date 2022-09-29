@@ -58,9 +58,7 @@ export class Debug {
    * The SVG root of the block that is being rendered.  Debug elements will
    * be attached to this root.
    */
-  // AnyDuringMigration because:  Type 'null' is not assignable to type
-  // 'SVGElement'.
-  private svgRoot_: SVGElement = null as AnyDuringMigration;
+  private svgRoot_: SVGElement|null = null;
 
   private randomColour_ = '';
 
@@ -219,9 +217,9 @@ export class Debug {
       return;
     }
 
-    let colour;
-    let size;
-    let fill;
+    let colour = '';
+    let size = 0;
+    let fill = '';
     if (conn.type === ConnectionType.INPUT_VALUE) {
       size = 4;
       colour = 'magenta';
@@ -239,15 +237,11 @@ export class Debug {
       colour = 'goldenrod';
       fill = colour;
     }
-    // AnyDuringMigration because:  Property 'offsetInBlock_' is private and
-    // only accessible within class 'RenderedConnection'. AnyDuringMigration
-    // because:  Property 'offsetInBlock_' is private and only accessible within
-    // class 'RenderedConnection'.
     this.debugElements_.push(dom.createSvgElement(
         Svg.CIRCLE, {
           'class': 'blockRenderDebug',
-          'cx': (conn as AnyDuringMigration).offsetInBlock_.x,
-          'cy': (conn as AnyDuringMigration).offsetInBlock_.y,
+          'cx': conn.getOffsetInBlock().x,
+          'cy': conn.getOffsetInBlock().y,
           'r': size,
           'fill': fill,
           'stroke': colour,
@@ -280,9 +274,7 @@ export class Debug {
         },
         this.svgRoot_));
 
-    // AnyDuringMigration because:  Property 'isTopOrBottomRow' does not exist
-    // on type 'typeof Types'.
-    if ((Types as AnyDuringMigration).isTopOrBottomRow(row)) {
+    if (Types.isTopOrBottomRow(row)) {
       return;
     }
 

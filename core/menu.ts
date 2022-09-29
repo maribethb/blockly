@@ -86,8 +86,9 @@ export class Menu {
    * Creates the menu DOM.
    *
    * @param container Element upon which to append this menu.
+   * @returns The menu's root DOM element.
    */
-  render(container: Element) {
+  render(container: Element): HTMLDivElement {
     const element = (document.createElement('div'));
     // goog-menu is deprecated, use blocklyMenu.  May 2020.
     element.className = 'blocklyMenu goog-menu blocklyNonSelectable';
@@ -115,6 +116,7 @@ export class Menu {
         element, 'keydown', this, this.handleKeyEvent_);
 
     container.appendChild(element);
+    return element;
   }
 
   /**
@@ -207,7 +209,7 @@ export class Menu {
     // a menu item's div.
     let currentElement: Element|null = elem;
     while (currentElement && currentElement !== menuElem) {
-      if (dom.hasClass(currentElement, 'blocklyMenuItem')) {
+      if (currentElement.classList.contains('blocklyMenuItem')) {
         // Having found a menu item's div, locate that menu item in this menu.
         for (let i = 0, menuItem; menuItem = this.menuItems_[i]; i++) {
           if (menuItem.getElement() === currentElement) {

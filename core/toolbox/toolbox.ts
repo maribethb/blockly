@@ -57,7 +57,7 @@ export class Toolbox extends DeleteArea implements IAutoHideable,
                                                    IKeyboardAccessible,
                                                    IStyleable, IToolbox {
   /**
-   * The unique id for this component that is used to register with the
+   * The unique ID for this component that is used to register with the
    * ComponentManager.
    */
   override id = 'toolbox';
@@ -453,7 +453,9 @@ export class Toolbox extends DeleteArea implements IAutoHideable,
    * @internal
    */
   addStyle(style: string) {
-    dom.addClass(this.HtmlDiv as Element, style);
+    if (style && this.HtmlDiv) {
+      dom.addClass(this.HtmlDiv, style);
+    }
   }
 
   /**
@@ -463,7 +465,9 @@ export class Toolbox extends DeleteArea implements IAutoHideable,
    * @internal
    */
   removeStyle(style: string) {
-    dom.removeClass(this.HtmlDiv as Element, style);
+    if (style && this.HtmlDiv) {
+      dom.removeClass(this.HtmlDiv, style);
+    }
   }
 
   /**

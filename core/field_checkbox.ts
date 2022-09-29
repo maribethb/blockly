@@ -15,9 +15,9 @@ goog.declareModuleId('Blockly.FieldCheckbox');
 // Unused import preserved for side-effects. Remove if unneeded.
 import './events/events_block_change.js';
 
+import * as dom from './utils/dom.js';
 import {FieldConfig, Field} from './field.js';
 import * as fieldRegistry from './field_registry.js';
-import * as dom from './utils/dom.js';
 import type {Sentinel} from './utils/sentinel.js';
 
 
@@ -28,7 +28,7 @@ import type {Sentinel} from './utils/sentinel.js';
  */
 export class FieldCheckbox extends Field {
   /** Default character for the checkmark. */
-  static readonly CHECK_CHAR = '\u2713';
+  static readonly CHECK_CHAR = '✓';
   private checkChar_: string;
 
   /**
@@ -112,7 +112,7 @@ export class FieldCheckbox extends Field {
   override initView() {
     super.initView();
 
-    dom.addClass((this.textElement_), 'blocklyCheckbox');
+    dom.addClass(this.textElement_, 'blocklyCheckbox');
     this.textElement_.style.display = this.value_ ? 'block' : 'none';
   }
 

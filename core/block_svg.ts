@@ -241,7 +241,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
    *
    * @returns #RRGGBB string.
    */
-  getColourSecondary(): string|null {
+  getColourSecondary(): string|undefined {
     return this.style.colourSecondary;
   }
 
@@ -250,7 +250,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
    *
    * @returns #RRGGBB string.
    */
-  getColourTertiary(): string|null {
+  getColourTertiary(): string|undefined {
     return this.style.colourTertiary;
   }
 
@@ -333,9 +333,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
     }
 
     dom.startTextWidthCache();
-    // AnyDuringMigration because:  Argument of type 'Block | null' is not
-    // assignable to parameter of type 'Block'.
-    super.setParent(newParent as AnyDuringMigration);
+    super.setParent(newParent);
     dom.stopTextWidthCache();
 
     const svgRoot = this.getSvgRoot();
@@ -527,7 +525,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
 
   /** Snap this block to the nearest grid point. */
   snapToGrid() {
-    if (this.disposed) {
+    if (this.isDeadOrDying()) {
       return;  // Deleted block.
     }
     if (this.workspace.isDragging()) {
@@ -642,10 +640,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
     }
     const input = this.getInput(collapsedInputName) ||
         this.appendDummyInput(collapsedInputName);
-    // AnyDuringMigration because:  Argument of type 'FieldLabel' is not
-    // assignable to parameter of type 'string | Field'.
-    input.appendField(
-        new FieldLabel(text) as AnyDuringMigration, collapsedFieldName);
+    input.appendField(new FieldLabel(text), collapsedFieldName);
   }
 
   /**
@@ -737,9 +732,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
 
     if (menuOptions && menuOptions.length) {
       ContextMenu.show(e, menuOptions, this.RTL);
-      // AnyDuringMigration because:  Argument of type 'this' is not assignable
-      // to parameter of type 'Block | null'.
-      ContextMenu.setCurrentBlock(this as AnyDuringMigration);
+      ContextMenu.setCurrentBlock(this);
     }
   }
 
@@ -785,10 +778,10 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
       (group as AnyDuringMigration).translate_ = '';
       (group as AnyDuringMigration).skew_ = '';
       common.draggingConnections.push(...this.getConnections_(true));
-      dom.addClass(this.svgGroup_ as Element, 'blocklyDragging');
+      dom.addClass(this.svgGroup_, 'blocklyDragging');
     } else {
       common.draggingConnections.length = 0;
-      dom.removeClass(this.svgGroup_ as Element, 'blocklyDragging');
+      dom.removeClass(this.svgGroup_, 'blocklyDragging');
     }
     // Recurse through all blocks attached under this one.
     for (let i = 0; i < this.childBlocks_.length; i++) {
@@ -868,8 +861,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
    * @suppress {checkTypes}
    */
   override dispose(healStack?: boolean, animate?: boolean) {
-    if (this.disposed) {
-      // The block has already been deleted.
+    if (this.isDeadOrDying()) {
       return;
     }
     Tooltip.dispose();
@@ -958,16 +950,12 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
     if (this.isInsertionMarker_) {
       return null;
     }
-    // AnyDuringMigration because:  Argument of type 'this' is not assignable to
-    // parameter of type 'Block'. AnyDuringMigration because:  Argument of type
-    // 'this' is not assignable to parameter of type 'Block'.
     return {
-      saveInfo: blocks.save(
-                    this as AnyDuringMigration,
-                    {addCoordinates: true, addNextBlocks: false}) as
+      saveInfo:
+          blocks.save(this, {addCoordinates: true, addNextBlocks: false}) as
           blocks.State,
       source: this.workspace,
-      typeCounts: common.getBlockTypeCounts(this as AnyDuringMigration, true),
+      typeCounts: common.getBlockTypeCounts(this, true),
     };
   }
 
@@ -1078,13 +1066,12 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
     if (this.workspace.isDragging()) {
       // Don't change the warning text during a drag.
       // Wait until the drag finishes.
-      this.warningTextDb.set(
-          id, setTimeout(() => {
-            if (!this.disposed) {  // Check block wasn't deleted.
-              this.warningTextDb.delete(id);
-              this.setWarningText(text, id);
-            }
-          }, 100));
+      this.warningTextDb.set(id, setTimeout(() => {
+                               if (!this.isDeadOrDying()) {
+                                 this.warningTextDb.delete(id);
+                                 this.setWarningText(text, id);
+                               }
+                             }, 100));
       return;
     }
     if (this.isInFlyout) {
@@ -1278,7 +1265,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
    */
   bringToFront() {
     /* eslint-disable-next-line @typescript-eslint/no-this-alias */
-    let block = this;
+    let block: this|null = this;
     do {
       const root = block.getSvgRoot();
       const parent = root.parentNode;
@@ -1287,9 +1274,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
       if (childNodes[childNodes.length - 1] !== root) {
         parent!.appendChild(root);
       }
-      // AnyDuringMigration because:  Type 'BlockSvg | null' is not assignable
-      // to type 'this'.
-      block = block.getParent() as AnyDuringMigration;
+      block = block.getParent();
     } while (block);
   }
 
@@ -1554,11 +1539,11 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
    * connected should not coincidentally line up on screen.
    */
   override bumpNeighbours() {
-    if (this.disposed) {
-      return;  // Deleted block.
+    if (this.isDeadOrDying()) {
+      return;
     }
     if (this.workspace.isDragging()) {
-      return;  // Don't bump blocks during a drag.
+      return;
     }
     const rootBlock = this.getRootBlock();
     if (rootBlock.isInFlyout) {
@@ -1809,7 +1794,7 @@ export class BlockSvg extends Block implements IASTNodeLocationSvg,
    * @param add True if highlighting should be added.
    * @internal
    */
-  highlightShapeForInput(conn: Connection, add: boolean) {
+  highlightShapeForInput(conn: RenderedConnection, add: boolean) {
     this.pathObject.updateShapeForInputHighlight(conn, add);
   }
 }

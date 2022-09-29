@@ -263,7 +263,7 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
    * @internal
    */
   addSelect() {
-    dom.addClass(this.svgGroup_ as Element, 'blocklySelected');
+    dom.addClass(this.svgGroup_, 'blocklySelected');
     this.setFocus();
   }
 
@@ -273,7 +273,7 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
    * @internal
    */
   removeSelect() {
-    dom.removeClass(this.svgGroup_ as Element, 'blocklySelected');
+    dom.addClass(this.svgGroup_, 'blocklySelected');
     this.blurFocus();
   }
 
@@ -283,7 +283,7 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
    * @internal
    */
   addFocus() {
-    dom.addClass(this.svgGroup_ as Element, 'blocklyFocused');
+    dom.addClass(this.svgGroup_, 'blocklyFocused');
   }
 
   /**
@@ -292,7 +292,7 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
    * @internal
    */
   removeFocus() {
-    dom.removeClass(this.svgGroup_ as Element, 'blocklyFocused');
+    dom.removeClass(this.svgGroup_, 'blocklyFocused');
   }
 
   /**
@@ -473,9 +473,9 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
    */
   updateMovable() {
     if (this.isMovable()) {
-      dom.addClass(this.svgGroup_ as Element, 'blocklyDraggable');
+      dom.addClass(this.svgGroup_, 'blocklyDraggable');
     } else {
-      dom.removeClass(this.svgGroup_ as Element, 'blocklyDraggable');
+      dom.removeClass(this.svgGroup_, 'blocklyDraggable');
     }
   }
 
@@ -514,9 +514,9 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
       const group = this.getSvgRoot();
       (group as AnyDuringMigration).translate_ = '';
       (group as AnyDuringMigration).skew_ = '';
-      dom.addClass(this.svgGroup_ as Element, 'blocklyDragging');
+      dom.addClass(this.svgGroup_, 'blocklyDragging');
     } else {
-      dom.removeClass(this.svgGroup_ as Element, 'blocklyDragging');
+      dom.removeClass(this.svgGroup_, 'blocklyDragging');
     }
   }
 
@@ -561,9 +561,9 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
    */
   setDeleteStyle(enable: boolean) {
     if (enable) {
-      dom.addClass(this.svgGroup_ as Element, 'blocklyDraggingDelete');
+      dom.addClass(this.svgGroup_, 'blocklyDraggingDelete');
     } else {
-      dom.removeClass(this.svgGroup_ as Element, 'blocklyDraggingDelete');
+      dom.removeClass(this.svgGroup_, 'blocklyDraggingDelete');
     }
   }
 
@@ -853,8 +853,9 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
    */
   private deleteMouseDown_(e: Event) {
     // Highlight the delete icon.
-    dom.addClass(
-        this.deleteIconBorder_ as Element, 'blocklyDeleteIconHighlighted');
+    if (this.deleteIconBorder_) {
+      dom.addClass(this.deleteIconBorder_, 'blocklyDeleteIconHighlighted');
+    }
     // This event has been handled.  No need to bubble up to the document.
     e.stopPropagation();
   }
@@ -866,8 +867,9 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
    */
   private deleteMouseOut_(_e: Event) {
     // Restore highlight on the delete icon.
-    dom.removeClass(
-        this.deleteIconBorder_ as Element, 'blocklyDeleteIconHighlighted');
+    if (this.deleteIconBorder_) {
+      dom.removeClass(this.deleteIconBorder_, 'blocklyDeleteIconHighlighted');
+    }
   }
 
   /**
@@ -1018,11 +1020,13 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
       }
       this.textarea_!.focus();
       this.addFocus();
-      dom.addClass(
-          this.svgRectTarget_ as SVGRectElement, 'blocklyCommentTargetFocused');
-      dom.addClass(
-          this.svgHandleTarget_ as SVGRectElement,
-          'blocklyCommentHandleTargetFocused');
+      if (this.svgRectTarget_) {
+        dom.addClass(this.svgRectTarget_, 'blocklyCommentTargetFocused');
+      }
+      if (this.svgHandleTarget_) {
+        dom.addClass(
+            this.svgHandleTarget_, 'blocklyCommentHandleTargetFocused');
+      }
     }, 0);
   }
 
@@ -1041,11 +1045,13 @@ export class WorkspaceCommentSvg extends WorkspaceComment implements
 
       this.textarea_!.blur();
       this.removeFocus();
-      dom.removeClass(
-          this.svgRectTarget_ as SVGRectElement, 'blocklyCommentTargetFocused');
-      dom.removeClass(
-          this.svgHandleTarget_ as SVGRectElement,
-          'blocklyCommentHandleTargetFocused');
+      if (this.svgRectTarget_) {
+        dom.removeClass(this.svgRectTarget_, 'blocklyCommentTargetFocused');
+      }
+      if (this.svgHandleTarget_) {
+        dom.removeClass(
+            this.svgHandleTarget_, 'blocklyCommentHandleTargetFocused');
+      }
     }, 0);
   }
 

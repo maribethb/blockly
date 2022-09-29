@@ -13,9 +13,9 @@
 import * as goog from '../closure/goog/goog.js';
 goog.declareModuleId('Blockly.FieldLabel');
 
+import * as dom from './utils/dom.js';
 import {FieldConfig, Field} from './field.js';
 import * as fieldRegistry from './field_registry.js';
-import * as dom from './utils/dom.js';
 import * as parsing from './utils/parsing.js';
 import type {Sentinel} from './utils/sentinel.js';
 
@@ -76,7 +76,7 @@ export class FieldLabel extends Field {
   override initView() {
     this.createTextElement_();
     if (this.class_) {
-      dom.addClass((this.textElement_), this.class_);
+      dom.addClass(this.textElement_, this.class_);
     }
   }
 
@@ -101,8 +101,6 @@ export class FieldLabel extends Field {
    */
   setClass(cssClass: string|null) {
     if (this.textElement_) {
-      // This check isn't necessary, but it's faster than letting removeClass
-      // figure it out.
       if (this.class_) {
         dom.removeClass(this.textElement_, this.class_);
       }

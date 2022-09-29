@@ -61,9 +61,15 @@ export class ThemeManager {
     const injectionDiv = this.workspace.getInjectionDiv();
     if (injectionDiv) {
       if (prevTheme) {
-        dom.removeClass(injectionDiv, prevTheme.getClassName());
+        const oldClassName = prevTheme.getClassName();
+        if (oldClassName) {
+          dom.removeClass(injectionDiv, oldClassName);
+        }
       }
-      dom.addClass(injectionDiv, this.theme.getClassName());
+      const newClassName = this.theme.getClassName();
+      if (newClassName) {
+        dom.addClass(injectionDiv, newClassName);
+      }
     }
 
     // Refresh all subscribed workspaces.

@@ -44,11 +44,7 @@ export class Drawer extends BaseDrawer {
    * @internal
    */
   constructor(block: BlockSvg, info: RenderInfo) {
-    // AnyDuringMigration because:  Argument of type
-    // 'import("/google/src/cloud/adodson/blockly-ts/../../renderers/zelos/info").RenderInfo'
-    // is not assignable to parameter of type
-    // 'import("/google/src/cloud/adodson/bloc...
-    super(block, info as AnyDuringMigration);
+    super(block, info);
   }
 
   override draw() {
@@ -63,16 +59,13 @@ export class Drawer extends BaseDrawer {
       pathObject.flipRTL();
     }
     if (debug.isDebuggerEnabled()) {
-      this.block_.renderingDebugger.drawDebug(this.block_, this.info_);
+      this.block_?.renderingDebugger?.drawDebug(this.block_, this.info_);
     }
     this.recordSizeOnBlock_();
     if (this.info_.outputConnection) {
       // Store the output connection shape type for parent blocks to use during
       // rendering.
-      // AnyDuringMigration because:  Type 'number' is not assignable to type
-      // 'null'.
-      pathObject.outputShapeType =
-          this.info_.outputConnection.shape.type as AnyDuringMigration;
+      pathObject.outputShapeType = this.info_.outputConnection.shape.type;
     }
     pathObject.endDrawing();
   }
@@ -139,6 +132,10 @@ export class Drawer extends BaseDrawer {
    * Add steps to draw the right side of an output with a dynamic connection.
    */
   protected drawRightDynamicConnection_() {
+    if (!this.info_.outputConnection) {
+      throw new Error(
+          `Cannot draw the output connection of a block that doesn't have one`);
+    }
     this.outlinePath_ += (this.info_.outputConnection.shape as DynamicShape)
                              .pathRightDown(this.info_.outputConnection.height);
   }
@@ -147,6 +144,10 @@ export class Drawer extends BaseDrawer {
    * Add steps to draw the left side of an output with a dynamic connection.
    */
   protected drawLeftDynamicConnection_() {
+    if (!this.info_.outputConnection) {
+      throw new Error(
+          `Cannot draw the output connection of a block that doesn't have one`);
+    }
     this.positionOutputConnection_();
 
     this.outlinePath_ += (this.info_.outputConnection.shape as DynamicShape)

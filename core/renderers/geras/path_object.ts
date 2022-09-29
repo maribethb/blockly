@@ -40,7 +40,6 @@ export class PathObject extends BasePathObject {
    * @internal
    */
   colourDark = '#000000';
-  override style: AnyDuringMigration;
 
   /**
    * @param root The root SVG element.
@@ -91,6 +90,11 @@ export class PathObject extends BasePathObject {
   override applyColour(block: BlockSvg) {
     this.svgPathLight.style.display = '';
     this.svgPathDark.style.display = '';
+    if (!this.style.colourTertiary) {
+      throw new Error(
+          'The renderer did not properly initialize the tertiary colour of ' +
+          'the block style');
+    }
     this.svgPathLight.setAttribute('stroke', this.style.colourTertiary);
     this.svgPathDark.setAttribute('fill', this.colourDark);
 
@@ -119,6 +123,11 @@ export class PathObject extends BasePathObject {
   override updateShadow_(shadow: boolean) {
     if (shadow) {
       this.svgPathLight.style.display = 'none';
+      if (!this.style.colourSecondary) {
+        throw new Error(
+            'The renderer did not properly initialize the secondary colour ' +
+            'of the block style block style');
+      }
       this.svgPathDark.setAttribute('fill', this.style.colourSecondary);
       this.svgPath.setAttribute('stroke', 'none');
       this.svgPath.setAttribute('fill', this.style.colourSecondary);
