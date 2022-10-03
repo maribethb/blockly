@@ -3,6 +3,7 @@ const fs = require('fs');
 const gulp = require('gulp');
 const header = require('gulp-header');
 const replace = require('gulp-replace');
+const { mapSources } = require('gulp-sourcemaps');
 
 const removeRenames = function() {
     // API Extractor output spuriously renames some functions. Undo that.
@@ -18,30 +19,67 @@ const prependBook = function() {
         .pipe(gulp.dest('docs/'));
 }
 
+/**
+ * Creates a map of top-level pages to sub-pages.
+ * @param {string[]} allFiles All files in docs directory.
+ * @returns {Map<string, string[]>}
+ */
+const buildAlternatePathsMap = function(allFiles) {
+    let map = new Map();
+    for (let file of allFiles) {
+        // Get the name of the class/namespaces/variable/etc., i.e. the top-level page.
+        let filePieces = file.split('.');
+        let name = filePieces[1];
+        if (!map.has(name)) {
+            map.set(name, []);
+        }
+        if (filePieces[2] !== 'md') {
+            // Don't add the top-level page to the map, only the sub-pages.
+            // Add all sub-pages to the array for this page.
+            map.get(name).push(file);
+        }
+    }
+    return map;
+}
+
 const createToc = function(done) {
     const fileContent = fs.readFileSync('docs/blockly.md', 'utf8');
+    const files = fs.readdirSync('docs');
+    const map = buildAlternatePathsMap(files);
     let content = 'toc:\n';
     const referencePath = '/blockly/reference/js';
 
     // Generate a section of TOC for each section/heading in the overview file.
     const sections = fileContent.split('##');
-    for (section of sections) {
+    for (let section of sections) {
         const table = Extractor.extractObject(section, 'rows', false);
-        if (table) {
-            // Get the name of the section, i.e. the text immediately after the `##` in the source doc
-            const sectionName = section.split('\n')[0].trim();
-            content += `- heading: ${sectionName}\n`
-            for (row in table) {
-                // After going through the Extractor, the markdown is now HTML.
-                // Each row in the table is now a link (anchor tag).
-                // Get the target of the link, excluding the first `.` since we don't want a relative path.
-                const path = /href="\.(.*?)"/.exec(row)[1];
-                // Get the name of the link (text in between the <a> and </a>)
-                const name = /">(.*?)</.exec(row)[1];
-                content += `- title: ${name}\n`;
-                content += `  path: ${referencePath}${path}\n`
+        if (!table) {
+            continue;
+        }
+        // Get the name of the section, i.e. the text immediately after the `##` in the source doc
+        const sectionName = section.split('\n')[0].trim();
+        content += `- heading: ${sectionName}\n`
+        for (let row in table) {
+            // After going through the Extractor, the markdown is now HTML.
+            // Each row in the table is now a link (anchor tag).
+            // Get the target of the link, excluding the first `.` since we don't want a relative path.
+            const path = /href="\.(.*?)"/.exec(row)?.[1];
+            // Get the name of the link (text in between the <a> and </a>)
+            const name = /">(.*?)</.exec(row)?.[1];
+            if (!path || !name) {
+                continue;
             }
+            content += `- title: ${name}\n`;
+            content += `  path: ${referencePath}${path}\n`;
+            // Get the list of sub-pages for this map.
+            let pages = map.get(path.split('.')[1]);
+            if (pages?.length) {
+                content += `  alternate_paths:\n`;
+                for (let page of pages) {
+                    content += `  - ${referencePath}/${page}\n`;
+                }
 
+            }
         }
     }
     fs.writeFileSync('docs/_toc.yaml', content);
