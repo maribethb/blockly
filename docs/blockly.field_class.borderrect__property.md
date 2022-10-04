@@ -12,5 +12,5 @@ The rendered field's SVG border element.
 <b>Signature:</b>
 
 ```typescript
-protected borderRect_: SVGRectElement;
+protected borderRect_: SVGRectElement | null;
 ```

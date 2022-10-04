@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> April 2022. Use built-in string.startsWith.
+> Use built-in \*\*string.startsWith\*\* instead.
 > 
 
 Fast prefix-checker. Copied from Closure's goog.string.startsWith.

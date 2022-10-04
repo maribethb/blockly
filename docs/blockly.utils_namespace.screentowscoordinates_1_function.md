@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.utils.svgMath.screenToWsCoordinates\*\* instead.
 > 
 
 Converts screen coordinates to workspace coordinates.

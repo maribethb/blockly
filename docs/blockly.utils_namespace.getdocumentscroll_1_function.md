@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.utils.svgMath.getDocumentScroll\*\* instead.
 > 
 
 Gets the document scroll distance as a coordinate object. Copied from Closure's goog.dom.getDocumentScroll.

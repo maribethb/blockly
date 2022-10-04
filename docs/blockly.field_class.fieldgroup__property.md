@@ -12,5 +12,5 @@ The rendered field's SVG group element.
 <b>Signature:</b>
 
 ```typescript
-protected fieldGroup_: SVGGElement;
+protected fieldGroup_: SVGGElement | null;
 ```

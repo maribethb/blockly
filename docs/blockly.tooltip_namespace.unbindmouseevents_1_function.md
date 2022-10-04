@@ -12,14 +12,14 @@ Unbinds tooltip mouse events from the SVG element.
 <b>Signature:</b>
 
 ```typescript
-export declare function unbindMouseEvents(element: Element): void;
+export declare function unbindMouseEvents(element: Element | null): void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  element | Element | SVG element onto which tooltip is bound. |
+|  element | Element \| null | SVG element onto which tooltip is bound. |
 
 <b>Returns:</b>
 

@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> Use Blockly.clipboard.paste(). (2021 December)
+> Use \*\*Blockly.clipboard.paste\*\* instead.
 > 
 
 Paste a block or workspace comment on to the main workspace.

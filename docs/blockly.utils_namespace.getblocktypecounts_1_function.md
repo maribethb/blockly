@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.common.getBlockTypeCounts\*\* instead.
 > 
 
 Get a map of all the block's descendants mapping their type to the number of children with that type.

@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> Use Blockly.utils.colour.hueToHex(). (2021 December)
+> Use \*\*Blockly.utils.colour.hueToHex\*\* instead.
 > 
 
 Convert a hue (HSV model) into an RGB hex triplet.

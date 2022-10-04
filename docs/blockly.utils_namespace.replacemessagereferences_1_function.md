@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.utils.parsing.replaceMessageReferences\*\* instead.
 > 
 
 Replaces string table references in a message, if the message is a string. For example, "%<!-- -->{<!-- -->bky\_my\_msg<!-- -->}<!-- -->" and "%<!-- -->{<!-- -->BKY\_MY\_MSG<!-- -->}<!-- -->" will both be replaced with the value in Msg\['MY\_MSG'\].

@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.utils.parsing.checkMessageReferences\*\* instead.
 > 
 
 Validates that any %<!-- -->{<!-- -->MSG\_KEY<!-- -->} references in the message refer to keys of the Msg string table.

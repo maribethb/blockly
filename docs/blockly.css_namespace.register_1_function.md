@@ -12,14 +12,14 @@ Add some CSS to the blob that will be injected later. Allows optional components
 <b>Signature:</b>
 
 ```typescript
-export declare function register(cssContent: string | string[]): void;
+export declare function register(cssContent: string): void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  cssContent | string \| string\[\] | Multiline CSS string or an array of single lines of CSS. |
+|  cssContent | string | Multiline CSS string or an array of single lines of CSS. |
 
 <b>Returns:</b>
 

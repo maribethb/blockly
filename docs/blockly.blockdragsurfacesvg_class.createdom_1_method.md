@@ -7,6 +7,11 @@ Book: /blockly/_book.yaml
 
 ## BlockDragSurfaceSvg.createDom() method
 
+> Warning: This API is now obsolete.
+> 
+> The DOM is automatically created by the constructor.
+> 
+
 Create the drag surface and inject it into the container.
 
 <b>Signature:</b>

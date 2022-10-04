@@ -16,7 +16,6 @@ Book: /blockly/_book.yaml
 |  [getRelativeXY(element)](./blockly.utils_namespace.svgmath_namespace.getrelativexy_1_function.md) | Return the coordinates of the top-left corner of this element relative to its parent. Only for SVG elements and children (e.g. rect, g, path). |
 |  [is3dSupported()](./blockly.utils_namespace.svgmath_namespace.is3dsupported_1_function.md) | Check if 3D transforms are supported by adding an element and attempting to set the property. |
 |  [screenToWsCoordinates(ws, screenCoordinates)](./blockly.utils_namespace.svgmath_namespace.screentowscoordinates_1_function.md) | Converts screen coordinates to workspace coordinates. |
-|  [svgSize(svg)](./blockly.utils_namespace.svgmath_namespace.svgsize_1_function.md) | Returns the dimensions of the specified SVG image. |
 
 ## Variables
 

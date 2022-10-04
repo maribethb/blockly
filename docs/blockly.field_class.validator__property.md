@@ -12,5 +12,5 @@ Validation function called when user edits an editable field.
 <b>Signature:</b>
 
 ```typescript
-protected validator_: Function;
+protected validator_: Function | null;
 ```

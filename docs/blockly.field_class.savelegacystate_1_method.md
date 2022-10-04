@@ -12,14 +12,14 @@ Returns a stringified version of the XML state, if it should be used. Otherwise 
 <b>Signature:</b>
 
 ```typescript
-protected saveLegacyState(callingClass: any): string | null;
+protected saveLegacyState(callingClass: FieldProto): string | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  callingClass | any | The class calling this method. Used to see if <code>this</code> has overridden any relevant hooks. |
+|  callingClass | FieldProto | The class calling this method. Used to see if <code>this</code> has overridden any relevant hooks. |
 
 <b>Returns:</b>
 

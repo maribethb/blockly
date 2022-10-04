@@ -12,5 +12,5 @@ The rendered field's text content element.
 <b>Signature:</b>
 
 ```typescript
-protected textContent_: Text;
+protected textContent_: Text | null;
 ```

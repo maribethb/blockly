@@ -12,11 +12,11 @@ Gets the group element for this editable field. Used for measuring the size and 
 <b>Signature:</b>
 
 ```typescript
-getSvgRoot(): SVGGElement;
+getSvgRoot(): SVGGElement | null;
 ```
 <b>Returns:</b>
 
-SVGGElement
+SVGGElement \| null
 
 The group element.
 

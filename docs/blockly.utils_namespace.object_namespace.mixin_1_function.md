@@ -7,6 +7,11 @@ Book: /blockly/_book.yaml
 
 ## utils.object.mixin() function
 
+> Warning: This API is now obsolete.
+> 
+> Use the built-in \*\*Object.assign\*\* instead.
+> 
+
 Copies all the members of a source object to a target object.
 
 <b>Signature:</b>

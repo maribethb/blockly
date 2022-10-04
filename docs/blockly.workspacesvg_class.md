@@ -92,7 +92,6 @@ export declare class WorkspaceSvg extends Workspace implements IASTNodeLocationS
 |  [moveDrag(e)](./blockly.workspacesvg_class.movedrag_1_method.md) |  | Track a drag of an object on this workspace. |
 |  [newBlock(prototypeName, opt\_id)](./blockly.workspacesvg_class.newblock_1_method.md) |  | Obtain a newly created block. |
 |  [paste(state)](./blockly.workspacesvg_class.paste_1_method.md) |  | Pastes the provided block or workspace comment onto the workspace. Does not check whether there is remaining capacity for the object, that should be done before calling this method. |
-|  [recordDeleteAreas()](./blockly.workspacesvg_class.recorddeleteareas_1_method.md) |  | Make a list of all the delete areas for this workspace. |
 |  [recordDragTargets()](./blockly.workspacesvg_class.recorddragtargets_1_method.md) |  | Make a list of all the delete areas for this workspace. |
 |  [refreshTheme()](./blockly.workspacesvg_class.refreshtheme_1_method.md) |  | Refresh all blocks on the workspace after a theme update. |
 |  [registerButtonCallback(key, func)](./blockly.workspacesvg_class.registerbuttoncallback_1_method.md) |  | Register a callback function associated with a given key, for clicks on buttons and labels in the flyout. For instance, a button specified by the XML <button text="create variable" callbackKey="CREATE_VARIABLE"></button> should be matched by a call to registerButtonCallback("CREATE\_VARIABLE", yourCallbackFunction). |

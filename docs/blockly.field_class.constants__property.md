@@ -12,5 +12,5 @@ Constants associated with the source block's renderer.
 <b>Signature:</b>
 
 ```typescript
-protected constants_: ConstantProvider;
+protected constants_: ConstantProvider | null;
 ```

@@ -27,16 +27,10 @@ Book: /blockly/_book.yaml
 |  Function | Description |
 |  --- | --- |
 |  [checkMessageReferences(message)](./blockly.utils_namespace.checkmessagereferences_1_function.md) | Validates that any %<!-- -->{<!-- -->MSG\_KEY<!-- -->} references in the message refer to keys of the Msg string table. |
-|  [genUid()](./blockly.utils_namespace.genuid_1_function.md) | Generate a unique ID. |
 |  [getBlockTypeCounts(block, opt\_stripFollowing)](./blockly.utils_namespace.getblocktypecounts_1_function.md) | Get a map of all the block's descendants mapping their type to the number of children with that type. |
 |  [getDocumentScroll()](./blockly.utils_namespace.getdocumentscroll_1_function.md) | Gets the document scroll distance as a coordinate object. Copied from Closure's goog.dom.getDocumentScroll. |
 |  [getRelativeXY(element)](./blockly.utils_namespace.getrelativexy_1_function.md) | Return the coordinates of the top-left corner of this element relative to its parent. Only for SVG elements and children (e.g. rect, g, path). |
-|  [getScrollDeltaPixels(e)](./blockly.utils_namespace.getscrolldeltapixels_1_function.md) | Returns the scroll delta of a mouse event in pixel units. |
 |  [is3dSupported()](./blockly.utils_namespace.is3dsupported_1_function.md) | Check if 3D transforms are supported by adding an element and attempting to set the property. |
-|  [isRightButton(e)](./blockly.utils_namespace.isrightbutton_1_function.md) | Returns true this event is a right-click. |
-|  [isTargetInput(e)](./blockly.utils_namespace.istargetinput_1_function.md) | Returns true if this event is targeting a text input widget? |
-|  [mouseToSvg(e, svg, matrix)](./blockly.utils_namespace.mousetosvg_1_function.md) | Returns the converted coordinates of the given mouse event. The origin (0,0) is the top-left corner of the Blockly SVG. |
-|  [noEvent(e)](./blockly.utils_namespace.noevent_1_function.md) | Halts the propagation of the event without doing anything else. |
 |  [parseBlockColour(colour)](./blockly.utils_namespace.parseblockcolour_1_function.md) | Parse a block colour from a number or string, as provided in a block definition. |
 |  [replaceMessageReferences(message)](./blockly.utils_namespace.replacemessagereferences_1_function.md) | Replaces string table references in a message, if the message is a string. For example, "%<!-- -->{<!-- -->bky\_my\_msg<!-- -->}<!-- -->" and "%<!-- -->{<!-- -->BKY\_MY\_MSG<!-- -->}<!-- -->" will both be replaced with the value in Msg\['MY\_MSG'\]. |
 |  [runAfterPageLoad(fn)](./blockly.utils_namespace.runafterpageload_1_function.md) | Calls a function after the page has loaded, possibly immediately. |

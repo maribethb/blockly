@@ -12,14 +12,14 @@ Loads the given state using either the old XML hooks, if they should be used. Re
 <b>Signature:</b>
 
 ```typescript
-loadLegacyState(callingClass: any, state: any): boolean;
+loadLegacyState(callingClass: FieldProto, state: any): boolean;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  callingClass | any | The class calling this method. Used to see if <code>this</code> has overridden any relevant hooks. |
+|  callingClass | FieldProto | The class calling this method. Used to see if <code>this</code> has overridden any relevant hooks. |
 |  state | any | The state to apply to the field. |
 
 <b>Returns:</b>

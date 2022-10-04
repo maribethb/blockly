@@ -12,11 +12,11 @@ The element to bind the click handler to. If not set explicitly, defaults to the
 <b>Signature:</b>
 
 ```typescript
-protected getClickTarget_(): Element;
+protected getClickTarget_(): Element | null;
 ```
 <b>Returns:</b>
 
-Element
+Element \| null
 
 Element to bind click handler to.
 

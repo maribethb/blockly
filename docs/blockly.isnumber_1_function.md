@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> Use Blockly.utils.string.isNumber(str). (2021 December)
+> Use \*\*Blockly.utils.string.isNumber\*\* instead.
 > 
 
 Is the given string a number (includes negative and decimals).

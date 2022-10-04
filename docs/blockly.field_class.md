@@ -26,13 +26,13 @@ export declare abstract class Field implements IASTNodeLocationSvg, IASTNodeLoca
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [borderRect\_](./blockly.field_class.borderrect__property.md) | <code>protected</code> | SVGRectElement | The rendered field's SVG border element. |
-|  [clickTarget\_](./blockly.field_class.clicktarget__property.md) | <code>protected</code> | Element | The element the click handler is bound to. |
-|  [constants\_](./blockly.field_class.constants__property.md) | <code>protected</code> | ConstantProvider | Constants associated with the source block's renderer. |
+|  [borderRect\_](./blockly.field_class.borderrect__property.md) | <code>protected</code> | SVGRectElement \| null | The rendered field's SVG border element. |
+|  [clickTarget\_](./blockly.field_class.clicktarget__property.md) | <code>protected</code> | Element \| null | The element the click handler is bound to. |
+|  [constants\_](./blockly.field_class.constants__property.md) | <code>protected</code> | ConstantProvider \| null | Constants associated with the source block's renderer. |
 |  [CURSOR](./blockly.field_class.cursor_property.md) |  | string | Mouse cursor style when over the hotspot that initiates the editor. |
 |  [EDITABLE](./blockly.field_class.editable_property.md) |  | boolean | Editable fields usually show some sort of UI indicating they are editable. They will also be saved by the serializer. |
 |  [enabled\_](./blockly.field_class.enabled__property.md) | <code>protected</code> | boolean | Can the field value be changed using the editor on an editable block? |
-|  [fieldGroup\_](./blockly.field_class.fieldgroup__property.md) | <code>protected</code> | SVGGElement | The rendered field's SVG group element. |
+|  [fieldGroup\_](./blockly.field_class.fieldgroup__property.md) | <code>protected</code> | SVGGElement \| null | The rendered field's SVG group element. |
 |  [isDirty\_](./blockly.field_class.isdirty__property.md) | <code>protected</code> | boolean | Does this block need to be re-rendered? |
 |  [maxDisplayLength](./blockly.field_class.maxdisplaylength_property.md) |  | number | Maximum characters of text to display before adding an ellipsis. |
 |  [name?](./blockly.field_class.name_property.md) |  | string | <i>(Optional)</i> Name of field. Unique within each block. Static labels are usually unnamed. |
@@ -40,10 +40,10 @@ export declare abstract class Field implements IASTNodeLocationSvg, IASTNodeLoca
 |  [SERIALIZABLE](./blockly.field_class.serializable_property.md) |  | boolean | Serializable fields are saved by the serializer, non-serializable fields are not. Editable fields should also be serializable. This is not the case by default so that SERIALIZABLE is backwards compatible. |
 |  [size\_](./blockly.field_class.size__property.md) | <code>protected</code> | Size |  |
 |  [SKIP\_SETUP](./blockly.field_class.skip_setup_property.md) | <p><code>readonly</code></p><p><code>static</code></p> | Sentinel | A value used to signal when a field's constructor should \*not\* set the field's value or run configure\_, and should allow a subclass to do that instead. |
-|  [sourceBlock\_](./blockly.field_class.sourceblock__property.md) | <code>protected</code> | [Block](./blockly.block_class.md) | Block this field is attached to. Starts as null, then set in init. |
-|  [textContent\_](./blockly.field_class.textcontent__property.md) | <code>protected</code> | Text | The rendered field's text content element. |
-|  [textElement\_](./blockly.field_class.textelement__property.md) | <code>protected</code> | SVGTextElement | The rendered field's SVG text element. |
-|  [validator\_](./blockly.field_class.validator__property.md) | <code>protected</code> | Function | Validation function called when user edits an editable field. |
+|  [sourceBlock\_](./blockly.field_class.sourceblock__property.md) | <code>protected</code> | [Block](./blockly.block_class.md) \| null | Block this field is attached to. Starts as null, then set in init. |
+|  [textContent\_](./blockly.field_class.textcontent__property.md) | <code>protected</code> | Text \| null | The rendered field's text content element. |
+|  [textElement\_](./blockly.field_class.textelement__property.md) | <code>protected</code> | SVGTextElement \| null | The rendered field's SVG text element. |
+|  [validator\_](./blockly.field_class.validator__property.md) | <code>protected</code> | Function \| null | Validation function called when user edits an editable field. |
 |  [value\_](./blockly.field_class.value__property.md) | <code>protected</code> | any |  |
 |  [visible\_](./blockly.field_class.visible__property.md) | <code>protected</code> | boolean | Is the field visible, or hidden due to the block being collapsed? |
 
@@ -59,6 +59,7 @@ export declare abstract class Field implements IASTNodeLocationSvg, IASTNodeLoca
 |  [doValueInvalid\_(\_invalidValue)](./blockly.field_class.dovalueinvalid__1_method.md) | <code>protected</code> | Used to notify the field an invalid value was input. Can be overridden by subclasses, see FieldTextInput. No-op by default. |
 |  [doValueUpdate\_(newValue)](./blockly.field_class.dovalueupdate__1_method.md) | <code>protected</code> | Used to update the value of a field. Can be overridden by subclasses to do custom storage of values/updating of external things. |
 |  [getAbsoluteXY\_()](./blockly.field_class.getabsolutexy__1_method.md) | <code>protected</code> | Return the absolute coordinates of the top-left corner of this field. The origin (0,0) is the top-left corner of the page body. |
+|  [getBorderRect()](./blockly.field_class.getborderrect_1_method.md) | <code>protected</code> | Gets the border rectangle element. |
 |  [getClickTarget\_()](./blockly.field_class.getclicktarget__1_method.md) | <code>protected</code> | The element to bind the click handler to. If not set explicitly, defaults to the SVG root of the field. When this element is clicked on an editable field, the editor will open. |
 |  [getConstants()](./blockly.field_class.getconstants_1_method.md) |  | Get the renderer constant provider. |
 |  [getDisplayText\_()](./blockly.field_class.getdisplaytext__1_method.md) | <code>protected</code> | Get the text from this field to display on the block. May differ from <code>getText</code> due to ellipsis, and other formatting. |
@@ -68,6 +69,8 @@ export declare abstract class Field implements IASTNodeLocationSvg, IASTNodeLoca
 |  [getSvgRoot()](./blockly.field_class.getsvgroot_1_method.md) |  | Gets the group element for this editable field. Used for measuring the size and for positioning. |
 |  [getText\_()](./blockly.field_class.gettext__1_method.md) | <code>protected</code> | A developer hook to override the returned text of this field. Override if the text representation of the value of this field is not just a string cast of its value. Return null to resort to a string cast. |
 |  [getText()](./blockly.field_class.gettext_1_method.md) |  | Get the text from this field. Override getText\_ to provide a different behavior than simply casting the value to a string. |
+|  [getTextContent()](./blockly.field_class.gettextcontent_1_method.md) | <code>protected</code> | Gets the text content. |
+|  [getTextElement()](./blockly.field_class.gettextelement_1_method.md) | <code>protected</code> | Gets the text element. |
 |  [getTooltip()](./blockly.field_class.gettooltip_1_method.md) |  | Returns the tooltip text for this field. |
 |  [getValidator()](./blockly.field_class.getvalidator_1_method.md) |  | Gets the validation function for editable fields, or null if not set. |
 |  [getValue()](./blockly.field_class.getvalue_1_method.md) |  | Get the current value of the field. |

@@ -228,7 +228,6 @@ Book: /blockly/_book.yaml
 |  [setLocale](./blockly.setlocale_variable.md) | <p>Sets the locale (i.e. the localized messages/block-text/etc) to the given locale.</p><p>This is not useful/necessary when loading from a script tag, because the messages are automatically cluged into the Blockly.Msg object. But we provide it in both the script-tag and non-script-tag contexts so that the tscompiler can properly create our type definition files.</p> |
 |  [setParentContainer](./blockly.setparentcontainer_variable.md) | Set the parent container. This is the container element that the WidgetDiv, dropDownDiv, and Tooltip are rendered into the first time <code>Blockly.inject</code> is called. This method is a NOP if called after the first <code>Blockly.inject</code>. |
 |  [svgResize](./blockly.svgresize_variable.md) | Size the SVG image to completely fill its container. Call this when the view actually changes sizes (e.g. on a window resize/device orientation change). See workspace.resizeContents to resize the workspace when the contents change (e.g. when a block is added or removed). Record the height/width of the SVG image. |
-|  [svgSize](./blockly.svgsize_variable.md) | Returns the dimensions of the specified SVG image. |
 |  [TOOLBOX\_AT\_BOTTOM](./blockly.toolbox_at_bottom_variable.md) |  |
 |  [TOOLBOX\_AT\_LEFT](./blockly.toolbox_at_left_variable.md) |  |
 |  [TOOLBOX\_AT\_RIGHT](./blockly.toolbox_at_right_variable.md) |  |

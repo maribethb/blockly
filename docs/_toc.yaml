@@ -16,7 +16,6 @@ toc:
   - /blockly/reference/js/blockly.astnode_class.gettype_1_method.md
   - /blockly/reference/js/blockly.astnode_class.getwscoordinate_1_method.md
   - /blockly/reference/js/blockly.astnode_class.in_1_method.md
-  - /blockly/reference/js/blockly.astnode_class.md
   - /blockly/reference/js/blockly.astnode_class.navigate_all_fields_property.md
   - /blockly/reference/js/blockly.astnode_class.next_1_method.md
   - /blockly/reference/js/blockly.astnode_class.out_1_method.md
@@ -28,7 +27,6 @@ toc:
   - /blockly/reference/js/blockly.basiccursor_class.getnextnode__1_method.md
   - /blockly/reference/js/blockly.basiccursor_class.getpreviousnode__1_method.md
   - /blockly/reference/js/blockly.basiccursor_class.in_1_method.md
-  - /blockly/reference/js/blockly.basiccursor_class.md
   - /blockly/reference/js/blockly.basiccursor_class.next_1_method.md
   - /blockly/reference/js/blockly.basiccursor_class.out_1_method.md
   - /blockly/reference/js/blockly.basiccursor_class.prev_1_method.md
@@ -103,7 +101,6 @@ toc:
   - /blockly/reference/js/blockly.block_class.jsoninit_1_method.md
   - /blockly/reference/js/blockly.block_class.loadextrastate_property.md
   - /blockly/reference/js/blockly.block_class.makeconnection__1_method.md
-  - /blockly/reference/js/blockly.block_class.md
   - /blockly/reference/js/blockly.block_class.mixin_1_method.md
   - /blockly/reference/js/blockly.block_class.moveby_1_method.md
   - /blockly/reference/js/blockly.block_class.moveinputbefore_1_method.md
@@ -164,7 +161,6 @@ toc:
   - /blockly/reference/js/blockly.blockdragger_class.getinsertionmarkers_1_method.md
   - /blockly/reference/js/blockly.blockdragger_class.getnewlocationafterdrag__1_method.md
   - /blockly/reference/js/blockly.blockdragger_class.maybedeleteblock__1_method.md
-  - /blockly/reference/js/blockly.blockdragger_class.md
   - /blockly/reference/js/blockly.blockdragger_class.pixelstoworkspaceunits__1_method.md
   - /blockly/reference/js/blockly.blockdragger_class.shoulddisconnect__1_method.md
   - /blockly/reference/js/blockly.blockdragger_class.startdrag_1_method.md
@@ -185,7 +181,6 @@ toc:
   - /blockly/reference/js/blockly.blockdragsurfacesvg_class.getsurfacetranslation_1_method.md
   - /blockly/reference/js/blockly.blockdragsurfacesvg_class.getsvgroot_1_method.md
   - /blockly/reference/js/blockly.blockdragsurfacesvg_class.getwstranslation_1_method.md
-  - /blockly/reference/js/blockly.blockdragsurfacesvg_class.md
   - /blockly/reference/js/blockly.blockdragsurfacesvg_class.setblocksandshow_1_method.md
   - /blockly/reference/js/blockly.blockdragsurfacesvg_class.translateandscalegroup_1_method.md
   - /blockly/reference/js/blockly.blockdragsurfacesvg_class.translateby_1_method.md
@@ -219,7 +214,6 @@ toc:
   - /blockly/reference/js/blockly.blocksvg_class.inline_property.md
   - /blockly/reference/js/blockly.blocksvg_class.makeconnection__1_method.md
   - /blockly/reference/js/blockly.blocksvg_class.markdirty_1_method.md
-  - /blockly/reference/js/blockly.blocksvg_class.md
   - /blockly/reference/js/blockly.blocksvg_class.moveby_1_method.md
   - /blockly/reference/js/blockly.blocksvg_class.movenumberedinputbefore_1_method.md
   - /blockly/reference/js/blockly.blocksvg_class.moveto_1_method.md
@@ -270,7 +264,6 @@ toc:
   - /blockly/reference/js/blockly.bubble_class.getbubblesize_1_method.md
   - /blockly/reference/js/blockly.bubble_class.getrelativetosurfacexy_1_method.md
   - /blockly/reference/js/blockly.bubble_class.getsvgroot_1_method.md
-  - /blockly/reference/js/blockly.bubble_class.md
   - /blockly/reference/js/blockly.bubble_class.registermoveevent_1_method.md
   - /blockly/reference/js/blockly.bubble_class.registerresizeevent_1_method.md
   - /blockly/reference/js/blockly.bubble_class.setanchorlocation_1_method.md
@@ -284,7 +277,6 @@ toc:
   path: /blockly/reference/js/blockly.bubbledragger_class.md
   alternate_paths:
   - /blockly/reference/js/blockly.bubbledragger_class._constructor__1_constructor.md
-  - /blockly/reference/js/blockly.bubbledragger_class.md
 - title: CollapsibleToolboxCategory
   path: /blockly/reference/js/blockly.collapsibletoolboxcategory_class.md
   alternate_paths:
@@ -301,7 +293,6 @@ toc:
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_class.isexpanded_1_method.md
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_class.ishidden__property.md
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_class.makedefaultcssconfig__1_method.md
-  - /blockly/reference/js/blockly.collapsibletoolboxcategory_class.md
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_class.onclick_1_method.md
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_class.parsecontents__1_method.md
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_class.registrationname_property.md
@@ -317,7 +308,6 @@ toc:
   - /blockly/reference/js/blockly.comment_class.dispose_1_method.md
   - /blockly/reference/js/blockly.comment_class.drawicon__1_method.md
   - /blockly/reference/js/blockly.comment_class.getbubblesize_1_method.md
-  - /blockly/reference/js/blockly.comment_class.md
   - /blockly/reference/js/blockly.comment_class.setbubblesize_1_method.md
   - /blockly/reference/js/blockly.comment_class.setvisible_1_method.md
   - /blockly/reference/js/blockly.comment_class.updateeditable_1_method.md
@@ -330,7 +320,6 @@ toc:
   - /blockly/reference/js/blockly.componentmanager_class.getcomponent_1_method.md
   - /blockly/reference/js/blockly.componentmanager_class.getcomponents_1_method.md
   - /blockly/reference/js/blockly.componentmanager_class.hascapability_1_method.md
-  - /blockly/reference/js/blockly.componentmanager_class.md
   - /blockly/reference/js/blockly.componentmanager_class.removecapability_1_method.md
   - /blockly/reference/js/blockly.componentmanager_class.removecomponent_1_method.md
 - title: Connection
@@ -349,7 +338,6 @@ toc:
   - /blockly/reference/js/blockly.connection_class.getsourceblock_1_method.md
   - /blockly/reference/js/blockly.connection_class.isconnected_1_method.md
   - /blockly/reference/js/blockly.connection_class.issuperior_1_method.md
-  - /blockly/reference/js/blockly.connection_class.md
   - /blockly/reference/js/blockly.connection_class.oncheckchanged__1_method.md
   - /blockly/reference/js/blockly.connection_class.reason_checks_failed_property.md
   - /blockly/reference/js/blockly.connection_class.reason_different_workspaces_property.md
@@ -378,14 +366,12 @@ toc:
   - /blockly/reference/js/blockly.connectionchecker_class.dosafetychecks_1_method.md
   - /blockly/reference/js/blockly.connectionchecker_class.dotypechecks_1_method.md
   - /blockly/reference/js/blockly.connectionchecker_class.geterrormessage_1_method.md
-  - /blockly/reference/js/blockly.connectionchecker_class.md
 - title: ConnectionDB
   path: /blockly/reference/js/blockly.connectiondb_class.md
   alternate_paths:
   - /blockly/reference/js/blockly.connectiondb_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.connectiondb_class.getneighbours_1_method.md
   - /blockly/reference/js/blockly.connectiondb_class.init_1_method.md
-  - /blockly/reference/js/blockly.connectiondb_class.md
   - /blockly/reference/js/blockly.connectiondb_class.removeconnection_1_method.md
   - /blockly/reference/js/blockly.connectiondb_class.searchforclosest_1_method.md
 - title: ContextMenuRegistry
@@ -394,7 +380,6 @@ toc:
   - /blockly/reference/js/blockly.contextmenuregistry_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.contextmenuregistry_class.getcontextmenuoptions_1_method.md
   - /blockly/reference/js/blockly.contextmenuregistry_class.getitem_1_method.md
-  - /blockly/reference/js/blockly.contextmenuregistry_class.md
   - /blockly/reference/js/blockly.contextmenuregistry_class.register_1_method.md
   - /blockly/reference/js/blockly.contextmenuregistry_class.registry_property.md
   - /blockly/reference/js/blockly.contextmenuregistry_class.reset_1_method.md
@@ -404,7 +389,6 @@ toc:
   alternate_paths:
   - /blockly/reference/js/blockly.cursor_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.cursor_class.in_1_method.md
-  - /blockly/reference/js/blockly.cursor_class.md
   - /blockly/reference/js/blockly.cursor_class.next_1_method.md
   - /blockly/reference/js/blockly.cursor_class.out_1_method.md
   - /blockly/reference/js/blockly.cursor_class.prev_1_method.md
@@ -414,7 +398,6 @@ toc:
   alternate_paths:
   - /blockly/reference/js/blockly.deletearea_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.deletearea_class.id_property.md
-  - /blockly/reference/js/blockly.deletearea_class.md
   - /blockly/reference/js/blockly.deletearea_class.updatewoulddelete__1_method.md
   - /blockly/reference/js/blockly.deletearea_class.woulddelete_1_method.md
   - /blockly/reference/js/blockly.deletearea_class.woulddelete__property.md
@@ -424,7 +407,6 @@ toc:
   - /blockly/reference/js/blockly.dragtarget_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.dragtarget_class.getclientrect_1_method.md
   - /blockly/reference/js/blockly.dragtarget_class.id_property.md
-  - /blockly/reference/js/blockly.dragtarget_class.md
   - /blockly/reference/js/blockly.dragtarget_class.ondragenter_1_method.md
   - /blockly/reference/js/blockly.dragtarget_class.ondragexit_1_method.md
   - /blockly/reference/js/blockly.dragtarget_class.ondragover_1_method.md
@@ -449,6 +431,7 @@ toc:
   - /blockly/reference/js/blockly.field_class.enabled__property.md
   - /blockly/reference/js/blockly.field_class.fieldgroup__property.md
   - /blockly/reference/js/blockly.field_class.getabsolutexy__1_method.md
+  - /blockly/reference/js/blockly.field_class.getborderrect_1_method.md
   - /blockly/reference/js/blockly.field_class.getclicktarget__1_method.md
   - /blockly/reference/js/blockly.field_class.getconstants_1_method.md
   - /blockly/reference/js/blockly.field_class.getdisplaytext__1_method.md
@@ -458,6 +441,8 @@ toc:
   - /blockly/reference/js/blockly.field_class.getsvgroot_1_method.md
   - /blockly/reference/js/blockly.field_class.gettext_1_method.md
   - /blockly/reference/js/blockly.field_class.gettext__1_method.md
+  - /blockly/reference/js/blockly.field_class.gettextcontent_1_method.md
+  - /blockly/reference/js/blockly.field_class.gettextelement_1_method.md
   - /blockly/reference/js/blockly.field_class.gettooltip_1_method.md
   - /blockly/reference/js/blockly.field_class.getvalidator_1_method.md
   - /blockly/reference/js/blockly.field_class.getvalue_1_method.md
@@ -470,7 +455,6 @@ toc:
   - /blockly/reference/js/blockly.field_class.isvisible_1_method.md
   - /blockly/reference/js/blockly.field_class.loadlegacystate_1_method.md
   - /blockly/reference/js/blockly.field_class.maxdisplaylength_property.md
-  - /blockly/reference/js/blockly.field_class.md
   - /blockly/reference/js/blockly.field_class.name_property.md
   - /blockly/reference/js/blockly.field_class.nbsp_property.md
   - /blockly/reference/js/blockly.field_class.onmousedown__1_method.md
@@ -507,7 +491,6 @@ toc:
   - /blockly/reference/js/blockly.fieldangle_class.gauge__property.md
   - /blockly/reference/js/blockly.fieldangle_class.half_property.md
   - /blockly/reference/js/blockly.fieldangle_class.line__property.md
-  - /blockly/reference/js/blockly.fieldangle_class.md
   - /blockly/reference/js/blockly.fieldangle_class.offset_property.md
   - /blockly/reference/js/blockly.fieldangle_class.onhtmlinputkeydown__1_method.md
   - /blockly/reference/js/blockly.fieldangle_class.onmousemove__1_method.md
@@ -531,7 +514,6 @@ toc:
   - /blockly/reference/js/blockly.fieldcheckbox_class.gettext_1_method.md
   - /blockly/reference/js/blockly.fieldcheckbox_class.getvalue_1_method.md
   - /blockly/reference/js/blockly.fieldcheckbox_class.getvalueboolean_1_method.md
-  - /blockly/reference/js/blockly.fieldcheckbox_class.md
   - /blockly/reference/js/blockly.fieldcheckbox_class.render__1_method.md
   - /blockly/reference/js/blockly.fieldcheckbox_class.serializable_property.md
   - /blockly/reference/js/blockly.fieldcheckbox_class.setcheckcharacter_1_method.md
@@ -551,7 +533,6 @@ toc:
   - /blockly/reference/js/blockly.fieldcolour_class.dovalueupdate__1_method.md
   - /blockly/reference/js/blockly.fieldcolour_class.gettext_1_method.md
   - /blockly/reference/js/blockly.fieldcolour_class.isdirty__property.md
-  - /blockly/reference/js/blockly.fieldcolour_class.md
   - /blockly/reference/js/blockly.fieldcolour_class.serializable_property.md
   - /blockly/reference/js/blockly.fieldcolour_class.setcolours_1_method.md
   - /blockly/reference/js/blockly.fieldcolour_class.setcolumns_1_method.md
@@ -576,7 +557,6 @@ toc:
   - /blockly/reference/js/blockly.fielddropdown_class.gettext__1_method.md
   - /blockly/reference/js/blockly.fielddropdown_class.isoptionlistdynamic_1_method.md
   - /blockly/reference/js/blockly.fielddropdown_class.max_menu_height_vh_property.md
-  - /blockly/reference/js/blockly.fielddropdown_class.md
   - /blockly/reference/js/blockly.fielddropdown_class.menu__property.md
   - /blockly/reference/js/blockly.fielddropdown_class.menugenerator__property.md
   - /blockly/reference/js/blockly.fielddropdown_class.onitemselected__1_method.md
@@ -595,7 +575,6 @@ toc:
   - /blockly/reference/js/blockly.fieldimage_class.getfliprtl_1_method.md
   - /blockly/reference/js/blockly.fieldimage_class.gettext__1_method.md
   - /blockly/reference/js/blockly.fieldimage_class.isdirty__property.md
-  - /blockly/reference/js/blockly.fieldimage_class.md
   - /blockly/reference/js/blockly.fieldimage_class.setalt_1_method.md
   - /blockly/reference/js/blockly.fieldimage_class.setonclickhandler_1_method.md
   - /blockly/reference/js/blockly.fieldimage_class.showeditor__1_method.md
@@ -609,14 +588,12 @@ toc:
   - /blockly/reference/js/blockly.fieldlabel_class.configure__1_method.md
   - /blockly/reference/js/blockly.fieldlabel_class.doclassvalidation__1_method.md
   - /blockly/reference/js/blockly.fieldlabel_class.editable_property.md
-  - /blockly/reference/js/blockly.fieldlabel_class.md
   - /blockly/reference/js/blockly.fieldlabel_class.setclass_1_method.md
 - title: FieldLabelSerializable
   path: /blockly/reference/js/blockly.fieldlabelserializable_class.md
   alternate_paths:
   - /blockly/reference/js/blockly.fieldlabelserializable_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.fieldlabelserializable_class.editable_property.md
-  - /blockly/reference/js/blockly.fieldlabelserializable_class.md
   - /blockly/reference/js/blockly.fieldlabelserializable_class.serializable_property.md
 - title: FieldMultilineInput
   path: /blockly/reference/js/blockly.fieldmultilineinput_class.md
@@ -628,7 +605,6 @@ toc:
   - /blockly/reference/js/blockly.fieldmultilineinput_class.getmaxlines_1_method.md
   - /blockly/reference/js/blockly.fieldmultilineinput_class.isoverflowedy__property.md
   - /blockly/reference/js/blockly.fieldmultilineinput_class.maxlines__property.md
-  - /blockly/reference/js/blockly.fieldmultilineinput_class.md
   - /blockly/reference/js/blockly.fieldmultilineinput_class.onhtmlinputkeydown__1_method.md
   - /blockly/reference/js/blockly.fieldmultilineinput_class.render__1_method.md
   - /blockly/reference/js/blockly.fieldmultilineinput_class.setmaxlines_1_method.md
@@ -646,7 +622,6 @@ toc:
   - /blockly/reference/js/blockly.fieldnumber_class.getmin_1_method.md
   - /blockly/reference/js/blockly.fieldnumber_class.getprecision_1_method.md
   - /blockly/reference/js/blockly.fieldnumber_class.max__property.md
-  - /blockly/reference/js/blockly.fieldnumber_class.md
   - /blockly/reference/js/blockly.fieldnumber_class.min__property.md
   - /blockly/reference/js/blockly.fieldnumber_class.precision__property.md
   - /blockly/reference/js/blockly.fieldnumber_class.serializable_property.md
@@ -676,7 +651,6 @@ toc:
   - /blockly/reference/js/blockly.fieldtextinput_class.isdirty__property.md
   - /blockly/reference/js/blockly.fieldtextinput_class.istabnavigable_1_method.md
   - /blockly/reference/js/blockly.fieldtextinput_class.istextvalid__property.md
-  - /blockly/reference/js/blockly.fieldtextinput_class.md
   - /blockly/reference/js/blockly.fieldtextinput_class.onfinishediting__1_method.md
   - /blockly/reference/js/blockly.fieldtextinput_class.onhtmlinputkeydown__1_method.md
   - /blockly/reference/js/blockly.fieldtextinput_class.render__1_method.md
@@ -704,7 +678,6 @@ toc:
   - /blockly/reference/js/blockly.fieldvariable_class.gettext_1_method.md
   - /blockly/reference/js/blockly.fieldvariable_class.getvalidator_1_method.md
   - /blockly/reference/js/blockly.fieldvariable_class.getvalue_1_method.md
-  - /blockly/reference/js/blockly.fieldvariable_class.md
   - /blockly/reference/js/blockly.fieldvariable_class.menugenerator__property.md
   - /blockly/reference/js/blockly.fieldvariable_class.onitemselected__1_method.md
   - /blockly/reference/js/blockly.fieldvariable_class.serializable_property.md
@@ -742,7 +715,6 @@ toc:
   - /blockly/reference/js/blockly.flyout_class.isvisible_1_method.md
   - /blockly/reference/js/blockly.flyout_class.layout__1_method.md
   - /blockly/reference/js/blockly.flyout_class.margin_property.md
-  - /blockly/reference/js/blockly.flyout_class.md
   - /blockly/reference/js/blockly.flyout_class.moverecttoblock__1_method.md
   - /blockly/reference/js/blockly.flyout_class.position_1_method.md
   - /blockly/reference/js/blockly.flyout_class.positionat__1_method.md
@@ -773,7 +745,6 @@ toc:
   - /blockly/reference/js/blockly.flyoutbutton_class.height_property.md
   - /blockly/reference/js/blockly.flyoutbutton_class.info_property.md
   - /blockly/reference/js/blockly.flyoutbutton_class.islabel_1_method.md
-  - /blockly/reference/js/blockly.flyoutbutton_class.md
   - /blockly/reference/js/blockly.flyoutbutton_class.moveto_1_method.md
   - /blockly/reference/js/blockly.flyoutbutton_class.show_1_method.md
   - /blockly/reference/js/blockly.flyoutbutton_class.text_margin_x_property.md
@@ -786,7 +757,6 @@ toc:
   - /blockly/reference/js/blockly.flyoutmetricsmanager_class.flyout__property.md
   - /blockly/reference/js/blockly.flyoutmetricsmanager_class.getcontentmetrics_1_method.md
   - /blockly/reference/js/blockly.flyoutmetricsmanager_class.getscrollmetrics_1_method.md
-  - /blockly/reference/js/blockly.flyoutmetricsmanager_class.md
 - title: Generator
   path: /blockly/reference/js/blockly.generator_class.md
   alternate_paths:
@@ -806,7 +776,6 @@ toc:
   - /blockly/reference/js/blockly.generator_class.init_1_method.md
   - /blockly/reference/js/blockly.generator_class.injectid_1_method.md
   - /blockly/reference/js/blockly.generator_class.isinitialized_property.md
-  - /blockly/reference/js/blockly.generator_class.md
   - /blockly/reference/js/blockly.generator_class.name__property.md
   - /blockly/reference/js/blockly.generator_class.namedb__property.md
   - /blockly/reference/js/blockly.generator_class.order_overrides_property.md
@@ -827,7 +796,6 @@ toc:
   - /blockly/reference/js/blockly.gesture_class.getcurrentdragger_1_method.md
   - /blockly/reference/js/blockly.gesture_class.inprogress_1_method.md
   - /blockly/reference/js/blockly.gesture_class.isending__property.md
-  - /blockly/reference/js/blockly.gesture_class.md
   - /blockly/reference/js/blockly.gesture_class.onmovewrapper__property.md
   - /blockly/reference/js/blockly.gesture_class.onupwrapper__property.md
   - /blockly/reference/js/blockly.gesture_class.startworkspace__property.md
@@ -835,7 +803,6 @@ toc:
   path: /blockly/reference/js/blockly.grid_class.md
   alternate_paths:
   - /blockly/reference/js/blockly.grid_class._constructor__1_constructor.md
-  - /blockly/reference/js/blockly.grid_class.md
 - title: HorizontalFlyout
   path: /blockly/reference/js/blockly.horizontalflyout_class.md
   alternate_paths:
@@ -845,7 +812,6 @@ toc:
   - /blockly/reference/js/blockly.horizontalflyout_class.gety_1_method.md
   - /blockly/reference/js/blockly.horizontalflyout_class.horizontallayout_property.md
   - /blockly/reference/js/blockly.horizontalflyout_class.layout__1_method.md
-  - /blockly/reference/js/blockly.horizontalflyout_class.md
   - /blockly/reference/js/blockly.horizontalflyout_class.position_1_method.md
   - /blockly/reference/js/blockly.horizontalflyout_class.reflowinternal__1_method.md
   - /blockly/reference/js/blockly.horizontalflyout_class.scrolltostart_1_method.md
@@ -870,7 +836,6 @@ toc:
   - /blockly/reference/js/blockly.icon_class.icongroup__property.md
   - /blockly/reference/js/blockly.icon_class.iconxy__property.md
   - /blockly/reference/js/blockly.icon_class.isvisible_1_method.md
-  - /blockly/reference/js/blockly.icon_class.md
   - /blockly/reference/js/blockly.icon_class.seticonlocation_1_method.md
   - /blockly/reference/js/blockly.icon_class.setvisible_1_method.md
   - /blockly/reference/js/blockly.icon_class.size_property.md
@@ -889,7 +854,6 @@ toc:
   - /blockly/reference/js/blockly.input_class.init_1_method.md
   - /blockly/reference/js/blockly.input_class.insertfieldat_1_method.md
   - /blockly/reference/js/blockly.input_class.isvisible_1_method.md
-  - /blockly/reference/js/blockly.input_class.md
   - /blockly/reference/js/blockly.input_class.name_property.md
   - /blockly/reference/js/blockly.input_class.removefield_1_method.md
   - /blockly/reference/js/blockly.input_class.setalign_1_method.md
@@ -900,7 +864,6 @@ toc:
   path: /blockly/reference/js/blockly.insertionmarkermanager_class.md
   alternate_paths:
   - /blockly/reference/js/blockly.insertionmarkermanager_class._constructor__1_constructor.md
-  - /blockly/reference/js/blockly.insertionmarkermanager_class.md
 - title: Marker
   path: /blockly/reference/js/blockly.marker_class.md
   alternate_paths:
@@ -910,7 +873,6 @@ toc:
   - /blockly/reference/js/blockly.marker_class.getcurnode_1_method.md
   - /blockly/reference/js/blockly.marker_class.getdrawer_1_method.md
   - /blockly/reference/js/blockly.marker_class.hide_1_method.md
-  - /blockly/reference/js/blockly.marker_class.md
   - /blockly/reference/js/blockly.marker_class.setcurnode_1_method.md
   - /blockly/reference/js/blockly.marker_class.setdrawer_1_method.md
   - /blockly/reference/js/blockly.marker_class.type_property.md
@@ -920,7 +882,6 @@ toc:
   - /blockly/reference/js/blockly.markermanager_class.getcursor_1_method.md
   - /blockly/reference/js/blockly.markermanager_class.getmarker_1_method.md
   - /blockly/reference/js/blockly.markermanager_class.local_marker_property.md
-  - /blockly/reference/js/blockly.markermanager_class.md
   - /blockly/reference/js/blockly.markermanager_class.registermarker_1_method.md
   - /blockly/reference/js/blockly.markermanager_class.setcursor_1_method.md
   - /blockly/reference/js/blockly.markermanager_class.unregistermarker_1_method.md
@@ -929,7 +890,6 @@ toc:
   alternate_paths:
   - /blockly/reference/js/blockly.menu_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.menu_class.dispose_1_method.md
-  - /blockly/reference/js/blockly.menu_class.md
   - /blockly/reference/js/blockly.menu_class.openingcoords_property.md
   - /blockly/reference/js/blockly.menu_class.render_1_method.md
 - title: MenuItem
@@ -938,7 +898,6 @@ toc:
   - /blockly/reference/js/blockly.menuitem_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.menuitem_class.createdom_1_method.md
   - /blockly/reference/js/blockly.menuitem_class.dispose_1_method.md
-  - /blockly/reference/js/blockly.menuitem_class.md
 - title: MetricsManager
   path: /blockly/reference/js/blockly.metricsmanager_class.md
   alternate_paths:
@@ -955,7 +914,6 @@ toc:
   - /blockly/reference/js/blockly.metricsmanager_class.gettoolboxmetrics_1_method.md
   - /blockly/reference/js/blockly.metricsmanager_class.getuimetrics_1_method.md
   - /blockly/reference/js/blockly.metricsmanager_class.getviewmetrics_1_method.md
-  - /blockly/reference/js/blockly.metricsmanager_class.md
   - /blockly/reference/js/blockly.metricsmanager_class.workspace__property.md
 - title: Mutator
   path: /blockly/reference/js/blockly.mutator_class.md
@@ -965,7 +923,6 @@ toc:
   - /blockly/reference/js/blockly.mutator_class.drawicon__1_method.md
   - /blockly/reference/js/blockly.mutator_class.findparentws_1_method.md
   - /blockly/reference/js/blockly.mutator_class.iconclick__1_method.md
-  - /blockly/reference/js/blockly.mutator_class.md
   - /blockly/reference/js/blockly.mutator_class.reconnect_1_method.md
   - /blockly/reference/js/blockly.mutator_class.setvisible_1_method.md
   - /blockly/reference/js/blockly.mutator_class.shouldignoremutatorevent__1_method.md
@@ -980,7 +937,6 @@ toc:
   - /blockly/reference/js/blockly.names_class.getdistinctname_1_method.md
   - /blockly/reference/js/blockly.names_class.getname_1_method.md
   - /blockly/reference/js/blockly.names_class.getusernames_1_method.md
-  - /blockly/reference/js/blockly.names_class.md
   - /blockly/reference/js/blockly.names_class.populateprocedures_1_method.md
   - /blockly/reference/js/blockly.names_class.populatevariables_1_method.md
   - /blockly/reference/js/blockly.names_class.reset_1_method.md
@@ -1005,7 +961,6 @@ toc:
   - /blockly/reference/js/blockly.options_class.maxblocks_property.md
   - /blockly/reference/js/blockly.options_class.maxinstances_property.md
   - /blockly/reference/js/blockly.options_class.maxtrashcancontents_property.md
-  - /blockly/reference/js/blockly.options_class.md
   - /blockly/reference/js/blockly.options_class.moveoptions_property.md
   - /blockly/reference/js/blockly.options_class.onebasedindex_property.md
   - /blockly/reference/js/blockly.options_class.parentworkspace_property.md
@@ -1029,7 +984,6 @@ toc:
   - /blockly/reference/js/blockly.renderedconnection_class.distancefrom_1_method.md
   - /blockly/reference/js/blockly.renderedconnection_class.getsourceblock_1_method.md
   - /blockly/reference/js/blockly.renderedconnection_class.highlight_1_method.md
-  - /blockly/reference/js/blockly.renderedconnection_class.md
   - /blockly/reference/js/blockly.renderedconnection_class.moveby_1_method.md
   - /blockly/reference/js/blockly.renderedconnection_class.moveto_1_method.md
   - /blockly/reference/js/blockly.renderedconnection_class.movetooffset_1_method.md
@@ -1048,7 +1002,6 @@ toc:
   - /blockly/reference/js/blockly.scrollbar_class.dispose_1_method.md
   - /blockly/reference/js/blockly.scrollbar_class.isvisible_1_method.md
   - /blockly/reference/js/blockly.scrollbar_class.lengthattribute__property.md
-  - /blockly/reference/js/blockly.scrollbar_class.md
   - /blockly/reference/js/blockly.scrollbar_class.onmousedownbarwrapper__property.md
   - /blockly/reference/js/blockly.scrollbar_class.onmousedownhandlewrapper__property.md
   - /blockly/reference/js/blockly.scrollbar_class.onmousemovewrapper__property.md
@@ -1077,7 +1030,6 @@ toc:
   - /blockly/reference/js/blockly.scrollbarpair_class.dispose_1_method.md
   - /blockly/reference/js/blockly.scrollbarpair_class.hscroll_property.md
   - /blockly/reference/js/blockly.scrollbarpair_class.isvisible_1_method.md
-  - /blockly/reference/js/blockly.scrollbarpair_class.md
   - /blockly/reference/js/blockly.scrollbarpair_class.resize_1_method.md
   - /blockly/reference/js/blockly.scrollbarpair_class.resizecontent_1_method.md
   - /blockly/reference/js/blockly.scrollbarpair_class.resizeview_1_method.md
@@ -1095,7 +1047,6 @@ toc:
   - /blockly/reference/js/blockly.shortcutregistry_class.getkeymap_1_method.md
   - /blockly/reference/js/blockly.shortcutregistry_class.getregistry_1_method.md
   - /blockly/reference/js/blockly.shortcutregistry_class.getshortcutnamesbykeycode_1_method.md
-  - /blockly/reference/js/blockly.shortcutregistry_class.md
   - /blockly/reference/js/blockly.shortcutregistry_class.onkeydown_1_method.md
   - /blockly/reference/js/blockly.shortcutregistry_class.register_1_method.md
   - /blockly/reference/js/blockly.shortcutregistry_class.registry_property.md
@@ -1107,7 +1058,6 @@ toc:
 - title: TabNavigateCursor
   path: /blockly/reference/js/blockly.tabnavigatecursor_class.md
   alternate_paths:
-  - /blockly/reference/js/blockly.tabnavigatecursor_class.md
   - /blockly/reference/js/blockly.tabnavigatecursor_class.validnode__1_method.md
 - title: Theme
   path: /blockly/reference/js/blockly.theme_class.md
@@ -1115,7 +1065,6 @@ toc:
   - /blockly/reference/js/blockly.theme_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.theme_class.definetheme_1_method.md
   - /blockly/reference/js/blockly.theme_class.getcomponentstyle_1_method.md
-  - /blockly/reference/js/blockly.theme_class.md
   - /blockly/reference/js/blockly.theme_class.name_property.md
   - /blockly/reference/js/blockly.theme_class.setblockstyle_1_method.md
   - /blockly/reference/js/blockly.theme_class.setcategorystyle_1_method.md
@@ -1125,7 +1074,6 @@ toc:
 - title: ThemeManager
   path: /blockly/reference/js/blockly.thememanager_class.md
   alternate_paths:
-  - /blockly/reference/js/blockly.thememanager_class.md
   - /blockly/reference/js/blockly.thememanager_class.owner__property.md
 - title: Toolbox
   path: /blockly/reference/js/blockly.toolbox_class.md
@@ -1160,7 +1108,6 @@ toc:
   - /blockly/reference/js/blockly.toolbox_class.init_1_method.md
   - /blockly/reference/js/blockly.toolbox_class.ishorizontal_1_method.md
   - /blockly/reference/js/blockly.toolbox_class.isvisible__property.md
-  - /blockly/reference/js/blockly.toolbox_class.md
   - /blockly/reference/js/blockly.toolbox_class.onclick__1_method.md
   - /blockly/reference/js/blockly.toolbox_class.ondragenter_1_method.md
   - /blockly/reference/js/blockly.toolbox_class.ondragexit_1_method.md
@@ -1223,7 +1170,6 @@ toc:
   - /blockly/reference/js/blockly.toolboxcategory_class.isvisible_1_method.md
   - /blockly/reference/js/blockly.toolboxcategory_class.labeldom__property.md
   - /blockly/reference/js/blockly.toolboxcategory_class.makedefaultcssconfig__1_method.md
-  - /blockly/reference/js/blockly.toolboxcategory_class.md
   - /blockly/reference/js/blockly.toolboxcategory_class.name__property.md
   - /blockly/reference/js/blockly.toolboxcategory_class.nestedpadding_property.md
   - /blockly/reference/js/blockly.toolboxcategory_class.onclick_1_method.md
@@ -1254,7 +1200,6 @@ toc:
   - /blockly/reference/js/blockly.toolboxitem_class.iscollapsible_1_method.md
   - /blockly/reference/js/blockly.toolboxitem_class.isselectable_1_method.md
   - /blockly/reference/js/blockly.toolboxitem_class.level__property.md
-  - /blockly/reference/js/blockly.toolboxitem_class.md
   - /blockly/reference/js/blockly.toolboxitem_class.parent__property.md
   - /blockly/reference/js/blockly.toolboxitem_class.parenttoolbox__property.md
   - /blockly/reference/js/blockly.toolboxitem_class.setvisible__1_method.md
@@ -1269,12 +1214,10 @@ toc:
   - /blockly/reference/js/blockly.toolboxseparator_class.dispose_1_method.md
   - /blockly/reference/js/blockly.toolboxseparator_class.getdiv_1_method.md
   - /blockly/reference/js/blockly.toolboxseparator_class.init_1_method.md
-  - /blockly/reference/js/blockly.toolboxseparator_class.md
   - /blockly/reference/js/blockly.toolboxseparator_class.registrationname_property.md
 - title: TouchGesture
   path: /blockly/reference/js/blockly.touchgesture_class.md
   alternate_paths:
-  - /blockly/reference/js/blockly.touchgesture_class.md
   - /blockly/reference/js/blockly.touchgesture_class.onmovewrapper__property.md
   - /blockly/reference/js/blockly.touchgesture_class.onupwrapper__property.md
 - title: Trashcan
@@ -1294,7 +1237,6 @@ toc:
   - /blockly/reference/js/blockly.trashcan_class.id_property.md
   - /blockly/reference/js/blockly.trashcan_class.init_1_method.md
   - /blockly/reference/js/blockly.trashcan_class.islidopen_property.md
-  - /blockly/reference/js/blockly.trashcan_class.md
   - /blockly/reference/js/blockly.trashcan_class.ondragexit_1_method.md
   - /blockly/reference/js/blockly.trashcan_class.ondragover_1_method.md
   - /blockly/reference/js/blockly.trashcan_class.ondrop_1_method.md
@@ -1314,7 +1256,6 @@ toc:
   - /blockly/reference/js/blockly.variablemap_class.getvariablebyid_1_method.md
   - /blockly/reference/js/blockly.variablemap_class.getvariablesoftype_1_method.md
   - /blockly/reference/js/blockly.variablemap_class.getvariableusesbyid_1_method.md
-  - /blockly/reference/js/blockly.variablemap_class.md
   - /blockly/reference/js/blockly.variablemap_class.renamevariablebyid_1_method.md
   - /blockly/reference/js/blockly.variablemap_class.workspace_property.md
 - title: VariableModel
@@ -1322,7 +1263,6 @@ toc:
   alternate_paths:
   - /blockly/reference/js/blockly.variablemodel_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.variablemodel_class.getid_1_method.md
-  - /blockly/reference/js/blockly.variablemodel_class.md
   - /blockly/reference/js/blockly.variablemodel_class.name_property.md
   - /blockly/reference/js/blockly.variablemodel_class.type_property.md
   - /blockly/reference/js/blockly.variablemodel_class.workspace_property.md
@@ -1334,7 +1274,6 @@ toc:
   - /blockly/reference/js/blockly.verticalflyout_class.getx_1_method.md
   - /blockly/reference/js/blockly.verticalflyout_class.gety_1_method.md
   - /blockly/reference/js/blockly.verticalflyout_class.layout__1_method.md
-  - /blockly/reference/js/blockly.verticalflyout_class.md
   - /blockly/reference/js/blockly.verticalflyout_class.position_1_method.md
   - /blockly/reference/js/blockly.verticalflyout_class.reflowinternal__1_method.md
   - /blockly/reference/js/blockly.verticalflyout_class.registryname_property.md
@@ -1349,7 +1288,6 @@ toc:
   - /blockly/reference/js/blockly.warning_class.dispose_1_method.md
   - /blockly/reference/js/blockly.warning_class.drawicon__1_method.md
   - /blockly/reference/js/blockly.warning_class.gettext_1_method.md
-  - /blockly/reference/js/blockly.warning_class.md
   - /blockly/reference/js/blockly.warning_class.settext_1_method.md
   - /blockly/reference/js/blockly.warning_class.setvisible_1_method.md
 - title: Workspace
@@ -1389,7 +1327,6 @@ toc:
   - /blockly/reference/js/blockly.workspace_class.isflyout_property.md
   - /blockly/reference/js/blockly.workspace_class.ismutator_property.md
   - /blockly/reference/js/blockly.workspace_class.max_undo_property.md
-  - /blockly/reference/js/blockly.workspace_class.md
   - /blockly/reference/js/blockly.workspace_class.newblock_1_method.md
   - /blockly/reference/js/blockly.workspace_class.options_property.md
   - /blockly/reference/js/blockly.workspace_class.redostack__property.md
@@ -1410,7 +1347,6 @@ toc:
   alternate_paths:
   - /blockly/reference/js/blockly.workspaceaudio_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.workspaceaudio_class.load_1_method.md
-  - /blockly/reference/js/blockly.workspaceaudio_class.md
   - /blockly/reference/js/blockly.workspaceaudio_class.play_1_method.md
 - title: WorkspaceComment
   path: /blockly/reference/js/blockly.workspacecomment_class.md
@@ -1421,7 +1357,6 @@ toc:
   - /blockly/reference/js/blockly.workspacecomment_class.height__property.md
   - /blockly/reference/js/blockly.workspacecomment_class.id_property.md
   - /blockly/reference/js/blockly.workspacecomment_class.iseditable_1_method.md
-  - /blockly/reference/js/blockly.workspacecomment_class.md
   - /blockly/reference/js/blockly.workspacecomment_class.rtl_property.md
   - /blockly/reference/js/blockly.workspacecomment_class.seteditable_1_method.md
   - /blockly/reference/js/blockly.workspacecomment_class.width__property.md
@@ -1431,7 +1366,6 @@ toc:
   path: /blockly/reference/js/blockly.workspacecommentsvg_class.md
   alternate_paths:
   - /blockly/reference/js/blockly.workspacecommentsvg_class._constructor__1_constructor.md
-  - /blockly/reference/js/blockly.workspacecommentsvg_class.md
   - /blockly/reference/js/blockly.workspacecommentsvg_class.seteditable_1_method.md
   - /blockly/reference/js/blockly.workspacecommentsvg_class.svgrect__property.md
   - /blockly/reference/js/blockly.workspacecommentsvg_class.workspace_property.md
@@ -1439,14 +1373,12 @@ toc:
   path: /blockly/reference/js/blockly.workspacedragger_class.md
   alternate_paths:
   - /blockly/reference/js/blockly.workspacedragger_class._constructor__1_constructor.md
-  - /blockly/reference/js/blockly.workspacedragger_class.md
   - /blockly/reference/js/blockly.workspacedragger_class.startscrollxy__property.md
 - title: WorkspaceDragSurfaceSvg
   path: /blockly/reference/js/blockly.workspacedragsurfacesvg_class.md
   alternate_paths:
   - /blockly/reference/js/blockly.workspacedragsurfacesvg_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.workspacedragsurfacesvg_class.createdom_1_method.md
-  - /blockly/reference/js/blockly.workspacedragsurfacesvg_class.md
 - title: WorkspaceSvg
   path: /blockly/reference/js/blockly.workspacesvg_class.md
   alternate_paths:
@@ -1493,11 +1425,9 @@ toc:
   - /blockly/reference/js/blockly.workspacesvg_class.isvisible_1_method.md
   - /blockly/reference/js/blockly.workspacesvg_class.keyboardaccessibilitymode_property.md
   - /blockly/reference/js/blockly.workspacesvg_class.markfocused_1_method.md
-  - /blockly/reference/js/blockly.workspacesvg_class.md
   - /blockly/reference/js/blockly.workspacesvg_class.movedrag_1_method.md
   - /blockly/reference/js/blockly.workspacesvg_class.newblock_1_method.md
   - /blockly/reference/js/blockly.workspacesvg_class.paste_1_method.md
-  - /blockly/reference/js/blockly.workspacesvg_class.recorddeleteareas_1_method.md
   - /blockly/reference/js/blockly.workspacesvg_class.recorddragtargets_1_method.md
   - /blockly/reference/js/blockly.workspacesvg_class.refreshtheme_1_method.md
   - /blockly/reference/js/blockly.workspacesvg_class.registerbuttoncallback_1_method.md
@@ -1546,58 +1476,33 @@ toc:
   - /blockly/reference/js/blockly.zoomcontrols_class.getboundingrectangle_1_method.md
   - /blockly/reference/js/blockly.zoomcontrols_class.id_property.md
   - /blockly/reference/js/blockly.zoomcontrols_class.init_1_method.md
-  - /blockly/reference/js/blockly.zoomcontrols_class.md
   - /blockly/reference/js/blockly.zoomcontrols_class.position_1_method.md
 - heading: Enumerations
 - title: ConnectionType
   path: /blockly/reference/js/blockly.connectiontype_enum.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.connectiontype_enum.md
 - title: inputTypes
   path: /blockly/reference/js/blockly.inputtypes_enum.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.inputtypes_enum.md
 - heading: Functions
 - title: bindEvent_(node, name, thisObject, func)
   path: /blockly/reference/js/blockly.bindevent__1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.bindevent__1_function.md
 - title: bindEventWithChecks_(node, name, thisObject, func, opt_noCaptureIdentifier, opt_noPreventDefault)
   path: /blockly/reference/js/blockly.bindeventwithchecks__1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.bindeventwithchecks__1_function.md
 - title: copy(toCopy)
   path: /blockly/reference/js/blockly.copy_1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.copy_1_function.md
 - title: duplicate(toDuplicate)
   path: /blockly/reference/js/blockly.duplicate_1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.duplicate_1_function.md
 - title: hideChaff(opt_onlyClosePopups)
   path: /blockly/reference/js/blockly.hidechaff_1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.hidechaff_1_function.md
 - title: hueToHex(hue)
   path: /blockly/reference/js/blockly.huetohex_1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.huetohex_1_function.md
 - title: inject(container, opt_options)
   path: /blockly/reference/js/blockly.inject_1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.inject_1_function.md
 - title: isNumber(str)
   path: /blockly/reference/js/blockly.isnumber_1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.isnumber_1_function.md
 - title: paste()
   path: /blockly/reference/js/blockly.paste_1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.paste_1_function.md
 - title: unbindEvent_(bindData)
   path: /blockly/reference/js/blockly.unbindevent__1_function.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.unbindevent__1_function.md
 - heading: Interfaces
 - title: BlocklyOptions
   path: /blockly/reference/js/blockly.blocklyoptions_interface.md
@@ -1611,7 +1516,6 @@ toc:
   - /blockly/reference/js/blockly.blocklyoptions_interface.maxblocks_propertysignature.md
   - /blockly/reference/js/blockly.blocklyoptions_interface.maxinstances_propertysignature.md
   - /blockly/reference/js/blockly.blocklyoptions_interface.maxtrashcancontents_propertysignature.md
-  - /blockly/reference/js/blockly.blocklyoptions_interface.md
   - /blockly/reference/js/blockly.blocklyoptions_interface.media_propertysignature.md
   - /blockly/reference/js/blockly.blocklyoptions_interface.move_propertysignature.md
   - /blockly/reference/js/blockly.blocklyoptions_interface.onebasedindex_propertysignature.md
@@ -1630,24 +1534,19 @@ toc:
   - /blockly/reference/js/blockly.blocklyoptions_interface.zoom_propertysignature.md
 - title: IASTNodeLocation
   path: /blockly/reference/js/blockly.iastnodelocation_interface.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.iastnodelocation_interface.md
 - title: IASTNodeLocationSvg
   path: /blockly/reference/js/blockly.iastnodelocationsvg_interface.md
   alternate_paths:
-  - /blockly/reference/js/blockly.iastnodelocationsvg_interface.md
   - /blockly/reference/js/blockly.iastnodelocationsvg_interface.setcursorsvg_1_methodsignature.md
   - /blockly/reference/js/blockly.iastnodelocationsvg_interface.setmarkersvg_1_methodsignature.md
 - title: IASTNodeLocationWithBlock
   path: /blockly/reference/js/blockly.iastnodelocationwithblock_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.iastnodelocationwithblock_interface.getsourceblock_1_methodsignature.md
-  - /blockly/reference/js/blockly.iastnodelocationwithblock_interface.md
 - title: IAutoHideable
   path: /blockly/reference/js/blockly.iautohideable_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.iautohideable_interface.autohide_1_methodsignature.md
-  - /blockly/reference/js/blockly.iautohideable_interface.md
 - title: IBlockDragger
   path: /blockly/reference/js/blockly.iblockdragger_interface.md
   alternate_paths:
@@ -1655,13 +1554,11 @@ toc:
   - /blockly/reference/js/blockly.iblockdragger_interface.drag_1_methodsignature.md
   - /blockly/reference/js/blockly.iblockdragger_interface.enddrag_1_methodsignature.md
   - /blockly/reference/js/blockly.iblockdragger_interface.getinsertionmarkers_1_methodsignature.md
-  - /blockly/reference/js/blockly.iblockdragger_interface.md
   - /blockly/reference/js/blockly.iblockdragger_interface.startdrag_1_methodsignature.md
 - title: IBoundedElement
   path: /blockly/reference/js/blockly.iboundedelement_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.iboundedelement_interface.getboundingrectangle_1_methodsignature.md
-  - /blockly/reference/js/blockly.iboundedelement_interface.md
   - /blockly/reference/js/blockly.iboundedelement_interface.moveby_1_methodsignature.md
 - title: IBubble
   path: /blockly/reference/js/blockly.ibubble_interface.md
@@ -1669,7 +1566,6 @@ toc:
   - /blockly/reference/js/blockly.ibubble_interface.dispose_1_methodsignature.md
   - /blockly/reference/js/blockly.ibubble_interface.getrelativetosurfacexy_1_methodsignature.md
   - /blockly/reference/js/blockly.ibubble_interface.getsvgroot_1_methodsignature.md
-  - /blockly/reference/js/blockly.ibubble_interface.md
   - /blockly/reference/js/blockly.ibubble_interface.moveduringdrag_1_methodsignature.md
   - /blockly/reference/js/blockly.ibubble_interface.moveto_1_methodsignature.md
   - /blockly/reference/js/blockly.ibubble_interface.setautolayout_1_methodsignature.md
@@ -1680,13 +1576,11 @@ toc:
   alternate_paths:
   - /blockly/reference/js/blockly.icollapsibletoolboxitem_interface.getchildtoolboxitems_1_methodsignature.md
   - /blockly/reference/js/blockly.icollapsibletoolboxitem_interface.isexpanded_1_methodsignature.md
-  - /blockly/reference/js/blockly.icollapsibletoolboxitem_interface.md
   - /blockly/reference/js/blockly.icollapsibletoolboxitem_interface.toggleexpanded_1_methodsignature.md
 - title: IComponent
   path: /blockly/reference/js/blockly.icomponent_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.icomponent_interface.id_propertysignature.md
-  - /blockly/reference/js/blockly.icomponent_interface.md
 - title: IConnectionChecker
   path: /blockly/reference/js/blockly.iconnectionchecker_interface.md
   alternate_paths:
@@ -1696,35 +1590,26 @@ toc:
   - /blockly/reference/js/blockly.iconnectionchecker_interface.dosafetychecks_1_methodsignature.md
   - /blockly/reference/js/blockly.iconnectionchecker_interface.dotypechecks_1_methodsignature.md
   - /blockly/reference/js/blockly.iconnectionchecker_interface.geterrormessage_1_methodsignature.md
-  - /blockly/reference/js/blockly.iconnectionchecker_interface.md
 - title: IContextMenu
   path: /blockly/reference/js/blockly.icontextmenu_interface.md
   alternate_paths:
-  - /blockly/reference/js/blockly.icontextmenu_interface.md
   - /blockly/reference/js/blockly.icontextmenu_interface.showcontextmenu_1_methodsignature.md
 - title: ICopyable
   path: /blockly/reference/js/blockly.icopyable_interface.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.icopyable_interface.md
 - title: IDeletable
   path: /blockly/reference/js/blockly.ideletable_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.ideletable_interface.isdeletable_1_methodsignature.md
-  - /blockly/reference/js/blockly.ideletable_interface.md
 - title: IDeleteArea
   path: /blockly/reference/js/blockly.ideletearea_interface.md
   alternate_paths:
-  - /blockly/reference/js/blockly.ideletearea_interface.md
   - /blockly/reference/js/blockly.ideletearea_interface.woulddelete_1_methodsignature.md
 - title: IDraggable
   path: /blockly/reference/js/blockly.idraggable_interface.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.idraggable_interface.md
 - title: IDragTarget
   path: /blockly/reference/js/blockly.idragtarget_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.idragtarget_interface.getclientrect_1_methodsignature.md
-  - /blockly/reference/js/blockly.idragtarget_interface.md
   - /blockly/reference/js/blockly.idragtarget_interface.ondragenter_1_methodsignature.md
   - /blockly/reference/js/blockly.idragtarget_interface.ondragexit_1_methodsignature.md
   - /blockly/reference/js/blockly.idragtarget_interface.ondragover_1_methodsignature.md
@@ -1751,7 +1636,6 @@ toc:
   - /blockly/reference/js/blockly.iflyout_interface.isscrollable_1_methodsignature.md
   - /blockly/reference/js/blockly.iflyout_interface.isvisible_1_methodsignature.md
   - /blockly/reference/js/blockly.iflyout_interface.margin_propertysignature.md
-  - /blockly/reference/js/blockly.iflyout_interface.md
   - /blockly/reference/js/blockly.iflyout_interface.position_1_methodsignature.md
   - /blockly/reference/js/blockly.iflyout_interface.reflow_1_methodsignature.md
   - /blockly/reference/js/blockly.iflyout_interface.rtl_propertysignature.md
@@ -1763,7 +1647,6 @@ toc:
 - title: IKeyboardAccessible
   path: /blockly/reference/js/blockly.ikeyboardaccessible_interface.md
   alternate_paths:
-  - /blockly/reference/js/blockly.ikeyboardaccessible_interface.md
   - /blockly/reference/js/blockly.ikeyboardaccessible_interface.onshortcut_1_methodsignature.md
 - title: IMetricsManager
   path: /blockly/reference/js/blockly.imetricsmanager_interface.md
@@ -1777,32 +1660,25 @@ toc:
   - /blockly/reference/js/blockly.imetricsmanager_interface.gettoolboxmetrics_1_methodsignature.md
   - /blockly/reference/js/blockly.imetricsmanager_interface.getuimetrics_1_methodsignature.md
   - /blockly/reference/js/blockly.imetricsmanager_interface.getviewmetrics_1_methodsignature.md
-  - /blockly/reference/js/blockly.imetricsmanager_interface.md
 - title: IMovable
   path: /blockly/reference/js/blockly.imovable_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.imovable_interface.ismovable_1_methodsignature.md
-  - /blockly/reference/js/blockly.imovable_interface.md
 - title: IPositionable
   path: /blockly/reference/js/blockly.ipositionable_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.ipositionable_interface.getboundingrectangle_1_methodsignature.md
-  - /blockly/reference/js/blockly.ipositionable_interface.md
   - /blockly/reference/js/blockly.ipositionable_interface.position_1_methodsignature.md
 - title: IRegistrable
   path: /blockly/reference/js/blockly.iregistrable_interface.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.iregistrable_interface.md
 - title: IRegistrableField
   path: /blockly/reference/js/blockly.iregistrablefield_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.iregistrablefield_interface.fromjson_propertysignature.md
-  - /blockly/reference/js/blockly.iregistrablefield_interface.md
 - title: ISelectable
   path: /blockly/reference/js/blockly.iselectable_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.iselectable_interface.id_propertysignature.md
-  - /blockly/reference/js/blockly.iselectable_interface.md
   - /blockly/reference/js/blockly.iselectable_interface.select_1_methodsignature.md
   - /blockly/reference/js/blockly.iselectable_interface.unselect_1_methodsignature.md
 - title: ISelectableToolboxItem
@@ -1811,14 +1687,12 @@ toc:
   - /blockly/reference/js/blockly.iselectabletoolboxitem_interface.getclicktarget_1_methodsignature.md
   - /blockly/reference/js/blockly.iselectabletoolboxitem_interface.getcontents_1_methodsignature.md
   - /blockly/reference/js/blockly.iselectabletoolboxitem_interface.getname_1_methodsignature.md
-  - /blockly/reference/js/blockly.iselectabletoolboxitem_interface.md
   - /blockly/reference/js/blockly.iselectabletoolboxitem_interface.onclick_1_methodsignature.md
   - /blockly/reference/js/blockly.iselectabletoolboxitem_interface.setselected_1_methodsignature.md
 - title: IStyleable
   path: /blockly/reference/js/blockly.istyleable_interface.md
   alternate_paths:
   - /blockly/reference/js/blockly.istyleable_interface.addstyle_1_methodsignature.md
-  - /blockly/reference/js/blockly.istyleable_interface.md
   - /blockly/reference/js/blockly.istyleable_interface.removestyle_1_methodsignature.md
 - title: IToolbox
   path: /blockly/reference/js/blockly.itoolbox_interface.md
@@ -1833,7 +1707,6 @@ toc:
   - /blockly/reference/js/blockly.itoolbox_interface.handletoolboxitemresize_1_methodsignature.md
   - /blockly/reference/js/blockly.itoolbox_interface.init_1_methodsignature.md
   - /blockly/reference/js/blockly.itoolbox_interface.ishorizontal_1_methodsignature.md
-  - /blockly/reference/js/blockly.itoolbox_interface.md
   - /blockly/reference/js/blockly.itoolbox_interface.position_1_methodsignature.md
   - /blockly/reference/js/blockly.itoolbox_interface.refreshselection_1_methodsignature.md
   - /blockly/reference/js/blockly.itoolbox_interface.refreshtheme_1_methodsignature.md
@@ -1851,13 +1724,11 @@ toc:
   - /blockly/reference/js/blockly.itoolboxitem_interface.init_1_methodsignature.md
   - /blockly/reference/js/blockly.itoolboxitem_interface.iscollapsible_1_methodsignature.md
   - /blockly/reference/js/blockly.itoolboxitem_interface.isselectable_1_methodsignature.md
-  - /blockly/reference/js/blockly.itoolboxitem_interface.md
   - /blockly/reference/js/blockly.itoolboxitem_interface.setvisible__1_methodsignature.md
 - heading: Namespaces
 - title: ASTNode
   path: /blockly/reference/js/blockly.astnode_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.astnode_namespace.md
   - /blockly/reference/js/blockly.astnode_namespace.params_interface.md
   - /blockly/reference/js/blockly.astnode_namespace.params_interface.wscoordinate_propertysignature.md
   - /blockly/reference/js/blockly.astnode_namespace.types_enum.md
@@ -1868,11 +1739,8 @@ toc:
   - /blockly/reference/js/blockly.block_namespace.commentmodel_interface.pinned_propertysignature.md
   - /blockly/reference/js/blockly.block_namespace.commentmodel_interface.size_propertysignature.md
   - /blockly/reference/js/blockly.block_namespace.commentmodel_interface.text_propertysignature.md
-  - /blockly/reference/js/blockly.block_namespace.md
 - title: blockAnimations
   path: /blockly/reference/js/blockly.blockanimations_namespace.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.blockanimations_namespace.md
 - title: blockRendering
   path: /blockly/reference/js/blockly.blockrendering_namespace.md
   alternate_paths:
@@ -2070,7 +1938,6 @@ toc:
   - /blockly/reference/js/blockly.blockrendering_namespace.markersvg_class.showwithprevious__1_method.md
   - /blockly/reference/js/blockly.blockrendering_namespace.markersvg_class.showwithstack__1_method.md
   - /blockly/reference/js/blockly.blockrendering_namespace.markersvg_class.svggroup__property.md
-  - /blockly/reference/js/blockly.blockrendering_namespace.md
   - /blockly/reference/js/blockly.blockrendering_namespace.measurable_class.centerline_property.md
   - /blockly/reference/js/blockly.blockrendering_namespace.measurable_class.constants__property.md
   - /blockly/reference/js/blockly.blockrendering_namespace.measurable_class.height_property.md
@@ -2168,7 +2035,6 @@ toc:
   - /blockly/reference/js/blockly.browserevents_namespace.getscrolldeltapixels_1_function.md
   - /blockly/reference/js/blockly.browserevents_namespace.isrightbutton_1_function.md
   - /blockly/reference/js/blockly.browserevents_namespace.istargetinput_1_function.md
-  - /blockly/reference/js/blockly.browserevents_namespace.md
   - /blockly/reference/js/blockly.browserevents_namespace.mousetosvg_1_function.md
   - /blockly/reference/js/blockly.browserevents_namespace.unbind_1_function.md
 - title: bumpObjects
@@ -2177,11 +2043,9 @@ toc:
   - /blockly/reference/js/blockly.bumpobjects_namespace.bumpintobounds_variable.md
   - /blockly/reference/js/blockly.bumpobjects_namespace.bumpintoboundshandler_1_function.md
   - /blockly/reference/js/blockly.bumpobjects_namespace.bumptopobjectsintobounds_1_function.md
-  - /blockly/reference/js/blockly.bumpobjects_namespace.md
 - title: clipboard
   path: /blockly/reference/js/blockly.clipboard_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.clipboard_namespace.md
   - /blockly/reference/js/blockly.clipboard_namespace.test_only_variable.md
 - title: CollapsibleToolboxCategory
   path: /blockly/reference/js/blockly.collapsibletoolboxcategory_namespace.md
@@ -2196,7 +2060,6 @@ toc:
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_namespace.cssconfig_interface.row_propertysignature.md
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_namespace.cssconfig_interface.rowcontentcontainer_propertysignature.md
   - /blockly/reference/js/blockly.collapsibletoolboxcategory_namespace.cssconfig_interface.selected_propertysignature.md
-  - /blockly/reference/js/blockly.collapsibletoolboxcategory_namespace.md
 - title: common
   path: /blockly/reference/js/blockly.common_namespace.md
   alternate_paths:
@@ -2210,7 +2073,6 @@ toc:
   - /blockly/reference/js/blockly.common_namespace.getparentcontainer_1_function.md
   - /blockly/reference/js/blockly.common_namespace.getselected_1_function.md
   - /blockly/reference/js/blockly.common_namespace.getworkspacebyid_1_function.md
-  - /blockly/reference/js/blockly.common_namespace.md
   - /blockly/reference/js/blockly.common_namespace.registerworkspace_1_function.md
   - /blockly/reference/js/blockly.common_namespace.setmainworkspace_1_function.md
   - /blockly/reference/js/blockly.common_namespace.setparentcontainer_1_function.md
@@ -2224,13 +2086,11 @@ toc:
   - /blockly/reference/js/blockly.componentmanager_namespace.componentdatum_interface.component_propertysignature.md
   - /blockly/reference/js/blockly.componentmanager_namespace.componentdatum_interface.md
   - /blockly/reference/js/blockly.componentmanager_namespace.componentdatum_interface.weight_propertysignature.md
-  - /blockly/reference/js/blockly.componentmanager_namespace.md
 - title: constants
   path: /blockly/reference/js/blockly.constants_namespace.md
   alternate_paths:
   - /blockly/reference/js/blockly.constants_namespace.collapsed_field_name_variable.md
   - /blockly/reference/js/blockly.constants_namespace.collapsed_input_name_variable.md
-  - /blockly/reference/js/blockly.constants_namespace.md
 - title: ContextMenu
   path: /blockly/reference/js/blockly.contextmenu_namespace.md
   alternate_paths:
@@ -2238,13 +2098,11 @@ toc:
   - /blockly/reference/js/blockly.contextmenu_namespace.dispose_1_function.md
   - /blockly/reference/js/blockly.contextmenu_namespace.getcurrentblock_1_function.md
   - /blockly/reference/js/blockly.contextmenu_namespace.hide_1_function.md
-  - /blockly/reference/js/blockly.contextmenu_namespace.md
   - /blockly/reference/js/blockly.contextmenu_namespace.setcurrentblock_1_function.md
   - /blockly/reference/js/blockly.contextmenu_namespace.show_1_function.md
 - title: ContextMenuItems
   path: /blockly/reference/js/blockly.contextmenuitems_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.contextmenuitems_namespace.md
   - /blockly/reference/js/blockly.contextmenuitems_namespace.registercleanup_1_function.md
   - /blockly/reference/js/blockly.contextmenuitems_namespace.registercollapse_1_function.md
   - /blockly/reference/js/blockly.contextmenuitems_namespace.registercollapseexpandblock_1_function.md
@@ -2271,7 +2129,6 @@ toc:
   - /blockly/reference/js/blockly.contextmenuregistry_namespace.legacycontextmenuoption_interface.enabled_propertysignature.md
   - /blockly/reference/js/blockly.contextmenuregistry_namespace.legacycontextmenuoption_interface.md
   - /blockly/reference/js/blockly.contextmenuregistry_namespace.legacycontextmenuoption_interface.text_propertysignature.md
-  - /blockly/reference/js/blockly.contextmenuregistry_namespace.md
   - /blockly/reference/js/blockly.contextmenuregistry_namespace.registryitem_interface.callback_propertysignature.md
   - /blockly/reference/js/blockly.contextmenuregistry_namespace.registryitem_interface.displaytext_propertysignature.md
   - /blockly/reference/js/blockly.contextmenuregistry_namespace.registryitem_interface.id_propertysignature.md
@@ -2287,14 +2144,12 @@ toc:
   path: /blockly/reference/js/blockly.css_namespace.md
   alternate_paths:
   - /blockly/reference/js/blockly.css_namespace.inject_1_function.md
-  - /blockly/reference/js/blockly.css_namespace.md
   - /blockly/reference/js/blockly.css_namespace.register_1_function.md
 - title: dialog
   path: /blockly/reference/js/blockly.dialog_namespace.md
   alternate_paths:
   - /blockly/reference/js/blockly.dialog_namespace.alert_1_function.md
   - /blockly/reference/js/blockly.dialog_namespace.confirm_1_function.md
-  - /blockly/reference/js/blockly.dialog_namespace.md
   - /blockly/reference/js/blockly.dialog_namespace.prompt_1_function.md
   - /blockly/reference/js/blockly.dialog_namespace.setalert_1_function.md
   - /blockly/reference/js/blockly.dialog_namespace.setconfirm_1_function.md
@@ -2519,7 +2374,6 @@ toc:
   - /blockly/reference/js/blockly.events_namespace.markermovejson_interface.md
   - /blockly/reference/js/blockly.events_namespace.markermovejson_interface.newnode_propertysignature.md
   - /blockly/reference/js/blockly.events_namespace.markermovejson_interface.oldnode_propertysignature.md
-  - /blockly/reference/js/blockly.events_namespace.md
   - /blockly/reference/js/blockly.events_namespace.move_variable.md
   - /blockly/reference/js/blockly.events_namespace.selected_class._constructor__1_constructor.md
   - /blockly/reference/js/blockly.events_namespace.selected_class.fromjson_1_method.md
@@ -2645,7 +2499,6 @@ toc:
   - /blockly/reference/js/blockly.extensions_namespace.buildtooltipfordropdown_1_function.md
   - /blockly/reference/js/blockly.extensions_namespace.buildtooltipwithfieldtext_1_function.md
   - /blockly/reference/js/blockly.extensions_namespace.isregistered_1_function.md
-  - /blockly/reference/js/blockly.extensions_namespace.md
   - /blockly/reference/js/blockly.extensions_namespace.register_1_function.md
   - /blockly/reference/js/blockly.extensions_namespace.registermixin_1_function.md
   - /blockly/reference/js/blockly.extensions_namespace.registermutator_1_function.md
@@ -2654,7 +2507,6 @@ toc:
 - title: fieldRegistry
   path: /blockly/reference/js/blockly.fieldregistry_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.fieldregistry_namespace.md
   - /blockly/reference/js/blockly.fieldregistry_namespace.register_1_function.md
   - /blockly/reference/js/blockly.fieldregistry_namespace.test_only_variable.md
   - /blockly/reference/js/blockly.fieldregistry_namespace.unregister_1_function.md
@@ -2708,7 +2560,6 @@ toc:
   - /blockly/reference/js/blockly.geras_namespace.highlighter_class.steps__property.md
   - /blockly/reference/js/blockly.geras_namespace.inlineinput_class.constants__property.md
   - /blockly/reference/js/blockly.geras_namespace.inlineinput_class.md
-  - /blockly/reference/js/blockly.geras_namespace.md
   - /blockly/reference/js/blockly.geras_namespace.pathobject_class.applycolour_1_method.md
   - /blockly/reference/js/blockly.geras_namespace.pathobject_class.constants_property.md
   - /blockly/reference/js/blockly.geras_namespace.pathobject_class.fliprtl_1_method.md
@@ -2745,16 +2596,13 @@ toc:
   - /blockly/reference/js/blockly.icopyable_namespace.copydata_interface.saveinfo_propertysignature.md
   - /blockly/reference/js/blockly.icopyable_namespace.copydata_interface.source_propertysignature.md
   - /blockly/reference/js/blockly.icopyable_namespace.copydata_interface.typecounts_propertysignature.md
-  - /blockly/reference/js/blockly.icopyable_namespace.md
 - title: Input
   path: /blockly/reference/js/blockly.input_namespace.md
   alternate_paths:
   - /blockly/reference/js/blockly.input_namespace.align_enum.md
-  - /blockly/reference/js/blockly.input_namespace.md
 - title: InsertionMarkerManager
   path: /blockly/reference/js/blockly.insertionmarkermanager_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.insertionmarkermanager_namespace.md
   - /blockly/reference/js/blockly.insertionmarkermanager_namespace.preview_type_enum.md
 - title: libraryBlocks
   path: /blockly/reference/js/blockly.libraryblocks_namespace.md
@@ -2765,7 +2613,6 @@ toc:
   - /blockly/reference/js/blockly.libraryblocks_namespace.logic_variable.md
   - /blockly/reference/js/blockly.libraryblocks_namespace.loops_variable.md
   - /blockly/reference/js/blockly.libraryblocks_namespace.math_variable.md
-  - /blockly/reference/js/blockly.libraryblocks_namespace.md
   - /blockly/reference/js/blockly.libraryblocks_namespace.procedures_variable.md
   - /blockly/reference/js/blockly.libraryblocks_namespace.texts_variable.md
   - /blockly/reference/js/blockly.libraryblocks_namespace.variables_variable.md
@@ -2786,7 +2633,6 @@ toc:
   - /blockly/reference/js/blockly.metricsmanager_namespace.fixededges_interface.md
   - /blockly/reference/js/blockly.metricsmanager_namespace.fixededges_interface.right_propertysignature.md
   - /blockly/reference/js/blockly.metricsmanager_namespace.fixededges_interface.top_propertysignature.md
-  - /blockly/reference/js/blockly.metricsmanager_namespace.md
   - /blockly/reference/js/blockly.metricsmanager_namespace.toolboxmetrics_interface.height_propertysignature.md
   - /blockly/reference/js/blockly.metricsmanager_namespace.toolboxmetrics_interface.md
   - /blockly/reference/js/blockly.metricsmanager_namespace.toolboxmetrics_interface.position_propertysignature.md
@@ -2800,7 +2646,6 @@ toc:
   alternate_paths:
   - /blockly/reference/js/blockly.minimalist_namespace.constantprovider_class.md
   - /blockly/reference/js/blockly.minimalist_namespace.drawer_class.md
-  - /blockly/reference/js/blockly.minimalist_namespace.md
   - /blockly/reference/js/blockly.minimalist_namespace.renderer_class.makeconstants__1_method.md
   - /blockly/reference/js/blockly.minimalist_namespace.renderer_class.makedrawer__1_method.md
   - /blockly/reference/js/blockly.minimalist_namespace.renderer_class.makerenderinfo__1_method.md
@@ -2810,7 +2655,6 @@ toc:
 - title: Names
   path: /blockly/reference/js/blockly.names_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.names_namespace.md
   - /blockly/reference/js/blockly.names_namespace.nametype_enum.md
 - title: Options
   path: /blockly/reference/js/blockly.options_namespace.md
@@ -2820,7 +2664,6 @@ toc:
   - /blockly/reference/js/blockly.options_namespace.gridoptions_interface.md
   - /blockly/reference/js/blockly.options_namespace.gridoptions_interface.snap_propertysignature.md
   - /blockly/reference/js/blockly.options_namespace.gridoptions_interface.spacing_propertysignature.md
-  - /blockly/reference/js/blockly.options_namespace.md
   - /blockly/reference/js/blockly.options_namespace.moveoptions_interface.drag_propertysignature.md
   - /blockly/reference/js/blockly.options_namespace.moveoptions_interface.md
   - /blockly/reference/js/blockly.options_namespace.moveoptions_interface.scrollbars_propertysignature.md
@@ -2847,7 +2690,6 @@ toc:
   - /blockly/reference/js/blockly.procedures_namespace.getcallers_1_function.md
   - /blockly/reference/js/blockly.procedures_namespace.getdefinition_1_function.md
   - /blockly/reference/js/blockly.procedures_namespace.isnameused_1_function.md
-  - /blockly/reference/js/blockly.procedures_namespace.md
   - /blockly/reference/js/blockly.procedures_namespace.mutatecallers_1_function.md
   - /blockly/reference/js/blockly.procedures_namespace.procedureblock_interface.getprocedurecall_propertysignature.md
   - /blockly/reference/js/blockly.procedures_namespace.procedureblock_interface.getproceduredef_propertysignature.md
@@ -2864,7 +2706,6 @@ toc:
   - /blockly/reference/js/blockly.registry_namespace.getclassfromoptions_1_function.md
   - /blockly/reference/js/blockly.registry_namespace.getobject_1_function.md
   - /blockly/reference/js/blockly.registry_namespace.hasitem_1_function.md
-  - /blockly/reference/js/blockly.registry_namespace.md
   - /blockly/reference/js/blockly.registry_namespace.register_1_function.md
   - /blockly/reference/js/blockly.registry_namespace.test_only_variable.md
   - /blockly/reference/js/blockly.registry_namespace.type_class._constructor__1_constructor.md
@@ -2886,7 +2727,6 @@ toc:
 - title: RenderedConnection
   path: /blockly/reference/js/blockly.renderedconnection_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.renderedconnection_namespace.md
   - /blockly/reference/js/blockly.renderedconnection_namespace.trackedstate_enum.md
 - title: serialization
   path: /blockly/reference/js/blockly.serialization_namespace.md
@@ -2894,7 +2734,6 @@ toc:
   - /blockly/reference/js/blockly.serialization_namespace.blocks_variable.md
   - /blockly/reference/js/blockly.serialization_namespace.exceptions_variable.md
   - /blockly/reference/js/blockly.serialization_namespace.iserializer_typealias.md
-  - /blockly/reference/js/blockly.serialization_namespace.md
   - /blockly/reference/js/blockly.serialization_namespace.priorities_variable.md
   - /blockly/reference/js/blockly.serialization_namespace.registry_variable.md
   - /blockly/reference/js/blockly.serialization_namespace.variables_variable.md
@@ -2902,7 +2741,6 @@ toc:
 - title: ShortcutItems
   path: /blockly/reference/js/blockly.shortcutitems_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.shortcutitems_namespace.md
   - /blockly/reference/js/blockly.shortcutitems_namespace.names_enum.md
   - /blockly/reference/js/blockly.shortcutitems_namespace.registercopy_1_function.md
   - /blockly/reference/js/blockly.shortcutitems_namespace.registercut_1_function.md
@@ -2921,7 +2759,6 @@ toc:
   - /blockly/reference/js/blockly.shortcutregistry_namespace.keyboardshortcut_interface.metadata_propertysignature.md
   - /blockly/reference/js/blockly.shortcutregistry_namespace.keyboardshortcut_interface.name_propertysignature.md
   - /blockly/reference/js/blockly.shortcutregistry_namespace.keyboardshortcut_interface.preconditionfn_propertysignature.md
-  - /blockly/reference/js/blockly.shortcutregistry_namespace.md
   - /blockly/reference/js/blockly.shortcutregistry_namespace.modifierkeys_enum.md
 - title: Theme
   path: /blockly/reference/js/blockly.theme_namespace.md
@@ -2954,24 +2791,20 @@ toc:
   - /blockly/reference/js/blockly.theme_namespace.fontstyle_interface.md
   - /blockly/reference/js/blockly.theme_namespace.fontstyle_interface.size_propertysignature.md
   - /blockly/reference/js/blockly.theme_namespace.fontstyle_interface.weight_propertysignature.md
-  - /blockly/reference/js/blockly.theme_namespace.md
 - title: ThemeManager
   path: /blockly/reference/js/blockly.thememanager_namespace.md
   alternate_paths:
   - /blockly/reference/js/blockly.thememanager_namespace.component_interface.element_propertysignature.md
   - /blockly/reference/js/blockly.thememanager_namespace.component_interface.md
   - /blockly/reference/js/blockly.thememanager_namespace.component_interface.propertyname_propertysignature.md
-  - /blockly/reference/js/blockly.thememanager_namespace.md
 - title: Themes
   path: /blockly/reference/js/blockly.themes_namespace.md
   alternate_paths:
   - /blockly/reference/js/blockly.themes_namespace.classic_variable.md
-  - /blockly/reference/js/blockly.themes_namespace.md
   - /blockly/reference/js/blockly.themes_namespace.zelos_variable.md
 - title: thrasos
   path: /blockly/reference/js/blockly.thrasos_namespace.md
   alternate_paths:
-  - /blockly/reference/js/blockly.thrasos_namespace.md
   - /blockly/reference/js/blockly.thrasos_namespace.renderer_class.makerenderinfo__1_method.md
   - /blockly/reference/js/blockly.thrasos_namespace.renderer_class.md
   - /blockly/reference/js/blockly.thrasos_namespace.renderinfo_class.addelemspacing__1_method.md
@@ -2994,13 +2827,11 @@ toc:
   - /blockly/reference/js/blockly.toolboxcategory_namespace.cssconfig_interface.row_propertysignature.md
   - /blockly/reference/js/blockly.toolboxcategory_namespace.cssconfig_interface.rowcontentcontainer_propertysignature.md
   - /blockly/reference/js/blockly.toolboxcategory_namespace.cssconfig_interface.selected_propertysignature.md
-  - /blockly/reference/js/blockly.toolboxcategory_namespace.md
 - title: ToolboxSeparator
   path: /blockly/reference/js/blockly.toolboxseparator_namespace.md
   alternate_paths:
   - /blockly/reference/js/blockly.toolboxseparator_namespace.cssconfig_interface.container_propertysignature.md
   - /blockly/reference/js/blockly.toolboxseparator_namespace.cssconfig_interface.md
-  - /blockly/reference/js/blockly.toolboxseparator_namespace.md
 - title: Tooltip
   path: /blockly/reference/js/blockly.tooltip_namespace.md
   alternate_paths:
@@ -3015,7 +2846,6 @@ toc:
   - /blockly/reference/js/blockly.tooltip_namespace.isvisible_1_function.md
   - /blockly/reference/js/blockly.tooltip_namespace.limit_variable.md
   - /blockly/reference/js/blockly.tooltip_namespace.margins_variable.md
-  - /blockly/reference/js/blockly.tooltip_namespace.md
   - /blockly/reference/js/blockly.tooltip_namespace.offset_x_variable.md
   - /blockly/reference/js/blockly.tooltip_namespace.offset_y_variable.md
   - /blockly/reference/js/blockly.tooltip_namespace.radius_ok_variable.md
@@ -3030,7 +2860,6 @@ toc:
   - /blockly/reference/js/blockly.touch_namespace.gettouchidentifierfromevent_1_function.md
   - /blockly/reference/js/blockly.touch_namespace.ismouseortouchevent_1_function.md
   - /blockly/reference/js/blockly.touch_namespace.istouchevent_1_function.md
-  - /blockly/reference/js/blockly.touch_namespace.md
   - /blockly/reference/js/blockly.touch_namespace.setclientfromtouch_1_function.md
   - /blockly/reference/js/blockly.touch_namespace.shouldhandleevent_1_function.md
   - /blockly/reference/js/blockly.touch_namespace.spliteventbytouches_1_function.md
@@ -3038,8 +2867,6 @@ toc:
   - /blockly/reference/js/blockly.touch_namespace.touch_map_variable.md
 - title: uiPosition
   path: /blockly/reference/js/blockly.uiposition_namespace.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.uiposition_namespace.md
 - title: utils
   path: /blockly/reference/js/blockly.utils_namespace.md
   alternate_paths:
@@ -3110,25 +2937,20 @@ toc:
   - /blockly/reference/js/blockly.utils_namespace.extensions_namespace.registermutator_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.extensions_namespace.test_only_variable.md
   - /blockly/reference/js/blockly.utils_namespace.extensions_namespace.unregister_1_function.md
-  - /blockly/reference/js/blockly.utils_namespace.genuid_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.getblocktypecounts_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.getdocumentscroll_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.getinjectiondivxy__variable.md
   - /blockly/reference/js/blockly.utils_namespace.getrelativexy_1_function.md
-  - /blockly/reference/js/blockly.utils_namespace.getscrolldeltapixels_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.idgenerator_namespace.genuid_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.idgenerator_namespace.getnextuniqueid_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.idgenerator_namespace.md
   - /blockly/reference/js/blockly.utils_namespace.idgenerator_namespace.test_only_variable.md
   - /blockly/reference/js/blockly.utils_namespace.is3dsupported_1_function.md
-  - /blockly/reference/js/blockly.utils_namespace.isrightbutton_1_function.md
-  - /blockly/reference/js/blockly.utils_namespace.istargetinput_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.keycodes_enum.md
   - /blockly/reference/js/blockly.utils_namespace.math_namespace.clamp_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.math_namespace.md
   - /blockly/reference/js/blockly.utils_namespace.math_namespace.todegrees_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.math_namespace.toradians_1_function.md
-  - /blockly/reference/js/blockly.utils_namespace.md
   - /blockly/reference/js/blockly.utils_namespace.metrics_interface.absoluteleft_propertysignature.md
   - /blockly/reference/js/blockly.utils_namespace.metrics_interface.absolutetop_propertysignature.md
   - /blockly/reference/js/blockly.utils_namespace.metrics_interface.contentheight_propertysignature.md
@@ -3151,8 +2973,6 @@ toc:
   - /blockly/reference/js/blockly.utils_namespace.metrics_interface.viewleft_propertysignature.md
   - /blockly/reference/js/blockly.utils_namespace.metrics_interface.viewtop_propertysignature.md
   - /blockly/reference/js/blockly.utils_namespace.metrics_interface.viewwidth_propertysignature.md
-  - /blockly/reference/js/blockly.utils_namespace.mousetosvg_1_function.md
-  - /blockly/reference/js/blockly.utils_namespace.noevent_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.object_namespace.deepmerge_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.object_namespace.inherits_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.object_namespace.md
@@ -3205,7 +3025,6 @@ toc:
   - /blockly/reference/js/blockly.utils_namespace.svgmath_namespace.is3dsupported_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.svgmath_namespace.md
   - /blockly/reference/js/blockly.utils_namespace.svgmath_namespace.screentowscoordinates_1_function.md
-  - /blockly/reference/js/blockly.utils_namespace.svgmath_namespace.svgsize_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.svgmath_namespace.test_only_variable.md
   - /blockly/reference/js/blockly.utils_namespace.svgpaths_namespace.arc_1_function.md
   - /blockly/reference/js/blockly.utils_namespace.svgpaths_namespace.curve_1_function.md
@@ -3310,7 +3129,6 @@ toc:
   - /blockly/reference/js/blockly.variables_namespace.generatevariablefielddom_1_function.md
   - /blockly/reference/js/blockly.variables_namespace.getorcreatevariablepackage_1_function.md
   - /blockly/reference/js/blockly.variables_namespace.getvariable_1_function.md
-  - /blockly/reference/js/blockly.variables_namespace.md
   - /blockly/reference/js/blockly.variables_namespace.nameusedwithanytype_1_function.md
   - /blockly/reference/js/blockly.variables_namespace.promptname_1_function.md
   - /blockly/reference/js/blockly.variables_namespace.renamevariable_1_function.md
@@ -3322,7 +3140,6 @@ toc:
   - /blockly/reference/js/blockly.variablesdynamic_namespace.category_name_variable.md
   - /blockly/reference/js/blockly.variablesdynamic_namespace.flyoutcategory_1_function.md
   - /blockly/reference/js/blockly.variablesdynamic_namespace.flyoutcategoryblocks_1_function.md
-  - /blockly/reference/js/blockly.variablesdynamic_namespace.md
   - /blockly/reference/js/blockly.variablesdynamic_namespace.oncreatevariablebuttonclick_colour_variable.md
   - /blockly/reference/js/blockly.variablesdynamic_namespace.oncreatevariablebuttonclick_number_variable.md
   - /blockly/reference/js/blockly.variablesdynamic_namespace.oncreatevariablebuttonclick_string_variable.md
@@ -3334,7 +3151,6 @@ toc:
   - /blockly/reference/js/blockly.widgetdiv_namespace.hide_1_function.md
   - /blockly/reference/js/blockly.widgetdiv_namespace.hideifowner_1_function.md
   - /blockly/reference/js/blockly.widgetdiv_namespace.isvisible_1_function.md
-  - /blockly/reference/js/blockly.widgetdiv_namespace.md
   - /blockly/reference/js/blockly.widgetdiv_namespace.show_1_function.md
 - title: Xml
   path: /blockly/reference/js/blockly.xml_namespace.md
@@ -3349,7 +3165,6 @@ toc:
   - /blockly/reference/js/blockly.xml_namespace.domtotext_1_function.md
   - /blockly/reference/js/blockly.xml_namespace.domtovariables_1_function.md
   - /blockly/reference/js/blockly.xml_namespace.domtoworkspace_1_function.md
-  - /blockly/reference/js/blockly.xml_namespace.md
   - /blockly/reference/js/blockly.xml_namespace.texttodom_1_function.md
   - /blockly/reference/js/blockly.xml_namespace.variablestodom_1_function.md
   - /blockly/reference/js/blockly.xml_namespace.workspacetodom_1_function.md
@@ -3418,7 +3233,6 @@ toc:
   - /blockly/reference/js/blockly.zelos_namespace.markersvg_class.showwithblock__1_method.md
   - /blockly/reference/js/blockly.zelos_namespace.markersvg_class.showwithinput__1_method.md
   - /blockly/reference/js/blockly.zelos_namespace.markersvg_class.showwithoutput__1_method.md
-  - /blockly/reference/js/blockly.zelos_namespace.md
   - /blockly/reference/js/blockly.zelos_namespace.pathobject_class.applycolour_1_method.md
   - /blockly/reference/js/blockly.zelos_namespace.pathobject_class.fliprtl_1_method.md
   - /blockly/reference/js/blockly.zelos_namespace.pathobject_class.md
@@ -3471,149 +3285,73 @@ toc:
 - heading: Variables
 - title: ALIGN_CENTRE
   path: /blockly/reference/js/blockly.align_centre_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.align_centre_variable.md
 - title: ALIGN_LEFT
   path: /blockly/reference/js/blockly.align_left_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.align_left_variable.md
 - title: ALIGN_RIGHT
   path: /blockly/reference/js/blockly.align_right_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.align_right_variable.md
 - title: Blocks
   path: /blockly/reference/js/blockly.blocks_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.blocks_variable.md
 - title: COLLAPSE_CHARS
   path: /blockly/reference/js/blockly.collapse_chars_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.collapse_chars_variable.md
 - title: COLLAPSED_FIELD_NAME
   path: /blockly/reference/js/blockly.collapsed_field_name_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.collapsed_field_name_variable.md
 - title: COLLAPSED_INPUT_NAME
   path: /blockly/reference/js/blockly.collapsed_input_name_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.collapsed_input_name_variable.md
 - title: config
   path: /blockly/reference/js/blockly.config_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.config_variable.md
 - title: connectionTypes
   path: /blockly/reference/js/blockly.connectiontypes_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.connectiontypes_variable.md
 - title: defineBlocksWithJsonArray
   path: /blockly/reference/js/blockly.defineblockswithjsonarray_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.defineblockswithjsonarray_variable.md
 - title: DELETE_VARIABLE_ID
   path: /blockly/reference/js/blockly.delete_variable_id_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.delete_variable_id_variable.md
 - title: DRAG_STACK
   path: /blockly/reference/js/blockly.drag_stack_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.drag_stack_variable.md
 - title: DropDownDiv
   path: /blockly/reference/js/blockly.dropdowndiv_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.dropdowndiv_variable.md
 - title: DUMMY_INPUT
   path: /blockly/reference/js/blockly.dummy_input_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.dummy_input_variable.md
 - title: getMainWorkspace
   path: /blockly/reference/js/blockly.getmainworkspace_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.getmainworkspace_variable.md
 - title: getSelected
   path: /blockly/reference/js/blockly.getselected_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.getselected_variable.md
 - title: INPUT_VALUE
   path: /blockly/reference/js/blockly.input_value_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.input_value_variable.md
 - title: JavaScript
   path: /blockly/reference/js/blockly.javascript_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.javascript_variable.md
 - title: Msg
   path: /blockly/reference/js/blockly.msg_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.msg_variable.md
 - title: NEXT_STATEMENT
   path: /blockly/reference/js/blockly.next_statement_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.next_statement_variable.md
 - title: OPPOSITE_TYPE
   path: /blockly/reference/js/blockly.opposite_type_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.opposite_type_variable.md
 - title: OUTPUT_VALUE
   path: /blockly/reference/js/blockly.output_value_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.output_value_variable.md
 - title: PREVIOUS_STATEMENT
   path: /blockly/reference/js/blockly.previous_statement_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.previous_statement_variable.md
 - title: PROCEDURE_CATEGORY_NAME
   path: /blockly/reference/js/blockly.procedure_category_name_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.procedure_category_name_variable.md
 - title: RENAME_VARIABLE_ID
   path: /blockly/reference/js/blockly.rename_variable_id_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.rename_variable_id_variable.md
 - title: resizeSvgContents
   path: /blockly/reference/js/blockly.resizesvgcontents_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.resizesvgcontents_variable.md
 - title: setLocale
   path: /blockly/reference/js/blockly.setlocale_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.setlocale_variable.md
 - title: setParentContainer
   path: /blockly/reference/js/blockly.setparentcontainer_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.setparentcontainer_variable.md
 - title: svgResize
   path: /blockly/reference/js/blockly.svgresize_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.svgresize_variable.md
-- title: svgSize
-  path: /blockly/reference/js/blockly.svgsize_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.svgsize_variable.md
 - title: TOOLBOX_AT_BOTTOM
   path: /blockly/reference/js/blockly.toolbox_at_bottom_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.toolbox_at_bottom_variable.md
 - title: TOOLBOX_AT_LEFT
   path: /blockly/reference/js/blockly.toolbox_at_left_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.toolbox_at_left_variable.md
 - title: TOOLBOX_AT_RIGHT
   path: /blockly/reference/js/blockly.toolbox_at_right_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.toolbox_at_right_variable.md
 - title: TOOLBOX_AT_TOP
   path: /blockly/reference/js/blockly.toolbox_at_top_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.toolbox_at_top_variable.md
 - title: VARIABLE_CATEGORY_NAME
   path: /blockly/reference/js/blockly.variable_category_name_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.variable_category_name_variable.md
 - title: VARIABLE_DYNAMIC_CATEGORY_NAME
   path: /blockly/reference/js/blockly.variable_dynamic_category_name_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.variable_dynamic_category_name_variable.md
 - title: VERSION
   path: /blockly/reference/js/blockly.version_variable.md
-  alternate_paths:
-  - /blockly/reference/js/blockly.version_variable.md

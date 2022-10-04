@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> Use Blockly.browserEvents.conditionalBind(). (December 2021)
+> Use \*\*Blockly.browserEvents.conditionalBind\*\* instead.
 > 
 
 Bind an event handler that can be ignored if it is not part of the active touch stream. Use this for events that either start or continue a multi-part gesture (e.g. mousedown or mousemove, which may be part of a drag or click).

@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.utils.svgMath.getRelativeXY\*\* instead.
 > 
 
 Return the coordinates of the top-left corner of this element relative to its parent. Only for SVG elements and children (e.g. rect, g, path).

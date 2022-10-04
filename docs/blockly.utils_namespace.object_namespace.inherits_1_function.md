@@ -7,6 +7,11 @@ Book: /blockly/_book.yaml
 
 ## utils.object.inherits() function
 
+> Warning: This API is now obsolete.
+> 
+> No longer provided by Blockly.
+> 
+
 Inherit the prototype methods from one constructor into another.
 
 <b>Signature:</b>

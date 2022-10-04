@@ -12,5 +12,5 @@ The element the click handler is bound to.
 <b>Signature:</b>
 
 ```typescript
-protected clickTarget_: Element;
+protected clickTarget_: Element | null;
 ```

@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.utils.svgMath.is3dSupported\*\* instead.
 > 
 
 Check if 3D transforms are supported by adding an element and attempting to set the property.

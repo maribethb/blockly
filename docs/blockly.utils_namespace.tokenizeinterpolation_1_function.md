@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.utils.parsing.tokenizeInterpolation\*\* instead.
 > 
 
 Parse a string with any number of interpolation tokens (%1, %2, ...). It will also replace string table references (e.g., %<!-- -->{<!-- -->bky\_my\_msg<!-- -->} and %<!-- -->{<!-- -->BKY\_MY\_MSG<!-- -->} will both be replaced with the value in Msg\['MY\_MSG'\]). Percentage sign characters '%' may be self-escaped (e.g., '%%').

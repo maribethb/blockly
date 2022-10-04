@@ -12,5 +12,5 @@ The rendered field's SVG text element.
 <b>Signature:</b>
 
 ```typescript
-protected textElement_: SVGTextElement;
+protected textElement_: SVGTextElement | null;
 ```

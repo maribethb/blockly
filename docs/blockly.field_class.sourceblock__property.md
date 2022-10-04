@@ -12,5 +12,5 @@ Block this field is attached to. Starts as null, then set in init.
 <b>Signature:</b>
 
 ```typescript
-protected sourceBlock_: Block;
+protected sourceBlock_: Block | null;
 ```

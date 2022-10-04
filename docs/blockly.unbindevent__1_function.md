@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> Use Blockly.browserEvents.unbind(). (December 2021)
+> Use \*\*Blockly.browserEvents.unbind\*\* instead.
 > 
 
 Unbind one or more events event from a function call.

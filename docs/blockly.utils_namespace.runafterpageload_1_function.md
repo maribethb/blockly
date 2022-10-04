@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> No longer provided by Blockly.
 > 
 
 Calls a function after the page has loaded, possibly immediately.

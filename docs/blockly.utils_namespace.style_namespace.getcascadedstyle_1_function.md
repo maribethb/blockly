@@ -7,6 +7,11 @@ Book: /blockly/_book.yaml
 
 ## utils.style.getCascadedStyle() function
 
+> Warning: This API is now obsolete.
+> 
+> No longer provided by Blockly.
+> 
+
 Gets the cascaded style value of a node, or null if the value cannot be computed (only Internet Explorer can do this).
 
 Copied from Closure's goog.style.getCascadedStyle

@@ -20,3 +20,7 @@ getSourceBlock(): Block;
 
 The block containing this field.
 
+## Exceptions
+
+An error if the source block is not defined.
+

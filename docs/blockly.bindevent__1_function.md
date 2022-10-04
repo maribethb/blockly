@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> Use Blockly.browserEvents.bind(). (December 2021)
+> Use \*\*Blockly.browserEvents.bind\*\* instead.
 > 
 
 Bind an event handler that should be called regardless of whether it is part of the active touch stream. Use this for events that are not part of a multi-part gesture (e.g. mouseover for tooltips).

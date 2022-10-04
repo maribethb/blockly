@@ -9,6 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
+> Use \*\*Blockly.utils.parsing.parseBlockColour\*\* instead.
 > 
 
 Parse a block colour from a number or string, as provided in a block definition.

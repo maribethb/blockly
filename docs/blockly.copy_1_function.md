@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> Use Blockly.clipboard.copy(). (2021 December)
+> Use \*\*Blockly.clipboard.copy\*\* instead.
 > 
 
 Copy a block or workspace comment onto the local clipboard.

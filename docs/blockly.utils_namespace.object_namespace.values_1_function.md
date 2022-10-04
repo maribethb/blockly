@@ -7,6 +7,11 @@ Book: /blockly/_book.yaml
 
 ## utils.object.values() function
 
+> Warning: This API is now obsolete.
+> 
+> Use the built-in \*\*Object.values\*\* instead.
+> 
+
 Returns an array of a given object's own enumerable property values.
 
 <b>Signature:</b>

@@ -9,7 +9,7 @@ Book: /blockly/_book.yaml
 
 > Warning: This API is now obsolete.
 > 
-> Use Blockly.clipboard.duplicate(). (2021 December)
+> Use \*\*Blockly.clipboard.duplicate\*\* instead.
 > 
 
 Duplicate this block and its children, or a workspace comment.
