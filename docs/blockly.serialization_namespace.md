@@ -7,26 +7,20 @@ Book: /blockly/_book.yaml
 
 ## serialization namespace
 
-<b>Signature:</b>
+## Interfaces
 
-```typescript
-export declare namespace serialization 
-```
-
-## Variables
-
-|  Variable | Description |
+|  Interface | Description |
 |  --- | --- |
-|  [blocks](./blockly.serialization_namespace.blocks_variable.md) |  |
-|  [exceptions](./blockly.serialization_namespace.exceptions_variable.md) |  |
-|  [priorities](./blockly.serialization_namespace.priorities_variable.md) |  |
-|  [registry](./blockly.serialization_namespace.registry_variable.md) |  |
-|  [variables](./blockly.serialization_namespace.variables_variable.md) |  |
-|  [workspaces](./blockly.serialization_namespace.workspaces_variable.md) |  |
+|  [ISerializer](./blockly.serialization_namespace.iserializer_interface.md) | Serializes and deserializes a plugin or system. |
 
-## Type Aliases
+## Namespaces
 
-|  Type Alias | Description |
+|  Namespace | Description |
 |  --- | --- |
-|  [ISerializer](./blockly.serialization_namespace.iserializer_typealias.md) |  |
+|  [blocks](./blockly.serialization_namespace.blocks_namespace.md) |  |
+|  [exceptions](./blockly.serialization_namespace.exceptions_namespace.md) |  |
+|  [priorities](./blockly.serialization_namespace.priorities_namespace.md) |  |
+|  [registry](./blockly.serialization_namespace.registry_namespace.md) |  |
+|  [variables](./blockly.serialization_namespace.variables_namespace.md) |  |
+|  [workspaces](./blockly.serialization_namespace.workspaces_namespace.md) |  |
 
