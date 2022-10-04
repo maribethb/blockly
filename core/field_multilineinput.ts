@@ -189,8 +189,8 @@ export class FieldMultilineInput extends FieldTextInput {
         textLines += '\n';
       }
     }
-    if (this.sourceBlock_.RTL) {
-      // The SVG is LTR, force value to be RTL by adding an RLM.
+    if (this.getSourceBlock().RTL) {
+      // The SVG is LTR, force value to be RTL.
       textLines += '\u200F';
     }
     return textLines;
@@ -248,7 +248,7 @@ export class FieldMultilineInput extends FieldTextInput {
     this.updateSize_();
 
     if (this.isBeingEdited_) {
-      if (this.sourceBlock_.RTL) {
+      if (this.getSourceBlock().RTL) {
         // in RTL, we need to let the browser reflow before resizing
         // in order to get the correct bounding box of the borderRect
         // avoiding issue #2777.
@@ -270,11 +270,15 @@ export class FieldMultilineInput extends FieldTextInput {
   /** Updates the size of the field based on the text. */
   protected override updateSize_() {
     const nodes = this.textGroup_.childNodes;
+    const fontSize = this.getConstants()!.FIELD_TEXT_FONTSIZE;
+    const fontWeight = this.getConstants()!.FIELD_TEXT_FONTWEIGHT;
+    const fontFamily = this.getConstants()!.FIELD_TEXT_FONTFAMILY;
     let totalWidth = 0;
     let totalHeight = 0;
     for (let i = 0; i < nodes.length; i++) {
       const tspan = nodes[i] as SVGTextElement;
-      const textWidth = dom.getTextWidth(tspan);
+      const textWidth =
+          dom.getFastTextWidth(tspan, fontSize, fontWeight, fontFamily);
       if (textWidth > totalWidth) {
         totalWidth = textWidth;
       }
@@ -290,9 +294,6 @@ export class FieldMultilineInput extends FieldTextInput {
       const actualEditorLines = this.value_.split('\n');
       const dummyTextElement = dom.createSvgElement(
           Svg.TEXT, {'class': 'blocklyText blocklyMultilineText'});
-      const fontSize = this.getConstants()!.FIELD_TEXT_FONTSIZE;
-      const fontWeight = this.getConstants()!.FIELD_TEXT_FONTWEIGHT;
-      const fontFamily = this.getConstants()!.FIELD_TEXT_FONTFAMILY;
 
       for (let i = 0; i < actualEditorLines.length; i++) {
         if (actualEditorLines[i].length > this.maxDisplayLength) {
