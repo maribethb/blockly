@@ -1,9 +1,8 @@
 import {execSync} from 'child_process';
-import {Extractor} from 'markdown-tables-to-json';
 import * as fs from 'fs';
 import * as gulp from 'gulp';
-import * as header from 'gulp-header';
-import * as replace from 'gulp-replace';
+import header from 'gulp-header';
+import replace from 'gulp-replace';
 
 const DOCS_DIR = 'docs';
 
@@ -103,27 +102,33 @@ const createToc = function(done) {
 
   // Generate a section of TOC for each section/heading in the overview file.
   const sections = fileContent.split('##');
+  // Skip the first section, which is manually called "Overview" above.
+  sections.splice(0, 1);
+
   for (let section of sections) {
-    // This converts the md table in each section to a JS object
-    const table = Extractor.extractObject(section, 'rows', false);
-    if (!table) {
-      continue;
-    }
+    // Looks for markdown links in the form of [getFocusManager()](./blockly.getfocusmanager_1_function.md)
+    // match group 1 is `getFocusManager()` and match group 2 is `/blockly.getfocusmanager_1_function.md`
+    // we don't want the leading . in the url because we don't want relative URLs.
+    const linkRegExp = /\[(.*)\]\(\.(.*)\)/g;
+    const allLinks = Array.from(section.matchAll(linkRegExp));
+
+    // Don't add a heading if there are no links in the section.
+    if (!allLinks.length) continue;
+
     // Get the name of the section, i.e. the text immediately after the `##` in
     // the source doc
     const sectionName = section.split('\n')[0].trim();
     fs.writeSync(toc, `- heading: ${sectionName}\n`);
-    for (let row in table) {
-      // After going through the Extractor, the markdown is now HTML.
-      // Each row in the table is now a link (anchor tag).
-      // Get the target of the link, excluding the first `.` since we don't want
-      // a relative path.
-      const path = /href="\.(.*?)"/.exec(row)?.[1];
-      // Get the name of the link (text in between the <a> and </a>)
-      const name = /">(.*?)</.exec(row)?.[1];
+
+    for (const link of allLinks) {
+      // name and path are the regexp match groups from the markdown link.
+      let [_, name, path] = link;
       if (!path || !name) {
         continue;
       }
+
+      // Remove slashes before underscores in `name`
+      name = name.replaceAll(/\\\_/g, '_');
       fs.writeSync(toc, `- title: ${name}\n  path: ${referencePath}${path}\n`);
       // Get the list of sub-pages for this page.
       // Add each sub-page to the `alternate_paths` property.
