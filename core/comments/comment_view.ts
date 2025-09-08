@@ -109,9 +109,6 @@ export class CommentView implements IRenderedElement {
       'class': 'blocklyComment blocklyEditable blocklyDraggable',
     });
 
-    aria.setRole(this.svgRoot, aria.Role.TEXTBOX);
-    aria.setState(this.svgRoot, aria.State.LABEL, 'DoNotOverride?');
-
     this.highlightRect = this.createHighlightRect(this.svgRoot);
 
     ({
@@ -126,6 +123,12 @@ export class CommentView implements IRenderedElement {
     this.commentEditor = this.createTextArea();
 
     this.resizeHandle = this.createResizeHandle(this.svgRoot, workspace);
+
+    aria.setRole(this.svgRoot, aria.Role.BUTTON);
+    if (this.commentEditor.id) {
+      aria.setState(this.svgRoot, aria.State.LABELLEDBY, this.commentEditor.id);
+    }
+    this.svgRoot.setAttribute('aria-description', 'Comment');
 
     // TODO: Remove this comment before merging.
     // I think we want comments to exist on the same layer as blocks.
