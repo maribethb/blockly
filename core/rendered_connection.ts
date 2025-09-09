@@ -647,6 +647,9 @@ export class RenderedConnection
   /** See IFocusableNode.onNodeFocus. */
   onNodeFocus(): void {
     this.highlight();
+    this.getSourceBlock().workspace.scrollBoundsIntoView(
+      this.getSourceBlock().getBoundingRectangleWithoutChildren(),
+    );
   }
 
   /** See IFocusableNode.onNodeBlur. */
@@ -659,12 +662,12 @@ export class RenderedConnection
     return true;
   }
 
-  private findHighlightSvg(): SVGElement | null {
+  private findHighlightSvg(): SVGPathElement | null {
     // This cast is valid as TypeScript's definition is wrong. See:
     // https://github.com/microsoft/TypeScript/issues/60996.
     return document.getElementById(this.id) as
       | unknown
-      | null as SVGElement | null;
+      | null as SVGPathElement | null;
   }
 }
 

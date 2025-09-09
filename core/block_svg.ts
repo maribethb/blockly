@@ -1924,6 +1924,9 @@ export class BlockSvg
   /** See IFocusableNode.onNodeFocus. */
   onNodeFocus(): void {
     this.select();
+    this.workspace.scrollBoundsIntoView(
+      this.getBoundingRectangleWithoutChildren(),
+    );
   }
 
   /** See IFocusableNode.onNodeBlur. */

@@ -12,6 +12,7 @@ import * as dom from '../utils/dom.js';
 import {Svg} from '../utils/svg.js';
 import type {WorkspaceSvg} from '../workspace_svg.js';
 import {CommentBarButton} from './comment_bar_button.js';
+import type {CommentView} from './comment_view.js';
 
 /**
  * Magic string appended to the comment ID to create a unique ID for this button.
@@ -43,8 +44,9 @@ export class DeleteCommentBarButton extends CommentBarButton {
     protected readonly id: string,
     protected readonly workspace: WorkspaceSvg,
     protected readonly container: SVGGElement,
+    protected readonly commentView: CommentView,
   ) {
-    super(id, workspace, container);
+    super(id, workspace, container, commentView);
 
     this.icon = dom.createSvgElement(
       Svg.IMAGE,
@@ -103,7 +105,7 @@ export class DeleteCommentBarButton extends CommentBarButton {
       return;
     }
 
-    this.getParentComment().dispose();
+    this.getCommentView().dispose();
     e?.stopPropagation();
     getFocusManager().focusNode(this.workspace);
   }
