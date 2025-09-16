@@ -269,7 +269,7 @@ export class BlockSvg
       const firstSibling: BlockSvg = surroundParent.getChildren(false)[0];
       const siblings: BlockSvg[] = [firstSibling];
       let nextSibling: BlockSvg | null = firstSibling;
-      while ((nextSibling = nextSibling.getNextBlock())) {
+      while ((nextSibling = nextSibling?.getNextBlock())) {
         siblings.push(nextSibling);
       }
       return siblings;
