@@ -128,7 +128,7 @@ export class CommentView implements IRenderedElement {
     if (this.commentEditor.id) {
       aria.setState(this.svgRoot, aria.State.LABELLEDBY, this.commentEditor.id);
     }
-    this.svgRoot.setAttribute('aria-description', 'Comment');
+    aria.setState(this.svgRoot, aria.State.ROLEDESCRIPTION, 'Comment');
 
     // TODO: Remove this comment before merging.
     // I think we want comments to exist on the same layer as blocks.
