@@ -6,6 +6,7 @@
 
 import * as browserEvents from '../browser_events.js';
 import {getFocusManager} from '../focus_manager.js';
+import {Msg} from '../msg.js';
 import * as touch from '../touch.js';
 import * as aria from '../utils/aria.js';
 import * as dom from '../utils/dom.js';
@@ -57,6 +58,7 @@ export class DeleteCommentBarButton extends CommentBarButton {
       },
       container,
     );
+    this.initAria();
     this.bindId = browserEvents.conditionalBind(
       this.icon,
       'pointerdown',
@@ -74,7 +76,7 @@ export class DeleteCommentBarButton extends CommentBarButton {
 
   override initAria(): void {
     aria.setRole(this.icon, aria.Role.BUTTON);
-    aria.setState(this.icon, aria.State.LABEL, 'DoNotDefine?');
+    aria.setState(this.icon, aria.State.LABEL, Msg['REMOVE_COMMENT']);
   }
 
   /**

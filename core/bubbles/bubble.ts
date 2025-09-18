@@ -144,7 +144,6 @@ export abstract class Bubble implements IBubble, ISelectable, IFocusableNode {
     this.focusableElement = overriddenFocusableElement ?? this.svgRoot;
     this.focusableElement.setAttribute('id', this.id);
     aria.setRole(this.focusableElement, aria.Role.GROUP);
-    aria.setState(this.focusableElement, aria.State.LABEL, 'Bubble');
 
     browserEvents.conditionalBind(
       this.background,

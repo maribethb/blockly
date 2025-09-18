@@ -58,7 +58,6 @@ export class CommentEditor implements IFocusableNode {
     this.textArea.setAttribute('tabindex', '-1');
     this.textArea.setAttribute('dir', this.workspace.RTL ? 'RTL' : 'LTR');
     aria.setRole(this.textArea, aria.Role.TEXTBOX);
-    aria.setState(this.textArea, aria.State.LABEL, 'DoNotDefine?');
     dom.addClass(this.textArea, 'blocklyCommentText');
     dom.addClass(this.textArea, 'blocklyTextarea');
     dom.addClass(this.textArea, 'blocklyText');

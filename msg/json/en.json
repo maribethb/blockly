@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2025-09-08 16:26:57.642330",
+		"lastupdated": "2025-09-09 09:40:56.729862",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -12,6 +12,7 @@
 	"ADD_COMMENT": "Add Comment",
 	"REMOVE_COMMENT": "Remove Comment",
 	"DUPLICATE_COMMENT": "Duplicate Comment",
+	"COLLAPSE_COMMENT": "Collapse Comment",
 	"EXTERNAL_INPUTS": "External Inputs",
 	"INLINE_INPUTS": "Inline Inputs",
 	"DELETE_BLOCK": "Delete Block",

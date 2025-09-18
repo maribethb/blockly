@@ -19,6 +19,7 @@
 	"ADD_COMMENT": "context menu - Add a descriptive comment to the selected block.",
 	"REMOVE_COMMENT": "context menu - Remove the descriptive comment from the selected block.",
 	"DUPLICATE_COMMENT": "context menu - Make a copy of the selected workspace comment.\n{{Identical|Duplicate}}",
+	"COLLAPSE_COMMENT": "context menu - Collapse the selected workspace comment.",
 	"EXTERNAL_INPUTS": "context menu - Change from 'external' to 'inline' mode for displaying blocks used as inputs to the selected block.  See [[Translating:Blockly#context_menus]].\n\nThe opposite of {{msg-blockly|INLINE INPUTS}}.",
 	"INLINE_INPUTS": "context menu - Change from 'internal' to 'external' mode for displaying blocks used as inputs to the selected block.  See [[Translating:Blockly#context_menus]].\n\nThe opposite of {{msg-blockly|EXTERNAL INPUTS}}.",
 	"DELETE_BLOCK": "context menu - Permanently delete the selected block.",
