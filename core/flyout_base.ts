@@ -33,6 +33,7 @@ import * as renderManagement from './render_management.js';
 import {ScrollbarPair} from './scrollbar_pair.js';
 import {SEPARATOR_TYPE} from './separator_flyout_inflater.js';
 import * as blocks from './serialization/blocks.js';
+import {aria} from './utils.js';
 import {Coordinate} from './utils/coordinate.js';
 import * as dom from './utils/dom.js';
 import * as idGenerator from './utils/idgenerator.js';
@@ -309,6 +310,9 @@ export abstract class Flyout
       'class': 'blocklyFlyout',
     });
     this.svgGroup_.style.display = 'none';
+    // Ignore the svg root in the accessibility tree since is is not focusable.
+    aria.setRole(this.svgGroup_, aria.Role.PRESENTATION);
+
     this.svgBackground_ = dom.createSvgElement(
       Svg.PATH,
       {'class': 'blocklyFlyoutBackground'},

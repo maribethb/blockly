@@ -55,6 +55,9 @@ export function inject(
     dom.addClass(subContainer, 'blocklyRTL');
   }
 
+  // Ignore the subcontainer in aria since it is not focusable
+  aria.setRole(subContainer, aria.Role.PRESENTATION);
+
   containerElement!.appendChild(subContainer);
   const svg = createDom(subContainer, options);
 
