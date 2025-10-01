@@ -60,7 +60,7 @@ function buildTSOverride({files, tsconfig}) {
       'sourceType': 'module',
       parserOptions: {
         'project': tsconfig,
-        'tsconfigRootDir': __dirname,
+        'tsconfigRootDir': process.cwd(),
       },
       globals: {
         ...globals.browser,
