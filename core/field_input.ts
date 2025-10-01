@@ -167,6 +167,8 @@ export abstract class FieldInput<T extends InputTypes> extends Field<
     const block = this.getSourceBlock();
     if (!block) throw new UnattachedFieldError();
     super.initView();
+    if (!this.textElement_)
+      throw new Error('Initialization failed for FieldInput');
 
     if (this.isFullBlockField()) {
       this.clickTarget_ = (this.sourceBlock_ as BlockSvg).getSvgRoot();
@@ -176,13 +178,13 @@ export abstract class FieldInput<T extends InputTypes> extends Field<
       dom.addClass(this.fieldGroup_, 'blocklyInputField');
     }
 
+    // Showing the text-based value with the input's textbox ensures that the
+    // input's value is correctly read out by screen readers with its role.
+    aria.setState(this.textElement_, aria.State.HIDDEN, false);
+
     const element = this.getFocusableElement();
     aria.setRole(element, aria.Role.TEXTBOX);
-    aria.setState(
-      element,
-      aria.State.LABEL,
-      this.name ? `Text ${this.name}` : 'Text',
-    );
+    aria.setState(element, aria.State.LABEL, this.getAriaName() ?? 'Text');
   }
 
   override isFullBlockField(): boolean {

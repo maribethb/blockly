@@ -199,6 +199,8 @@ export abstract class Field<T = any>
   /** The unique ID of this field. */
   private id_: string | null = null;
 
+  private config: FieldConfig | null = null;
+
   /**
    * @param value The initial value of the field.
    *     Also accepts Field.SKIP_SETUP if you wish to skip setup (only used by
@@ -251,6 +253,7 @@ export abstract class Field<T = any>
     if (config.tooltip) {
       this.setTooltip(parsing.replaceMessageReferences(config.tooltip));
     }
+    this.config = config;
   }
 
   /**
@@ -270,6 +273,17 @@ export abstract class Field<T = any>
       );
     }
     this.id_ = `${block.id}_field_${idGenerator.getNextUniqueId()}`;
+  }
+
+  getAriaName(): string | null {
+    return (
+      this.config?.ariaName ??
+      this.config?.name ??
+      this.config?.type ??
+      this.getSourceBlock()?.type ??
+      this.name ??
+      null
+    );
   }
 
   /**
@@ -1418,7 +1432,10 @@ export abstract class Field<T = any>
  * Extra configuration options for the base field.
  */
 export interface FieldConfig {
+  type: string;
+  name?: string;
   tooltip?: string;
+  ariaName?: string;
 }
 
 /**

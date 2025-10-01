@@ -18,8 +18,12 @@ import {
   FieldInputValidator,
 } from './field_input.js';
 import * as fieldRegistry from './field_registry.js';
-import * as aria from './utils/aria.js';
 import * as dom from './utils/dom.js';
+
+// TODO: Figure out how to either design this to be a 'number' input with proper
+// 'valuemin' and 'valuemax' ARIA properties, build it so that subtypes can do
+// this properly, or consider a separate field type altogether that handles that
+// case properly. See: https://github.com/google/blockly/pull/9384#discussion_r2395601092.
 
 /**
  * Class for an editable number field.
@@ -296,14 +300,11 @@ export class FieldNumber extends FieldInput<number> {
   protected override widgetCreate_(): HTMLInputElement {
     const htmlInput = super.widgetCreate_() as HTMLInputElement;
 
-    // Set the accessibility state
     if (this.min_ > -Infinity) {
       htmlInput.min = `${this.min_}`;
-      aria.setState(htmlInput, aria.State.VALUEMIN, this.min_);
     }
     if (this.max_ < Infinity) {
       htmlInput.max = `${this.max_}`;
-      aria.setState(htmlInput, aria.State.VALUEMAX, this.max_);
     }
     return htmlInput;
   }
@@ -313,7 +314,6 @@ export class FieldNumber extends FieldInput<number> {
    *
    * @override
    */
-
   public override initView() {
     super.initView();
     if (this.fieldGroup_) {

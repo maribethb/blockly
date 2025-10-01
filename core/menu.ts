@@ -16,6 +16,7 @@ import type {MenuSeparator} from './menu_separator.js';
 import {MenuItem} from './menuitem.js';
 import * as aria from './utils/aria.js';
 import {Coordinate} from './utils/coordinate.js';
+import * as idGenerator from './utils/idgenerator.js';
 import type {Size} from './utils/size.js';
 import * as style from './utils/style.js';
 
@@ -62,8 +63,12 @@ export class Menu {
   /** ARIA name for this menu. */
   private roleName: aria.Role | null = null;
 
+  id: string;
+
   /** Constructs a new Menu instance. */
-  constructor() {}
+  constructor() {
+    this.id = idGenerator.getNextUniqueId();
+  }
 
   /**
    * Add a new menu item to the bottom of this menu.
@@ -86,6 +91,7 @@ export class Menu {
     const element = document.createElement('div');
     element.className = 'blocklyMenu';
     element.tabIndex = 0;
+    element.id = this.id;
     if (this.roleName) {
       aria.setRole(element, this.roleName);
     }
