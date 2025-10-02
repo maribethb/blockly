@@ -881,11 +881,7 @@ export class Toolbox
     this.selectedItem_ = null;
     this.previouslySelectedItem_ = item;
     item.setSelected(false);
-    aria.setState(
-      this.contentsDiv_ as Element,
-      aria.State.ACTIVEDESCENDANT,
-      '',
-    );
+    aria.clearState(this.HtmlDiv!, aria.State.ACTIVEDESCENDANT);
   }
 
   /**
@@ -901,11 +897,7 @@ export class Toolbox
     this.selectedItem_ = newItem;
     this.previouslySelectedItem_ = oldItem;
     newItem.setSelected(true);
-    aria.setState(
-      this.contentsDiv_ as Element,
-      aria.State.ACTIVEDESCENDANT,
-      newItem.getId(),
-    );
+    aria.setState(this.HtmlDiv!, aria.State.ACTIVEDESCENDANT, newItem.getId());
   }
 
   /**
