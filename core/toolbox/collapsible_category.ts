@@ -137,18 +137,6 @@ export class CollapsibleToolboxCategory
     aria.setState(this.htmlDiv_ as HTMLDivElement, aria.State.EXPANDED, false);
     aria.setRole(this.htmlDiv_!, aria.Role.TREEITEM);
 
-    // Ensure this group has properly set children.
-    const selectableChildren =
-      this.getChildToolboxItems().filter((item) => item.isSelectable()) ?? null;
-    const focusableChildIds = selectableChildren.map(
-      (selectable) => selectable.getFocusableElement().id,
-    );
-    aria.setState(
-      this.htmlDiv_!,
-      aria.State.OWNS,
-      [...new Set(focusableChildIds)].join(' '),
-    );
-
     return this.htmlDiv_!;
   }
 

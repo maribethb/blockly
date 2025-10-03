@@ -369,7 +369,6 @@ export class Toolbox
     this.renderContents_(toolboxDef['contents']);
     this.position();
     this.handleToolboxItemResize();
-    this.recomputeAriaOwners();
   }
 
   /**
@@ -446,7 +445,6 @@ export class Toolbox
         this.addToolboxItem_(child);
       }
     }
-    this.recomputeAriaOwners();
   }
 
   /**
@@ -881,11 +879,6 @@ export class Toolbox
     this.selectedItem_ = null;
     this.previouslySelectedItem_ = item;
     item.setSelected(false);
-    aria.setState(
-      this.contentsDiv_ as Element,
-      aria.State.ACTIVEDESCENDANT,
-      '',
-    );
   }
 
   /**
@@ -901,11 +894,6 @@ export class Toolbox
     this.selectedItem_ = newItem;
     this.previouslySelectedItem_ = oldItem;
     newItem.setSelected(true);
-    aria.setState(
-      this.contentsDiv_ as Element,
-      aria.State.ACTIVEDESCENDANT,
-      newItem.getId(),
-    );
   }
 
   /**
@@ -1154,32 +1142,6 @@ export class Toolbox
     if (!nextTree || nextTree !== this.flyout?.getWorkspace()) {
       this.autoHide(false);
     }
-  }
-
-  /**
-   * Recomputes ARIA tree ownership relationships for all of this toolbox's
-   * categories and items.
-   *
-   * This should only be done when the toolbox's contents have changed.
-   */
-  recomputeAriaOwners() {
-    const focusable = this.getFocusableElement();
-    const selectableChildren =
-      this.getToolboxItems().filter((item) => item.isSelectable()) ?? null;
-    const focusableChildElems = selectableChildren.map((selectable) =>
-      selectable.getFocusableElement(),
-    );
-    const focusableChildIds = focusableChildElems.map((elem) => elem.id);
-    aria.setState(
-      focusable,
-      aria.State.OWNS,
-      [...new Set(focusableChildIds)].join(' '),
-    );
-    // Ensure children have the correct position set.
-    // TODO: Fix collapsible subcategories. Their groups aren't set up correctly yet, and they aren't getting a correct accounting in top-level toolbox tree.
-    focusableChildElems.forEach((elem, index) =>
-      aria.setState(elem, aria.State.POSINSET, index + 1),
-    );
   }
 }
 
