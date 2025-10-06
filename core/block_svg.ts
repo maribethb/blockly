@@ -218,12 +218,11 @@ export class BlockSvg
     // The page-wide unique ID of this Block used for focusing.
     svgPath.id = idGenerator.getNextUniqueId();
 
-    aria.setState(svgPath, aria.State.ROLEDESCRIPTION, 'block');
-    aria.setRole(svgPath, aria.Role.TREEITEM);
     svgPath.tabIndex = -1;
     this.currentConnectionCandidate = null;
 
     this.doInit_();
+    this.computeAriaRole();
   }
 
   private recomputeAriaLabel() {
@@ -235,29 +234,67 @@ export class BlockSvg
   }
 
   private computeAriaLabel(): string {
-    // Guess the block's aria label based on its field labels.
-    if (this.isShadow() || this.isSimpleReporter()) {
-      // TODO: Shadows may have more than one field.
-      // Shadow blocks are best represented directly by their field since they
-      // effectively operate like a field does for keyboard navigation purposes.
-      const field = Array.from(this.getFields())[0];
-      try {
-        return (
-          aria.getState(field.getFocusableElement(), aria.State.LABEL) ??
-          'Unknown?'
-        );
-      } catch {
-        return 'Unknown?';
+    const {blockSummary, inputCount} = buildBlockSummary(this);
+    const inputSummary = inputCount
+      ? ` ${inputCount} ${inputCount > 1 ? 'inputs' : 'input'}`
+      : '';
+
+    let currentBlock: Block | null = null;
+    let nestedStatementBlockCount = 0;
+    // This won't work well for if/else blocks.
+    this.inputList.forEach((input) => {
+      if (
+        input.connection &&
+        input.connection.type === ConnectionType.NEXT_STATEMENT
+      ) {
+        currentBlock = input.connection.targetBlock();
+      }
+    });
+    // The type is poorly inferred here.
+    while (currentBlock as Block | null) {
+      nestedStatementBlockCount++;
+      // The type is poorly inferred here.
+      // If currentBlock is null, we can't enter this while loop...
+      currentBlock = currentBlock!.getNextBlock();
+    }
+
+    let blockTypeText = 'block';
+    if (this.isShadow()) {
+      blockTypeText = 'input block';
+    } else if (this.outputConnection) {
+      blockTypeText = 'replacable block';
+    } else if (this.statementInputCount) {
+      blockTypeText = 'C-shaped block';
+    }
+
+    let additionalInfo = blockTypeText;
+    if (inputSummary && !nestedStatementBlockCount) {
+      additionalInfo = `${additionalInfo} with ${inputSummary}`;
+    } else if (nestedStatementBlockCount) {
+      const childBlockSummary = `${nestedStatementBlockCount} child ${nestedStatementBlockCount > 1 ? 'blocks' : 'block'}`;
+      if (inputSummary) {
+        additionalInfo = `${additionalInfo} with ${inputSummary} and ${childBlockSummary}`;
+      } else {
+        additionalInfo = `${additionalInfo} with ${childBlockSummary}`;
       }
     }
 
-    const fieldLabels = [];
-    for (const field of this.getFields()) {
-      if (field instanceof FieldLabel) {
-        fieldLabels.push(field.getText());
-      }
+    return blockSummary + ', ' + additionalInfo;
+  }
+
+  private computeAriaRole() {
+    if (this.isSimpleReporter()) {
+      aria.setRole(this.pathObject.svgPath, aria.Role.BUTTON);
+    } else {
+      // This isn't read out by VoiceOver and it will read in the wrong place
+      // as a duplicate in ChromeVox due to the other changes in this branch.
+      // aria.setState(
+      //   this.pathObject.svgPath,
+      //   aria.State.ROLEDESCRIPTION,
+      //   'block',
+      // );
+      aria.setRole(this.pathObject.svgPath, aria.Role.TREEITEM);
     }
-    return fieldLabels.join(' ');
   }
 
   collectSiblingBlocks(surroundParent: BlockSvg | null): BlockSvg[] {
@@ -1724,6 +1761,8 @@ export class BlockSvg
    * settings.
    */
   render() {
+    this.recomputeAriaLabel();
+
     this.queueRender();
     renderManagement.triggerQueuedRenders();
   }
@@ -1735,6 +1774,8 @@ export class BlockSvg
    * @internal
    */
   renderEfficiently() {
+    this.recomputeAriaLabel();
+
     dom.startTextWidthCache();
 
     if (this.isCollapsed()) {
@@ -1990,4 +2031,52 @@ export class BlockSvg
       );
     }
   }
+}
+
+interface BlockSummary {
+  blockSummary: string;
+  inputCount: number;
+}
+
+function buildBlockSummary(block: BlockSvg): BlockSummary {
+  let inputCount = 0;
+  function recursiveInputSummary(
+    block: BlockSvg,
+    isNestedInput: boolean = false,
+  ): string {
+    return block.inputList
+      .flatMap((input) => {
+        const fields = input.fieldRow.map((field) => {
+          // If the block is a full block field, we only want to know if it's an
+          // editable field if we're not directly on it.
+          if (field.EDITABLE && !field.isFullBlockField() && !isNestedInput) {
+            inputCount++;
+          }
+          return [field.getText() ?? field.getValue()];
+        });
+        if (
+          input.connection &&
+          input.connection.type === ConnectionType.INPUT_VALUE
+        ) {
+          if (!isNestedInput) {
+            inputCount++;
+          }
+          const targetBlock = input.connection.targetBlock();
+          if (targetBlock) {
+            return [
+              ...fields,
+              recursiveInputSummary(targetBlock as BlockSvg, true),
+            ];
+          }
+        }
+        return fields;
+      })
+      .join(' ');
+  }
+
+  const blockSummary = recursiveInputSummary(block);
+  return {
+    blockSummary,
+    inputCount,
+  };
 }
