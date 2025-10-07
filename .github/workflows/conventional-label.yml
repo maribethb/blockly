@@ -27,7 +27,7 @@ jobs:
         continue-on-error: true
       - name: Print help message
         if: steps.check-pr-title.outcome == 'failure'
-        run: echo "::error::Please edit your PR title to conform with conventional commits. More details at https://developers.google.com/blockly/guides/contribute/get-started/commits"
+        run: echo "::error::Please edit your PR title to conform with conventional commits. More details at https://developers.google.com/blockly/guides/contribute/get-started/commits" && exit 1
 
   label:
     runs-on: ubuntu-latest
