@@ -34,4 +34,6 @@ export default {
     ],
     'subject-case': [0],
   },
+  helpUrl:
+    'https://developers.google.com/blockly/guides/contribute/get-started/commits',
 };
