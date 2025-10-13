@@ -124,22 +124,46 @@ function getBlockNavigationCandidates(
 
   for (const input of block.inputList) {
     if (!input.isVisible()) continue;
+
     candidates.push(...input.fieldRow);
-    if (input.connection?.targetBlock()) {
-      const connectedBlock = input.connection.targetBlock() as BlockSvg;
-      if (input.connection.type === ConnectionType.NEXT_STATEMENT && !forward) {
+
+    const connection = input.connection as RenderedConnection | null;
+    if (!connection) continue;
+
+    const connectedBlock = connection.targetBlock();
+    if (connectedBlock) {
+      if (connection.type === ConnectionType.NEXT_STATEMENT && !forward) {
         const lastStackBlock = connectedBlock
           .lastConnectionInStack(false)
           ?.getSourceBlock();
         if (lastStackBlock) {
+          // When navigating backward, the last block in a stack in a statement
+          // input is navigable.
           candidates.push(lastStackBlock);
         }
       } else {
+        // When navigating forward, a child block connected to a statement
+        // input is navigable.
         candidates.push(connectedBlock);
       }
-    } else if (input.connection?.type === ConnectionType.INPUT_VALUE) {
-      candidates.push(input.connection as RenderedConnection);
+    } else if (
+      connection.type === ConnectionType.INPUT_VALUE ||
+      connection.type === ConnectionType.NEXT_STATEMENT
+    ) {
+      // Empty input or statement connections are navigable.
+      candidates.push(connection);
     }
+  }
+
+  if (
+    block.nextConnection &&
+    !block.nextConnection.targetBlock() &&
+    (block.lastConnectionInStack(true) !== block.nextConnection ||
+      !!block.getSurroundParent())
+  ) {
+    // The empty next connection on the last block in a stack inside of a
+    // statement input is navigable.
+    candidates.push(block.nextConnection);
   }
 
   return candidates;
