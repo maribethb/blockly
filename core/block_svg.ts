@@ -244,9 +244,12 @@ export class BlockSvg
 
   private computeAriaLabel(): string {
     const {commaSeparatedSummary, inputCount} = buildBlockSummary(this);
-    const inputSummary = inputCount
-      ? ` ${inputCount} ${inputCount > 1 ? 'inputs' : 'input'}`
-      : '';
+    let inputSummary = '';
+    if (inputCount > 1) {
+      inputSummary = 'has inputs';
+    } else if (inputCount === 1) {
+      inputSummary = 'has input';
+    }
 
     let blockTypeText = 'block';
     if (this.isShadow()) {
@@ -288,7 +291,7 @@ export class BlockSvg
 
     let additionalInfo = blockTypeText;
     if (inputSummary) {
-      additionalInfo = `${additionalInfo} with ${inputSummary}`;
+      additionalInfo = `${additionalInfo}, ${inputSummary}`;
     }
 
     return prefix + commaSeparatedSummary + ', ' + additionalInfo;
