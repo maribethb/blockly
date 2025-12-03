@@ -242,8 +242,11 @@ export class BlockSvg
     );
   }
 
-  private computeAriaLabel(): string {
-    const {commaSeparatedSummary, inputCount} = buildBlockSummary(this);
+  computeAriaLabel(verbose: boolean = false): string {
+    const {commaSeparatedSummary, inputCount} = buildBlockSummary(
+      this,
+      verbose,
+    );
     let inputSummary = '';
     if (inputCount > 1) {
       inputSummary = 'has inputs';
@@ -2029,7 +2032,7 @@ interface BlockSummary {
   inputCount: number;
 }
 
-function buildBlockSummary(block: BlockSvg): BlockSummary {
+function buildBlockSummary(block: BlockSvg, verbose: boolean): BlockSummary {
   let inputCount = 0;
 
   // Produce structured segments
@@ -2059,7 +2062,7 @@ function buildBlockSummary(block: BlockSvg): BlockSummary {
           return true;
         })
         .map((field) => {
-          const text = field.getText() ?? field.getValue();
+          const text = field.computeAriaLabel(verbose);
           // If the block is a full block field, we only want to know if it's an
           // editable field if we're not directly on it.
           if (field.EDITABLE && !field.isFullBlockField() && !isNestedInput) {
