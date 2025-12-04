@@ -25,10 +25,6 @@ jobs:
             validate your changes on our
             [developer site](https://developers.google.com/blockly/guides/contribute/core#making_and_verifying_a_change).
 
-            - All contributors must sign the Google Contributor License
-            Agreement (CLA). If the google-cla bot leaves a comment on this
-            PR, make sure you follow the instructions.
-
             - We use conventional commits to make versioning the package easier. Make sure your commit
             message is in the [proper format](https://developers.google.com/blockly/guides/contribute/get-started/commits)
             or [learn how to fix it](https://developers.google.com/blockly/guides/contribute/get-started/commits#fixing_non-conventional_commits).
