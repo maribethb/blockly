@@ -32,7 +32,7 @@ For more information on installing and using Blockly, see the [Getting Started a
 
 ### blockly-samples
 
-We have a number of resources such as [examples](https://github.com/raspberrypifoundation/blockly-samples/tree/master/examples), [codelabs](https://github.com/raspberrypifoundation/blockly-samples/tree/master/codelabs), and [plugins](https://github.com/raspberrypifoundation/blockly-samples/tree/master/plugins) in another repository called [blockly-samples](https://github.com/raspberrypifoundation/blockly-samples). A plugin is a self-contained piece of code that adds functionality to Blockly. Plugins can add fields, define themes, create renderers, and much more. For more information, see the [Plugins documentation](https://developers.google.com/blockly/guides/programming/plugin_overview).
+We have a number of resources such as [examples](https://github.com/raspberrypifoundation/blockly-samples/tree/main/examples), [codelabs](https://github.com/raspberrypifoundation/blockly-samples/tree/main/codelabs), and [plugins](https://github.com/raspberrypifoundation/blockly-samples/tree/main/plugins) in another repository called [blockly-samples](https://github.com/raspberrypifoundation/blockly-samples). A plugin is a self-contained piece of code that adds functionality to Blockly. Plugins can add fields, define themes, create renderers, and much more. For more information, see the [Plugins documentation](https://developers.google.com/blockly/guides/programming/plugin_overview).
 
 ## Contributing to Blockly
 
@@ -40,7 +40,7 @@ Want to make Blockly better? We welcome contributions to Blockly in the form of 
 
 ## Releases
 
-We release by pushing the latest code to the master branch, followed by updating the npm package, our [docs](https://developers.google.com/blockly), and [demo pages](https://raspberrypifoundation.github.io/blockly-samples/). If there are breaking bugs, such as a crash when performing a standard action or a rendering issue that makes Blockly unusable, we will cherry-pick fixes to master between releases to fix them. The [releases page](https://github.com/google/blockly/releases) has a list of all releases.
+We release new versions on npm and GitHub releases, and then update our [docs](https://developers.google.com/blockly) and [demo pages](https://raspberrypifoundation.github.io/blockly-samples/). If there are breaking regressions, such as a crash when performing a standard action or a rendering issue that makes Blockly unusable, we will cherry-pick fixes into patch releases. The [releases page](https://github.com/raspberrypifoundation/blockly/releases) has a list of all releases.
 
 We use [semantic versioning](https://semver.org/). Releases that have breaking changes or are otherwise not backwards compatible will have a new major version. Patch versions are reserved for bug-fix patches between scheduled releases.
 
