@@ -246,7 +246,7 @@ export class BlockSvg
   computeAriaLabel(
     verbose: boolean = false,
     minimal: boolean = false,
-    currentBlock?: this,
+    currentBlock: this | undefined = undefined,
   ): string {
     const labelComponents = [];
 
