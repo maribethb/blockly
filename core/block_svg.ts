@@ -243,7 +243,11 @@ export class BlockSvg
     );
   }
 
-  computeAriaLabel(verbose: boolean = false): string {
+  computeAriaLabel(
+    verbose: boolean = false,
+    minimal: boolean = false,
+    currentBlock?: this,
+  ): string {
     const labelComponents = [];
 
     if (!this.workspace.isFlyout && this.getRootBlock() === this) {
@@ -274,23 +278,26 @@ export class BlockSvg
     const {commaSeparatedSummary, inputCount} = buildBlockSummary(
       this,
       verbose,
+      currentBlock,
     );
     labelComponents.push(commaSeparatedSummary);
 
-    if (!this.isEnabled()) {
-      labelComponents.push('disabled');
-    }
-    if (this.isCollapsed()) {
-      labelComponents.push('collapsed');
-    }
-    if (this.isShadow()) {
-      labelComponents.push('replaceable');
-    }
+    if (!minimal) {
+      if (!this.isEnabled()) {
+        labelComponents.push('disabled');
+      }
+      if (this.isCollapsed()) {
+        labelComponents.push('collapsed');
+      }
+      if (this.isShadow()) {
+        labelComponents.push('replaceable');
+      }
 
-    if (inputCount > 1) {
-      labelComponents.push('has inputs');
-    } else if (inputCount === 1) {
-      labelComponents.push('has input');
+      if (inputCount > 1) {
+        labelComponents.push('has inputs');
+      } else if (inputCount === 1) {
+        labelComponents.push('has input');
+      }
     }
 
     return labelComponents.join(', ');
@@ -2063,7 +2070,11 @@ interface BlockSummary {
   inputCount: number;
 }
 
-function buildBlockSummary(block: BlockSvg, verbose: boolean): BlockSummary {
+function buildBlockSummary(
+  block: BlockSvg,
+  verbose: boolean,
+  currentBlock?: BlockSvg,
+): BlockSummary {
   let inputCount = 0;
 
   // Produce structured segments
@@ -2119,6 +2130,10 @@ function buildBlockSummary(block: BlockSvg, verbose: boolean): BlockSummary {
             targetBlock as BlockSvg,
             true,
           );
+
+          if (targetBlock === currentBlock) {
+            nestedSegments.unshift({kind: 'label', text: 'Current block: '});
+          }
 
           if (!isNestedInput) {
             // treat the whole nested summary as a single input segment
