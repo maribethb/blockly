@@ -1,0 +1,25 @@
+{
+  "name": "blockly-repo",
+  "version": "0.0.0",
+  "description": "Monorepo for blockly and related packages",
+  "keywords": [
+    "blockly"
+  ],
+  "homepage": "https://blockly.com",
+  "bugs": {
+    "url": "https://github.com/RaspberryPiFoundation/blockly/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaspberryPiFoundation/blockly.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Raspberry Pi Foundation",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "mocha"
+  }
+}
