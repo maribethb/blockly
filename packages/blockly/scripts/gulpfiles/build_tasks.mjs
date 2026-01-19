@@ -543,7 +543,7 @@ function compile(options) {
     }
   }
   // Extra options for Closure Compiler gulp plugin.
-  const platform = ['native', 'java', 'javascript'];
+  const platform = ['native'];
 
   return closureCompiler({...defaultOptions, ...options}, {platform});
 }
