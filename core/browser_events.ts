@@ -46,6 +46,9 @@ const PAGE_MODE_MULTIPLIER = 125;
  * @param opt_noCaptureIdentifier True if triggering on this event should not
  *     block execution of other event handlers on this touch or other
  *     simultaneous touches.  False by default.
+ * @param options An object with options controlling the behavior of the event
+ *    listener. Passed through directly as the third argument to
+ *     `addEventListener`.
  * @returns Opaque data that can be passed to unbindEvent_.
  */
 export function conditionalBind(
@@ -54,6 +57,7 @@ export function conditionalBind(
   thisObject: object | null,
   func: Function,
   opt_noCaptureIdentifier?: boolean,
+  options?: AddEventListenerOptions,
 ): Data {
   /**
    *
@@ -75,11 +79,11 @@ export function conditionalBind(
   if (name in Touch.TOUCH_MAP) {
     for (let i = 0; i < Touch.TOUCH_MAP[name].length; i++) {
       const type = Touch.TOUCH_MAP[name][i];
-      node.addEventListener(type, wrapFunc, false);
+      node.addEventListener(type, wrapFunc, {capture: false, ...options});
       bindData.push([node, type, wrapFunc]);
     }
   } else {
-    node.addEventListener(name, wrapFunc, false);
+    node.addEventListener(name, wrapFunc, {capture: false, ...options});
     bindData.push([node, name, wrapFunc]);
   }
   return bindData;
@@ -95,6 +99,9 @@ export function conditionalBind(
  * @param name Event name to listen to (e.g. 'mousedown').
  * @param thisObject The value of 'this' in the function.
  * @param func Function to call when event is triggered.
+ * @param options An object with options controlling the behavior of the event
+ *    listener. Passed through directly as the third argument to
+ *     `addEventListener`.
  * @returns Opaque data that can be passed to unbindEvent_.
  */
 export function bind(
@@ -102,6 +109,7 @@ export function bind(
   name: string,
   thisObject: object | null,
   func: Function,
+  options?: AddEventListenerOptions,
 ): Data {
   /**
    *
@@ -119,11 +127,11 @@ export function bind(
   if (name in Touch.TOUCH_MAP) {
     for (let i = 0; i < Touch.TOUCH_MAP[name].length; i++) {
       const type = Touch.TOUCH_MAP[name][i];
-      node.addEventListener(type, wrapFunc, false);
+      node.addEventListener(type, wrapFunc, {capture: false, ...options});
       bindData.push([node, type, wrapFunc]);
     }
   } else {
-    node.addEventListener(name, wrapFunc, false);
+    node.addEventListener(name, wrapFunc, {capture: false, ...options});
     bindData.push([node, name, wrapFunc]);
   }
   return bindData;
