@@ -104,8 +104,6 @@
     "@blockly/dev-tools": "^9.0.2",
     "@blockly/keyboard-navigation": "^3.0.1",
     "@blockly/theme-modern": "^7.0.1",
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
     "@hyperjump/browser": "^1.1.4",
     "@hyperjump/json-schema": "^1.5.0",
     "@microsoft/api-documenter": "7.22.4",
