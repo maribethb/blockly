@@ -851,6 +851,26 @@ suite('Abstract Fields', function () {
         const field = CustomField.fromJson({ariaTypeName: 'text input'});
         assert.equal(field.getAriaTypeName(), 'text input');
       });
+
+      suite('W/ Msg References', function () {
+        setup(function () {
+          addMessageToCleanup(this.sharedCleanup, 'ARIA_TYPE');
+          Blockly.Msg['ARIA_TYPE'] = 'speed';
+        });
+
+        test('setAriaTypeName resolves message references', function () {
+          const field = new TestField();
+          field.setAriaTypeName('%{BKY_ARIA_TYPE}');
+          assert.equal(field.getAriaTypeName(), 'speed');
+        });
+
+        test('Configured ariaTypeName resolves message references', function () {
+          const field = new TestField('value', {
+            ariaTypeName: '%{BKY_ARIA_TYPE}',
+          });
+          assert.equal(field.getAriaTypeName(), 'speed');
+        });
+      });
     });
 
     suite('getAriaValue', function () {
