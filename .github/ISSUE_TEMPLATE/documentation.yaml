@@ -1,6 +1,7 @@
 name: Report a documentation problem 📖
 description: Could our documentation be better? Tell us how.
-labels: 'issue: docs, issue: triage'
+type: Task
+labels: 'status: triage, area: docs & examples'
 body:
   - type: markdown
     attributes:
