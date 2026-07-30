@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import * as Blockly from '../../build/src/core/blockly.js';
-import {assert} from '../../node_modules/chai/index.js';
+import * as Blockly from '#core/blockly.js';
+import {assert} from 'chai';
 import {defineEmptyBlock} from './test_helpers/block_definitions.js';
 import {MockIcon, MockSerializableIcon} from './test_helpers/icon_mocks.js';
 import {
@@ -390,6 +390,7 @@ suite('Icon', function () {
 
   suite('Contextual menus', function () {
     setup(function () {
+      Blockly.common.setParentContainer(document.firstElementChild);
       this.workspace = Blockly.inject('blocklyDiv', {});
       Blockly.icons.registry.register(
         new Blockly.icons.IconType('test'),
@@ -398,6 +399,11 @@ suite('Icon', function () {
 
       this.block = this.workspace.newBlock('empty_block');
       this.block.initSvg();
+    });
+
+    teardown(function () {
+      sharedTestTeardown.call(this);
+      Blockly.common.setParentContainer(null);
     });
 
     test('are shown when icons are right clicked', function () {

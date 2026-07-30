@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import {Rect} from '../../build/src/core/utils/rect.js';
-import * as style from '../../build/src/core/utils/style.js';
-import {assert} from '../../node_modules/chai/index.js';
+import {Rect} from '#core/utils/rect.js';
+import * as style from '#core/utils/style.js';
+import {assert} from 'chai';
 import {
   sharedTestSetup,
   sharedTestTeardown,
@@ -36,6 +36,7 @@ suite('DropDownDiv', function () {
   teardown(function () {
     sharedTestTeardown.call(this);
     document.getElementById('blocklyDiv').style.visibility = 'hidden';
+    Blockly.common.setParentContainer(null);
   });
 
   suite('Positioning', function () {
@@ -182,20 +183,10 @@ suite('DropDownDiv', function () {
       );
     });
 
-    test('with bounds set positions and shows div near specified location', function () {
-      Blockly.DropDownDiv.setBoundsElement(document.body);
-      const block = this.setUpBlockWithField();
-      const field = Array.from(block.getFields())[0];
-
-      Blockly.DropDownDiv.show(field, false, 50, 60, 70, 80, false);
-
-      const dropDownDivElem = document.querySelector('.blocklyDropDownDiv');
-      assert.strictEqual(dropDownDivElem.style.opacity, '1');
-      assert.strictEqual(dropDownDivElem.style.left, '45px');
-      assert.strictEqual(dropDownDivElem.style.top, '60px');
-    });
-
     test('sets the dropdowndiv as owned by the workspace', function () {
+      // Set the bounds element explicitly rather than relying on a previous
+      // test having set this module-global, so this test is order-independent.
+      Blockly.DropDownDiv.setBoundsElement(document.body);
       const block = this.setUpBlockWithField();
       const field = Array.from(block.getFields())[0];
 

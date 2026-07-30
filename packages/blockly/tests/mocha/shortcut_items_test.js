@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import * as Blockly from '../../build/src/core/blockly.js';
-import {assert} from '../../node_modules/chai/index.js';
+import * as Blockly from '#core/blockly.js';
+import {assert} from 'chai';
 import {
   defineRowBlock,
   defineStackBlock,
@@ -1923,6 +1923,14 @@ suite('Keyboard Shortcut Items', function () {
     const event = createKeyDownEvent(Blockly.utils.KeyCodes.J, [
       Blockly.utils.KeyCodes.CTRL_CMD,
     ]);
+
+    setup(function () {
+      Blockly.common.setParentContainer(document.firstElementChild);
+    });
+
+    teardown(function () {
+      Blockly.common.setParentContainer(null);
+    });
 
     test('Displays tooltip on a block using the keyboard shortcut', function () {
       const block = this.workspace.newBlock('controls_if');
