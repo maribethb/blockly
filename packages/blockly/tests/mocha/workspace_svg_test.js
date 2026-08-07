@@ -13,6 +13,7 @@ import {
   createChangeListenerSpy,
 } from './test_helpers/events.js';
 import {
+  DEFAULT_INJECT_OPTIONS,
   sharedTestSetup,
   sharedTestTeardown,
 } from './test_helpers/setup_teardown.js';
@@ -23,7 +24,10 @@ suite('WorkspaceSvg', function () {
   setup(function () {
     this.clock = sharedTestSetup.call(this, {fireEventsNow: false}).clock;
     const toolbox = document.getElementById('toolbox-categories');
-    this.workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
+    this.workspace = Blockly.inject('blocklyDiv', {
+      ...DEFAULT_INJECT_OPTIONS,
+      toolbox: toolbox,
+    });
     Blockly.defineBlocksWithJsonArray([
       {
         'type': 'simple_test_block',
