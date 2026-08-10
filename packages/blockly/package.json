@@ -23,6 +23,9 @@
     "#core/*": "./build/src/core/*",
     "#generators/*": "./build/src/generators/*"
   },
+  "publishConfig": {
+    "directory": "dist"
+  },
   "scripts": {
     "build": "gulp build",
     "build-debug": "gulp build --verbose --debug",
@@ -111,11 +114,9 @@
     "async-done": "^2.0.0",
     "chai": "^6.2.2",
     "concurrently": "^10.0.4",
-    "conventional-changelog-conventionalcommits": "^10.2.1",
-    "conventional-recommended-bump": "^12.0.0",
     "glob": "^13.0.6",
     "globals": "^17.7.0",
-    "google-closure-compiler": "^20260629.0.0",
+    "google-closure-compiler": "^20260803.0.0",
     "gulp": "^5.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-gzip": "^1.4.2",
