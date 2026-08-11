@@ -444,6 +444,7 @@ suite('Mirroring events', function () {
     window.HTMLCanvasElement.prototype.getContext = () => ({
       measureText: () => ({width: ''}),
     });
+    this.clock = sinon.useFakeTimers();
     window.requestAnimationFrame = (callback) => setTimeout(callback, 0);
     window.cancelAnimationFrame = (id) => clearTimeout(id);
     this.workspace = Blockly.inject('blocklyDiv', {
@@ -456,17 +457,18 @@ suite('Mirroring events', function () {
   teardown(function () {
     this.minimap.dispose();
     this.workspace.dispose();
+    this.clock.runAll();
+    sinon.restore();
     this.jsdomCleanup();
   });
 
-  test('Renaming a variable updates the minimap', async function () {
+  test('Renaming a variable updates the minimap', function () {
     const variable = this.workspace.getVariableMap().createVariable('a');
     const block = this.workspace.newBlock('variables_set');
     block.getField('VAR').setValue(variable.getId());
-    await new Promise((resolve) => setTimeout(resolve, 0));
 
     this.workspace.getVariableMap().renameVariable(variable, 'b');
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    this.clock.tick(1);
 
     const minimapBlock = this.minimap.minimapWorkspace.getBlockById(block.id);
     assert.equal(
