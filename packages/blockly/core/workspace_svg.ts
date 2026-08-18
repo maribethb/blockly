@@ -2977,8 +2977,7 @@ export class WorkspaceSvg
           return (
             comment.view
               .getCommentBarButtons()
-              .find((button) => button.getFocusableElement().id.includes(id)) ??
-            null
+              .find((button) => button.id.includes(id)) ?? null
           );
         }
       }
