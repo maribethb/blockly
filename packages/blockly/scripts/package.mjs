@@ -115,9 +115,8 @@ async function packageLocales() {
     from: LANG_BUILD_DIR,
     patterns: ['*.js'],
     to: RELEASE_MSG_DIR,
-    // Remove references to goog.provide and goog.require.
     transform: (contents) =>
-      wrapUmd(contents.replace(/goog\.[^\n]+/g, ''), {
+      wrapUmd(contents, {
         namespace: 'Blockly.Msg',
         template: 'umd-msg.template',
       }),
