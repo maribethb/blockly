@@ -2,10 +2,10 @@
 
 ## Project ownership
 
-Blockly is maintained by the **Raspberry Pi Foundation**. This repository,
-`RaspberryPiFoundation/blockly`, is the canonical upstream. It is **not** a fork of
-`google/blockly`, and there is no separate Google-maintained version that this one tracks
-or defers to.
+Blockly is maintained by the **Raspberry Pi Foundation**.
+`RaspberryPiFoundation/blockly` is the canonical upstream. It is **not** a fork of
+`google/blockly`, and there is no separate Google-maintained version that this one
+tracks or defers to.
 
 Blockly was originally developed at Google, so a lot of legacy remains and it is easy to
 conclude otherwise. Two things in particular are not evidence of ownership:
@@ -95,6 +95,47 @@ copies of these:
 - `lerna.json` — versioning and publishing
 - `commitlint.config.mjs` — conventional commit rules
 
+## Making changes
+
+- **Keep changes minimal and pull requests small.** Change what the task requires and
+  nothing else. When you notice unrelated problems along the way, report them rather
+  than folding them into the same change.
+
+- **Reach for command line tools before writing tooling.** Most build, migration, and
+  inspection tasks are one invocation of `git`, `grep`, `find`, `sed`, or an existing
+  `npx` package. Prefer that to a script with its own argument parsing, logging, and
+  error handling. A bespoke script is code someone has to maintain; a command is not.
+  The same goes for scripts you write for yourself mid-task — prefer the one-liner you
+  can throw away.
+
+- **Fix root causes, not symptoms.** Prefer the fix that removes the problem to the one
+  that routes around it. Adding a path to `.prettierignore` or an `eslint.config.mjs`
+  override, special-casing a single block type, or skipping a failing test are all
+  signals that the real issue is still there. Where an exception genuinely is the right
+  call, say why in a comment.
+
+- **Leave debugging code alone.** Do not remove or revert `console.log` calls, temporary
+  assertions, commented-out experiments, or similar scaffolding that someone else added
+  — it is probably load-bearing for whatever they are in the middle of. You can point it
+  out, but clean it up only when asked, or when explicitly preparing a final commit or
+  pull request.
+
+- **Take a final pass before you finish.** Re-read the whole diff looking for things to
+  condense or drop: code that is no longer needed, comments that no longer describe what
+  the code does, an abstraction with one caller, your own debugging leftovers.
+
+## Dependencies
+
+`packages/blockly` has **no runtime dependencies**. That is deliberate — it is loaded
+into other people's applications — so do not add one.
+
+A new `devDependency` needs a case: what it does, why a few lines of our own code or an
+existing dependency is worse, and what it costs in install size and ongoing maintenance.
+Weigh that with the author before adding it, not after.
+
+For plugins, `blockly` is always a peer dependency; see
+[`packages/plugins/AGENTS.md`](packages/plugins/AGENTS.md).
+
 ## Commits and pull requests
 
 Commits follow the conventional commit spec, enforced by commitlint. The type should be
@@ -135,8 +176,17 @@ Never hand-edit a `version` field in a `package.json`.
 
 ## Code conventions
 
-These apply to every package. The code style has changed over time; use these
-conventions even where the surrounding code does not.
+These apply to every package. The code style has changed over time; use the conventions
+listed here even where the surrounding code does not.
+
+Consistency with surrounding code is not a reason to repeat a mistake. Where the
+existing code in a file is poorly structured, write the better version rather than
+matching what is there — better beats consistent. This is especially true in tests,
+which vary in quality and do not always follow best practices.
+
+Naming and public API conventions are the exception. There, matching the established
+pattern _is_ encouraged, even where you would have chosen differently, because an
+inconsistent API is a cost paid by every consumer.
 
 - **New files** get the Apache-2.0 header with a Raspberry Pi Foundation copyright:
 
@@ -153,14 +203,39 @@ conventions even where the surrounding code does not.
 - **Optional parameters** take plain names — `workspace`, not `opt_workspace`. The
   linter still permits the `opt_` prefix so that legacy code keeps passing, but do not
   add new uses of it.
-- **Test-only exports** should be avoided. Where they are unavoidable, prefix them with
-  `testOnly_`.
 - **Private and internal methods** do not take a trailing `_` suffix.
 - **TSDoc** is required on all public APIs, covering behavior, params, and returns.
   Implementation details belong in inline comments, not in TSDoc.
 - **Inline comments** explain complex implementation details or gotchas. They are not a
   changelog: do not record how the code used to work unless it explains a
   backwards-compatibility workaround.
+- **Prefer `?` and explicit guards to `!`.** Optional chaining, or an early return that
+  narrows the type, is safer than asserting non-null.
+  `@typescript-eslint/no-non-null-assertion` warns; the existing uses in core are legacy
+  and are not precedent.
+- **Tests use chai** — `import {assert} from 'chai'`, never Node's built-in `assert`
+  module.
+- **Prefer real objects to stubs in tests.** Construct an actual workspace, block, or
+  field rather than stubbing one. A stub encodes assumptions about internals that then
+  have to be maintained, and it goes on passing after those internals break. Reach for
+  sinon where a real object is genuinely impractical — timers, network, randomness — not
+  as the default.
+- **Test-only exports** should be avoided. Where they are unavoidable, prefix them with
+  `TEST_ONLY`.
+
+### Spelling
+
+Three words are spelled the British way in APIs: **colour** (`setColour`, `FieldColour`,
+`@blockly/field-colour`), **neighbour** (`bumpNeighbours`, `getNeighbours`), and
+**centre** (`Align.CENTRE`). Use those spellings everywhere — identifiers, TSDoc,
+comments, and documentation prose.
+
+Every other word is American: `initialize`, `serialize`, `behavior`, `license`,
+`dialog`.
+
+The line to hold is **API surface versus stylesheet**. A property we named is `colour`;
+a property CSS named is `color`. CSS is always American — `color`, `background-color`,
+`gray`.
 
 ## Further reading
 

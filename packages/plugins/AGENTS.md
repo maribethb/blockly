@@ -92,7 +92,14 @@ The full convention, including the tags to put in `package.json`, is in
   pattern; if it finds nothing it prints a warning and exits **0**. A misnamed test file
   therefore fails silently and CI stays green, so double-check the suffix when adding
   tests.
+- **Plugin tests are JavaScript.** Core takes TypeScript tests, but the suffix match
+  above is literal, so a `.mocha.ts` file here is skipped without an error. Write plugin
+  tests as `.mocha.js` until that changes.
 - Tests use the `tdd` UI (`suite` / `test`), not BDD.
+- **Plugin UI must be accessible.** The same screen reader and keyboard requirements
+  apply here as in core, and the utilities to meet them — `Blockly.utils.aria` and the
+  keyboard navigation policies — come from core.
+  See [DOM and accessibility](../blockly/AGENTS.md#dom-and-accessibility).
 - **New plugins are TypeScript.** Some existing ones are JavaScript; those are legacy
   and are not the pattern to copy.
 - **`blockly` is a peer dependency**, never a direct dependency. Import from the public
@@ -105,6 +112,30 @@ The full convention, including the tags to put in `package.json`, is in
   uses `preserve`. Run `npm run format` from the root and let it sort this out.
 - Reuse `@blockly/dev-tools` for playground and test scaffolding instead of
   reimplementing it.
+
+## Localization
+
+**All user-visible strings must be translatable**, including ARIA labels and anything
+else only a screen reader will ever read.
+
+Plugins have no message machinery of their own. Strings go through core's `Blockly.Msg`,
+and the keys are defined in **core's** [`msg/messages.js`](../blockly/msg/messages.js)
+along with everything else — there is no per-plugin message file:
+
+1. Add the key and English value to `packages/blockly/msg/messages.js`, with a `///`
+   description comment above it. That comment becomes the translator note in `qqq.json`.
+2. Run `npm run messages` in `packages/blockly` to regenerate `msg/json/`.
+3. Read it from the plugin as `Blockly.Msg['YOUR_KEY']`.
+
+A pull request that adds a plugin string will therefore also touch `packages/blockly`.
+That is expected. The rest of the workflow — never hand-editing `msg/json/`, never
+adding non-English translations directly — is in
+[`packages/blockly/AGENTS.md`](../blockly/AGENTS.md#localization).
+
+**Do not add an English fallback** — `Blockly.Msg['KEY'] || 'Some text'`. The existing
+ones are legacy. A plugin can only ever be installed against a core release at or above
+its own — which is the release that introduced the key. A fallback for a key that cannot
+be missing is dead code that silently defeats translation if it ever does run.
 
 ## Adding a new plugin
 

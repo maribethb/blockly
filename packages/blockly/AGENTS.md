@@ -3,7 +3,7 @@
 The Blockly library itself. Source is TypeScript in `core/`; the build runs through Gulp
 and the Closure Compiler.
 
-Repo-wide conventions (commits, licence headers, naming) are in the
+Repo-wide conventions (commits, license headers, naming) are in the
 [root `AGENTS.md`](../../AGENTS.md) and are not repeated here.
 
 ## Commands
@@ -45,6 +45,22 @@ Test console output is suppressed by default. Set `BLOCKLY_TEST_CONSOLE=1` to se
 
 Mocha tests use the `tdd` UI (`suite` / `test`), not BDD.
 
+## Writing tests
+
+**New tests are in TypeScript.** Both extensions are collected
+(`tests/mocha/**/*_test.{js,ts}`), and the remaining `.js` files are legacy — they do
+not need converting as a drive-by.
+
+TypeScript tests run under Node's native type stripping, with type checking as a
+separate `npm run test:mocha:typecheck` pass. So
+[`tests/mocha/tsconfig.json`](tests/mocha/tsconfig.json) sets `erasableSyntaxOnly`, and
+anything requiring codegen is unavailable: no `enum`, no parameter properties, no
+`namespace`. `verbatimModuleSyntax` is also on, so type-only imports must be written as
+`import type`.
+
+Assertions use chai, and prefer building real workspaces and blocks over stubbing them.
+Both are covered in the [root conventions](../../AGENTS.md#code-conventions).
+
 ## Further reading
 
 In-repo contributor documentation, which is more detailed than this file:
@@ -63,7 +79,7 @@ In-repo contributor documentation, which is more detailed than this file:
 - **Block model:** `block.ts` — data model; `block_svg.ts` — SVG rendering and UI
 - **Workspace:** `workspace.ts` — data container; `workspace_svg.ts` — rendered workspace with drag/zoom
 - **Fields:** `field.ts` — base class for all block input fields (text, dropdown, checkbox, etc.)
-- **Connections:** `connection.ts`, `connection_checker.ts`, `connection_db.ts` — typed connection points between blocks
+- **Connections:** `connection.ts`, `connection_checker.ts`, `connection_db.ts`, `rendered_connection.ts` — typed connection points between blocks
 - **Events:** `core/events/` — pub/sub event system with 20+ event types (block create/delete/move, UI events, etc.)
 - **Keyboard navigation:** `core/keyboard_nav/` — keyboard-driven navigation and the navigation policies that define traversal order
 - **Renderers:** `core/renderers/` — pluggable rendering engines; Thrasos is the current default, with Geras and Zelos also available
@@ -90,6 +106,47 @@ three files.
 
 Do not add translations for non-English locales directly. Those come in through
 TranslateWiki.
+
+## DOM and accessibility
+
+Accessibility is a requirement, not a nice-to-have. Anything that touches the DOM has to
+work for screen reader users and for keyboard-only users: every interactive element
+reachable and operable by keyboard, with an accessible name, a sensible focus order, and
+a visible focus indicator.
+
+Use [`core/utils/aria.ts`](core/utils/aria.ts) for roles and ARIA state — `setRole`,
+`setState`, `announceDynamicAriaState` — rather than setting `aria-*` attributes by
+hand. Keyboard behavior belongs in `core/keyboard_nav/`; new interactive UI needs a
+navigation policy, not just a click handler.
+
+The relevant guides:
+
+- [Accessibility best practices](../docs/docs/guides/app-integration/accessibility/best-practices.mdx)
+- [Screen readers](../docs/docs/guides/configure/screen-reader.mdx)
+- [Keyboard navigation](../docs/docs/guides/configure/keyboard-nav.mdx)
+- [Focus](../docs/docs/guides/configure/focus.mdx)
+
+This applies to plugins as well as core. The utilities live here, but plugin UI has the
+same obligations — see [`packages/plugins/AGENTS.md`](../plugins/AGENTS.md).
+
+### Prefer vanilla DOM APIs to the `dom.ts` shims
+
+Some helpers in [`core/utils/dom.ts`](core/utils/dom.ts) predate broad browser support
+for their standard equivalents and remain only for backwards compatibility. Use the
+platform API in new code:
+
+| Instead of            | Use                             |
+| --------------------- | ------------------------------- |
+| `dom.addClass`        | `element.classList.add`         |
+| `dom.removeClass`     | `element.classList.remove`      |
+| `dom.removeClasses`   | `element.classList.remove(...)` |
+| `dom.hasClass`        | `element.classList.contains`    |
+| `dom.setCssTransform` | `element.style.transform`       |
+
+The rest of `dom.ts` is not legacy and may still be used — in particular
+`createSvgElement`, and the text measurement helpers (`getTextWidth`,
+`getFastTextWidth`, `measureFontMetrics`), which maintain a cache that hand-rolled
+measurement would bypass.
 
 ## Public API surface
 
