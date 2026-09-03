@@ -14,6 +14,8 @@
  *   node scripts/package.mjs typings
  *       # assemble only the .d.ts files, which is all that is needed
  *       # to generate the reference documentation
+ *   node scripts/package.mjs --verbose --debug
+ *       # as above, but with the build's compiler checks turned up
  */
 
 import * as fs from 'node:fs/promises';
@@ -291,10 +293,12 @@ async function clean() {
 /**
  * Prepare the files to be included in the NPM package by building
  * Blockly and copying the results into the release directory.
+ *
+ * @param {Array<string>} buildFlags Flags to pass to the build.
  */
-async function pack() {
+async function pack(buildFlags) {
   await clean();
-  await runGulpTask('build');
+  await runGulpTask('build', buildFlags);
   await Promise.all([
     packageIndex(),
     packageCoreNode(),
@@ -311,45 +315,64 @@ async function pack() {
  * Assemble just the .d.ts files in the release directory.  This is all
  * that is needed in order to generate the reference documentation, and
  * is much quicker than a full pack.
+ *
+ * @param {Array<string>} buildFlags Flags to pass to the build.
  */
-async function typings() {
+async function typings(buildFlags) {
   await clean();
-  await runGulpTask('tsc');
+  await runGulpTask('tsc', buildFlags);
   await packageDTS();
 }
 
 /** The commands this script accepts, as its first argument. */
 const COMMANDS = {pack, typings};
 
-const USAGE = `Usage: node scripts/package.mjs [command]
+/**
+ * Options that are not handled here but passed straight through to the
+ * build, which uses them to decide how strictly the Closure Compiler
+ * checks the code.  See compile() in build_tasks.mjs.
+ */
+const BUILD_FLAGS = ['verbose', 'debug', 'strict'];
+
+const USAGE = `Usage: node scripts/package.mjs [command] [options]
 
 Packages Blockly for distribution on NPM.
 
 Commands:
-  pack      Build Blockly and assemble the complete package (default)
-  typings   Build and assemble only the .d.ts files
+  pack       Build Blockly and assemble the complete package (default)
+  typings    Build and assemble only the .d.ts files
 
 Options:
-  --help    Show this message`;
+  --verbose  Report all Closure Compiler warnings during the build
+  --debug    Treat Closure Compiler warnings as errors
+  --strict   As --debug, and also check types strictly
+  --help     Show this message`;
 
-const {positionals, values} = parseArgs({
-  allowPositionals: true,
-  options: {
-    'help': {type: 'boolean'},
-  },
-});
-
-if (values.help) {
-  console.log(USAGE);
-} else {
-  const [command = 'pack'] = positionals;
-  try {
+try {
+  const {positionals, values} = parseArgs({
+    allowPositionals: true,
+    options: {
+      'help': {type: 'boolean'},
+      ...Object.fromEntries(
+        BUILD_FLAGS.map((flag) => [flag, {type: 'boolean'}]),
+      ),
+    },
+  });
+  if (values.help) {
+    console.log(USAGE);
+  } else {
+    const [command = 'pack'] = positionals;
     if (!Object.hasOwn(COMMANDS, command)) {
       throw new Error(`Unknown command '${command}'.\n${USAGE}`);
     }
-    await COMMANDS[command]();
-  } catch (e) {
-    console.error(e.message);
-    process.exitCode = 1;
+    // Any build flags given are not acted on here, but passed on to
+    // the build.
+    const buildFlags = BUILD_FLAGS.filter((flag) => values[flag]).map(
+      (flag) => `--${flag}`,
+    );
+    await COMMANDS[command](buildFlags);
   }
+} catch (e) {
+  console.error(e.message);
+  process.exitCode = 1;
 }
