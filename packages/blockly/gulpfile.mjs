@@ -32,7 +32,6 @@ import {
 } from './scripts/gulpfiles/build_tasks.mjs';
 import {cleanBuildDir, cleanReleaseDir} from './scripts/lib/fs_utils.mjs';
 
-
 const clean = parallel(cleanBuildDir, cleanReleaseDir);
 
 // Default target if gulp invoked without specifying.
